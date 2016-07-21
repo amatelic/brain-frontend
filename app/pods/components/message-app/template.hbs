@@ -1,0 +1,27 @@
+<div class="user__list">
+  <h3>Messages:</h3>
+  <hr/>
+  {{#each messages as |message|}}
+  <div class="user__message">
+    <img class="circle" src="{{message.image}}" alt="" />
+    <p class="user__message__title">{{message.title}}</p>
+  </div>
+  {{/each}}
+</div>
+
+<div class="user__messages">
+  <div class="user__display">
+    {{#each texst as |text|}}
+    <div class="trinagle">
+      1
+    </div>
+    {{#emoji-tag class="message_text"}}
+      {{text.message}}
+    {{/emoji-tag}}
+    {{/each}}
+  </div>
+  <div class="user__text">
+    <input onkeydown={{action 'sendMessage'}} class="user__text__input" type="text" name="name" placeholder="Write your message">
+  </div>
+</div>
+{{yield}}

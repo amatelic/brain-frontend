@@ -1,0 +1,45 @@
+@import "default/color";
+// @import "pages/index";
+@import "pages/app";
+@import "component/brain";
+@import "component/messages";
+@import "component/card";
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: no-wrap;
+  // background: $index_background;
+}
+
+h1, h2, h3, h4, h5, p, a, b, i {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+  font-family: Lato;
+  color: white;
+}
+span {
+  font-family: Lato;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+
+}
+hr {
+  border: 1px solid white
+}

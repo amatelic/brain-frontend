@@ -1,0 +1,48 @@
+//Default page
+
+//Index page
+$index_background: #7b3e68
+$logo_background: #632f53
+$logo_border_background: #4c2640
+$button_backgorund : #6d3a5d
+
+
+//Components
+
+.btn
+  background: #7b3e68
+  background-image: -webkit-linear-gradient(top, #7b3e68, #47253d)
+  background-image: -moz-linear-gradient(top, #7b3e68, #47253d)
+  background-image: -ms-linear-gradient(top, #7b3e68, #47253d)
+  background-image: -o-linear-gradient(top, #7b3e68, #47253d)
+  background-image: linear-gradient(to bottom, #7b3e68, #47253d)
+  -webkit-border-radius: 60
+  -moz-border-radius: 60
+  border-radius: 60px
+  text-shadow: 1px 1px 1px #000
+  -webkit-box-shadow: 2px 2px 1px #000
+  -moz-box-shadow: 2px 2px 1px #000
+  box-shadow: 2px 2px 1px #000
+  font-family: Arial
+  color: #ffffff
+  font-size: 13px
+  padding: 9px 20px 10px 20px
+  text-decoration: none
+
+
+.btn:hover
+  background: #6d3a5d
+  background-image: -webkit-linear-gradient(top, #6d3a5d, #4c2640)
+  background-image: -moz-linear-gradient(top, #6d3a5d, #4c2640)
+  background-image: -ms-linear-gradient(top, #6d3a5d, #4c2640)
+  background-image: -o-linear-gradient(top, #6d3a5d, #4c2640)
+  background-image: linear-gradient(to bottom, #6d3a5d, #4c2640)
+  text-decoration: none
+
+
+=flexType($direction:row, $wrap:wrap, $justify:center, $align:center)
+  display: flex
+  flex-direction: $direction
+  justify-content: $justify
+  flex-wrap: $wrap
+  align-items: $align

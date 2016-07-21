@@ -1,0 +1,47 @@
+.brain__card
+  width: 45%
+  height: 400px
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  background: $index_background
+  // border: 2px solid $logo_border_background
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  margin: 0px 0px 0px 10px
+  padding: 10px
+
+%card_basic
+  display: flex
+  width: 100%
+  height: 30%
+.card__header
+  @extend %card_basic
+  justify-content: center
+  align-items: center
+.card__body
+  @extend %card_basic
+  justify-content: center
+  align-items: flex-start
+.card__footer
+  @extend %card_basic
+  justify-content: center
+
+.card__dimension_20
+  display: flex
+  width: 100%
+  height: 20%
+  justify-content: center
+  align-items: center
+.card__dimension_80
+  width: 100%
+  height: 80%
+//input
+
+.brain__input
+  width: 70%
+  height: 25px
+  border-radius: 15px
+  outline: none
+  border: none
+  padding: 5px

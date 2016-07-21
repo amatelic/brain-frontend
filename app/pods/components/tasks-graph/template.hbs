@@ -1,0 +1,19 @@
+<p>Select graph:</p>
+<select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
+  {{#each types as |type|}}
+    <option value="is{{type}}" selected={{eq type selectedGraph}}>{{type}}</option>
+  {{/each}}
+</select>
+
+{{#if isRadar}}
+  {{ember-chart type='Radar' data=normal
+  options=options height=height}}
+{{else if  isBar}}
+  {{ember-chart type='Bar' data=normal
+options=options height=200}}
+{{else}}
+{{ember-chart type='Pie' data=pie.data
+options=pie.label height=200}}
+{{/if}}
+
+{{yield}}

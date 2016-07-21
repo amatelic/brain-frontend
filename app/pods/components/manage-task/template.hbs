@@ -1,0 +1,22 @@
+<div class="card__dimension_20">
+  <h2>All user Tasks</h2>
+</div>
+<div class="card__dimension_80">
+  <ul class="manage__tasks__list">
+    {{#each tasks as |task|}}
+      <li>
+        <div class="task__text">
+          <p>{{task.name}}</p>
+        </div>
+        <div class="task__checkbox">
+          {{input type="checkbox" name="name" checked=task.complited}}
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  <hr/>
+  <div style="text-align: center;">
+    <h2>{{complited tasks}}</h2>
+  </div>
+</div>
+{{yield}}

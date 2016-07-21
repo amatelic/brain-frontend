@@ -1,0 +1,32 @@
+<div class="header">
+  <div class="brain__logo">
+    <h2>Brain</h2>    
+  </div>
+  <!-- <div class="model">
+    <h2>{{model.quote.content}}</h2>
+    <i>{{model.quote.author}}</i>
+  </div> -->
+  <header>
+      <div class="brain__navigation">
+        <div class="brain__messages">
+          {{#link-to "messages" class="btn"}} Messages <span>2</span>{{/link-to}}
+        </div>
+        <div class="brain__user">
+          {{#link-to "user"}}<img src="{{model.user.image}}" alt="" />{{/link-to}}
+        </div>
+      </div>
+  </header>
+</div>
+
+<div class="app">
+  <div class="left">
+    <ul class="brain__nav">
+      <li>{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
+      <li>{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
+      <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
+    </ul>
+  </div>
+  <div class="main">
+    {{liquid-outlet class="brain__main"}}
+  </div>
+</div>
