@@ -3,13 +3,13 @@
 </div>
 <div class="card__dimension_80">
   <ul class="manage__tasks__list">
-    {{#each tasks as |task|}}
+    {{#each tasks as |task index|}}
       <li>
         <div class="task__text">
           <p>{{task.name}}</p>
         </div>
         <div class="task__checkbox">
-          {{input type="checkbox" name="name" checked=task.complited}}
+          {{brain-checkbox checked=task.complited toggleTask="toggleTask" value=task}}
         </div>
       </li>
     {{/each}}

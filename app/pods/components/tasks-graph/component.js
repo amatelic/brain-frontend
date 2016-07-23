@@ -13,7 +13,7 @@ export default Ember.Component.extend({
       let prevGraph = this.get('selectedGraph');
       this.set(prevGraph, false);
       this.set(type, true);
-      this.set('selectedGraph', type)
+      this.set('selectedGraph', type);
     },
   }
 });

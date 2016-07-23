@@ -1,4 +1,4 @@
-export default function(){
+export default function() {
   this.transition(
     this.fromRoute('home'),
     this.toRoute('messages'),
@@ -12,8 +12,8 @@ export default function(){
     this.toRoute('home'),
     this.toRoute('tasks'),
 
-    
+
     this.use('toRight'),
     this.reverse('toLeft')
   );
-};
+}

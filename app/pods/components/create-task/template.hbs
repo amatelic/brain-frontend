@@ -3,6 +3,9 @@
 </div>
 <div class="card__body">
   {{input value=new_task class="brain__input"}}
+  <div class="brain_all">
+    <button {{action "createNewTask" new_task}} class="btn"> Create </button>
+  </div>
 </div>
 <div class="card__footer">
   <p>

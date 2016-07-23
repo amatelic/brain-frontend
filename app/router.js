@@ -10,6 +10,8 @@ Router.map(function() {
   this.route('user');
   this.route('home');
   this.route('tasks');
+  this.route('login');
+  this.route('register');
 });
 
 export default Router;

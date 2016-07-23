@@ -1,32 +1,67 @@
 <div class="header">
   <div class="brain__logo">
-    <h2>Brain</h2>    
+    <h2>Brain</h2>
   </div>
-  <!-- <div class="model">
-    <h2>{{model.quote.content}}</h2>
-    <i>{{model.quote.author}}</i>
-  </div> -->
   <header>
       <div class="brain__navigation">
-        <div class="brain__messages">
+        {{#if session.isAuthenticated}}
+        <div class="brain__navigation__component">
           {{#link-to "messages" class="btn"}} Messages <span>2</span>{{/link-to}}
+          <a href="#" class="btn" {{action 'logout'}}>Logout</a>
         </div>
         <div class="brain__user">
-          {{#link-to "user"}}<img src="{{model.user.image}}" alt="" />{{/link-to}}
+          {{#link-to "user"}}<img src="{{model.image}}" alt="" />{{/link-to}}
         </div>
+        {{else}}
+          <div class="brain__navigation__component">
+            {{#link-to "login" class="btn"}} Log in {{/link-to}}
+          </div>
+        {{/if}}
       </div>
   </header>
 </div>
 
 <div class="app">
-  <div class="left">
-    <ul class="brain__nav">
-      <li>{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
-      <li>{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
-      <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
-    </ul>
-  </div>
-  <div class="main">
-    {{liquid-outlet class="brain__main"}}
-  </div>
+  {{#if session.isAuthenticated}}
+    <div class="left">
+      <ul class="brain__nav">
+        <li>{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
+        <li>{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
+        <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
+      </ul>
+    </div>
+    <div class="main">
+      {{liquid-outlet class="brain__main"}}
+    </div>
+  {{else}}
+    <div class="brain_login">
+      <div class="brain__card">
+        <div class="card__dimension_20">
+          <h1>Login</h1>
+        </div>
+        <div class="card__dimension_80">
+          <form class="brain__form" {{action 'authenticate' on="submit"}}>
+            <div class="brain__group">
+              <label class="brain__label" for="identification">Ssername</label>
+              {{input value=identification placeholder='Enter Login' class="brain__input"}}
+            </div>
+            <div class="brain__group">
+              <label class="brain__label" for="password"> Password</label>
+              {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
+            </div>
+            <div class="brain__group">
+              <button type="submit" class="btn">Login</button>
+            </div>
+
+            {{#if error}}
+            <p>
+              <strong>Login failed:</strong>
+              <code>{{error}}</code>
+            </p>
+            {{/if}}
+          </form>
+        </div>
+      </div>
+    </div>
+  {{/if}}
 </div>

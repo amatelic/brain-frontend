@@ -3,15 +3,22 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'brain',
-    podModulePrefix: 'brain/pods',
     environment: environment,
+    podModulePrefix: 'brain/pods',
     baseURL: '/',
     locationType: 'auto',
+    contentSecurityPolicy : {
+      // ... other stuff here
+      'connect-src': "'self' http://brain.app"
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       }
+    },
+    backend: {
+      url: 'http://brain.app/api'
     },
 
     APP: {

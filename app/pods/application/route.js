@@ -1,20 +1,25 @@
 import Ember from 'ember';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 //https://github.com/chartjs/Chart.js/tree/v1.1.1/docs
-export default Ember.Route.extend({
-  afterModel() {
-    this.transitionTo('home');
+export default Ember.Route.extend(ApplicationRouteMixin, {
+  init() {
+    this._super(...arguments);
+    this.get('session').on('authenticationSucceeded', () => {
+      // console.log(this.setController('application'));
+      this.store.findRecord('user', 1).then((model) => {
+        this.controllerFor('application').set('model', model);
+        this.transitionTo('home');
+      }).catch(err => console.log(err))
+    });
   },
-
   model() {
-    return {
-      user: {
-        username: 'anze matelic',
-        image: 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg'
-      },
-      quote: {
-        content: 'I am as bad as the worst, but, thank God, I am as good as the best.',
-        author: 'Walt Whitman'
-      },
-    };
+    if (this.get('session.isAuthenticated')) {
+      return this.store.findRecord('user', 1);
+    }
+  },
+  actions: {
+    invalidateSession() {
+      this.get('session').invalidate();
+    }
   }
 });
