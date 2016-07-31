@@ -1,5 +1,13 @@
-{{tasks-graph normal=model.data pie=model.pie options=model.options height=model.height}}
+{{tasks-graph
+  normal=model.graph.n
+  pie=model.graph.r
+  options=model.option
+  height=model.height
+}}
 
-{{manage-task tasks=model.tasks}}
+{{manage-task
+  tasks=model.user.tasks
+  checkTask="checkTask"
+}}
 
 {{outlet}}

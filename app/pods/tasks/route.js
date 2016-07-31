@@ -4,36 +4,25 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return {
-      tasks: [
-        {
-          name: 'Meditate 10 minuts',
-          description: 'bla bla',
-          complited: true,
-        },
-        {
-          name: 'Reading a book a day',
-          description: 'To get more knowladge',
-          complited: false,
-        },
-        {
-          name: 'Do 100 suburies',
-          description: 'For fun :)',
-          complited: false,
-        },
-      ]
-    };
+    return Ember.RSVP.all([
+      this.store.peekAll('task')
+    ]).then(res => {
+      return {tasks: res[0]};
+    });
   },
   actions: {
     addTask(task) {
-      let obj = {
-        name: task,
-        description: '',
-        complited: false,
-      };
-      let model = this.model();
-      model.tasks.push(obj);
-      this.controllerFor('tasks').set('model', model);
+      this.store.push({
+        data: [{
+          id: Math.random(),
+          type: 'task',
+          attributes: {
+            name: task,
+            description: '',
+            complited: false
+          }
+        }]
+      });
     },
     updateTask: function(target) {
       let tasks = this.controllerFor('tasks').get('model.tasks');

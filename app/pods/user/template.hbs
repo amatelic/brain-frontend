@@ -1,4 +1,22 @@
 <div class="content__card">
-  <h2>User content:</h2>
+  <div class="card__dimension_20">
+    <h2>User content:</h2>
+  </div>
+  <div class="card__user">
+    <label class="brain__label" for="name">Name:</label>
+    <input class="brain__input" type="text" name="name" value={{model.name}}>
+    <label class="brain__label" for="name">Username:</label>
+    <input class="brain__input" type="text" name="name" value={{model.username}}>
+    <label class="brain__label" for="name">Image:</label>
+    <div class="brain__user">
+      <img src={{model.image}} alt="" />
+    </div>
+    <div class="brain_all">
+      <input type="file" name="name" value="">
+    </div>
+    <div class="brain_all">
+      <button type="button" class="btn">Button</button>
+    </div>
+  </div>
 </div>
 {{outlet}}

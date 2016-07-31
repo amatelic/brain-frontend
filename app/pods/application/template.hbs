@@ -9,7 +9,7 @@
           {{#link-to "messages" class="btn"}} Messages <span>2</span>{{/link-to}}
           <a href="#" class="btn" {{action 'logout'}}>Logout</a>
         </div>
-        <div class="brain__user">
+        <div class="brain__user" onfocusin={{action 'test'}}>
           {{#link-to "user"}}<img src="{{model.image}}" alt="" />{{/link-to}}
         </div>
         {{else}}
@@ -42,7 +42,7 @@
         <div class="card__dimension_80">
           <form class="brain__form" {{action 'authenticate' on="submit"}}>
             <div class="brain__group">
-              <label class="brain__label" for="identification">Ssername</label>
+              <label class="brain__label" for="identification">Username</label>
               {{input value=identification placeholder='Enter Login' class="brain__input"}}
             </div>
             <div class="brain__group">

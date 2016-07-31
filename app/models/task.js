@@ -4,7 +4,8 @@ import { belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),
-  username: attr('string'),
-  image: attr('string'),
-  tasks: hasMany('task')
+  description: attr('string'),
+  complited: attr('boolean', { defaultValue: false }),
+  monthly: attr('array'),
+  user: belongsTo('user'),
 });

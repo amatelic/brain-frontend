@@ -12,6 +12,9 @@ export default Ember.Controller.extend({
       .catch(res => {
         this.set('error', res.error);
       });
+    },
+    test() {
+      console.log('test');
     }
   }
 });
