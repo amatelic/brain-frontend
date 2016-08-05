@@ -1,9 +1,12 @@
 @import "default/color";
 // @import "pages/index";
 @import "pages/app";
+@import "pages/user";
+@import "pages/graph";
 @import "component/brain";
 @import "component/messages";
 @import "component/card";
+@import "component/switch";
 
 html, body {
   height: 100%;
@@ -18,7 +21,7 @@ body {
   // background: $index_background;
 }
 
-h1, h2, h3, h4, h5, p, a, b, i {
+h1, h2, h3, h4, h5, p, a, b, i, small {
   margin: 0;
   padding: 0;
   width: auto;
@@ -42,4 +45,12 @@ li {
 }
 hr {
   border: 1px solid white
+}
+
+canvas {
+    width: 90% !important;
+    max-width: 800px;
+    max-height: 200px;
+    height: auto !important;
+    margin-bottom: 30px;
 }

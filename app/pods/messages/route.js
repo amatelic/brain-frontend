@@ -3,11 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return {
-      user: {
-        username: 'anze matelic',
-        image: 'https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg'
-      }
-    };
-  }
+    let user = this.store.peekRecord('user', 1);
+    return user.get('messages');
+  },
 });

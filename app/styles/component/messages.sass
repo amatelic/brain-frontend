@@ -10,16 +10,22 @@
 
 .user__messages
   width: 75%
-  background: blue
-
+  border-radius: 15px
+  overflow: hidden
 .user__message
   display: flex
   flex-direction: row
   align-content: center
   padding: 5px 0px 5px 0px
   border-bottom: 2px solid $logo_border_background
+  &:hover
+    background: $button_backgorund
 .user__message__title
   margin: 15px 0px 0px 10px
+
+.user__message__author
+  margin: 10px
+
 .circle
   width: 50px
   height: 50px
@@ -29,22 +35,26 @@
 
 .user__display
   width: 100%
-  height: 75%
+  height: 85%
   padding-top: 20px
-  background: red
+  background: white
+
 .user__text
   padding-top: 10px
   width: 100%
-  height: 17%
-  background: green
+  height: 15%
+  background: #66104A
+  text-align: center
+
 .user__text__input
   width: 80%
   height: 25px
-  margin: 10px
+  margin: 3px 15px
 
-.message_text
+.message__text
     display: inline
     background: white
+    border: 1px solid gray
     width: auto
     height: auto
     padding: 10px

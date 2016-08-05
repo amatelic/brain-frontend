@@ -6,13 +6,13 @@
 </select>
 
 {{#if isRadar}}
-  {{ember-chart type='Radar' data=normal
+  {{ember-chart type='Radar' data=data.n
   options=options height=200}}
 {{else if  isBar}}
-  {{ember-chart type='Bar' data=normal
+  {{ember-chart type='Bar' data=data.n
 options=options height=200}}
 {{else}}
-{{ember-chart type='Pie' data=pie.data
+{{ember-chart type='Pie' data=data.r.data
 options=pie.label height=200}}
 {{/if}}
 

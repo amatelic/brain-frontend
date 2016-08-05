@@ -1,0 +1,19 @@
+<h2>{{duration}}</h2>
+{{#if showStartBtn}}
+<button type="submit" class="btn btn-sm btn-default" {{action "start"}}>Start</button>
+{{/if}}
+{{#if stopRequired}}
+<button type="button" class="btn btn-sm btn-default" {{action "stop" true}}>Stop</button>
+{{/if}}
+{{#if isStopWatch}}
+<button type="button" class="btn btn-sm btn-default" {{action "pause"}}>{{#if isRunning}}Pause{{else}}Resume{{/if}}</button>
+{{/if}}
+
+<select class="brain__dropdown" onchange={{action "selectTask" value="target.value"}}>
+  {{#each tasks as |task index|}}
+  <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
+  {{/each}}
+</select>
+
+<input type="time" name="name" value="">
+{{yield}}

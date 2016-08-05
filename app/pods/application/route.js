@@ -9,13 +9,16 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.store.findRecord('user', 1).then((model) => {
         this.controllerFor('application').set('model', model);
         this.transitionTo('home');
-      }).catch(err => console.log(err))
+      }).catch(err => console.log(err));
     });
   },
   model() {
     if (this.get('session.isAuthenticated')) {
       return this.store.findRecord('user', 1);
     }
+  },
+  afterModel() {
+    this.transitionTo('home');
   },
   actions: {
     invalidateSession() {

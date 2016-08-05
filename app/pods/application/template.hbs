@@ -5,13 +5,11 @@
   <header>
       <div class="brain__navigation">
         {{#if session.isAuthenticated}}
-        <div class="brain__navigation__component">
+        {{#user-conf user=model}}
+          {{#link-to "user" class="btn"}} User {{/link-to}}
           {{#link-to "messages" class="btn"}} Messages <span>2</span>{{/link-to}}
           <a href="#" class="btn" {{action 'logout'}}>Logout</a>
-        </div>
-        <div class="brain__user" onfocusin={{action 'test'}}>
-          {{#link-to "user"}}<img src="{{model.image}}" alt="" />{{/link-to}}
-        </div>
+        {{/user-conf}}
         {{else}}
           <div class="brain__navigation__component">
             {{#link-to "login" class="btn"}} Log in {{/link-to}}
@@ -27,6 +25,7 @@
       <ul class="brain__nav">
         <li>{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
         <li>{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
+        <li>{{#link-to "graph" class="brain__links"}}Graph{{/link-to}}</li>
         <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
       </ul>
     </div>

@@ -1,28 +1,25 @@
 import Ember from 'ember';
-import moment from 'moment';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-
+import moment from 'moment';
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return Ember.RSVP.all([
-      this.store.peekAll('task')
-    ]).then(res => {
-      return {tasks: res[0]};
+    return Ember.RSVP.hash({
+      tasks: this.store.peekAll('task'),
     });
   },
   actions: {
-    addTask(task) {
-      this.store.push({
-        data: [{
-          id: Math.random(),
-          type: 'task',
-          attributes: {
-            name: task,
-            description: '',
-            complited: false
-          }
-        }]
+    addTask(title) {
+      let days = moment().daysInMonth();
+      let user = this.store.peekRecord('user', 1);
+      let task = this.store.createRecord('task', {
+        name: title,
+        description: '',
+        complited: false,
+        monthly: Array(days).fill(0),
+        user: user
       });
+
+      task.save();
     },
     updateTask: function(target) {
       let tasks = this.controllerFor('tasks').get('model.tasks');

@@ -1,7 +1,6 @@
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
 import ENV from 'brain/config/environment';
 import Ember from 'ember';
-
 export default JSONAPIAdapter.extend({
   session: Ember.inject.service('session'),
   host: ENV.backend.url,

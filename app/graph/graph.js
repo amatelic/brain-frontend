@@ -18,20 +18,18 @@ export default Ember.Object.extend({
    */
   createData(tasks) {
     let val = tasks.map(d => {
-      d.set('monthly', d.get('monthly').filter(val => {
-        return val == 1
-      }));
-      return d;
+       return d.get('monthly')
+                .filter(val => parseInt(val) === 1).length;
     });
     return {
-      r:  this.round(val),
-      n: this.normal(val),
+      r:  this.round(tasks, val),
+      n: this.normal(tasks, val),
     };
   },
   /**
    * Method for line and bar graph
    */
-  normal(tasks) {
+  normal(tasks, val) {
     return {
       labels: tasks.map(d => d.get('name')),
       datasets: [
@@ -42,23 +40,39 @@ export default Ember.Object.extend({
           pointStrokeColor: "#fff",
           pointHighlightFill: "#fff",
           pointHighlightStroke: "rgba(220,220,220,1)",
-          data: tasks.map(d => d.get('monthly').length)
+          data: val
         }],
-    }
+    };
 
   },
   /**
    * Method for circles and donuts
    */
-  round(tasks) {
+  round(tasks, val) {
     return {
       labels: tasks.map(d => d.get('name')),
-      data: tasks.map(d => ({
-        value: d.get('monthly').length,
+      data: val.map(d => ({
+        value: d,
         color: this.hex(),
         highlight: "#FF5A5E",
-        label: d.get('name')
+        label: 1,
       }))
+    };
+  },
+
+  getData(data) {
+    return {
+      labels: data.get('monthly').map((d, i) => i),
+      datasets: [
+        {
+          fillColor: "rgba(220,220,220,0.2)",
+          strokeColor: "rgba(220,220,220,1)",
+          pointColor: "rgba(220,220,220,1)",
+          pointStrokeColor: "#fff",
+          pointHighlightFill: "#fff",
+          pointHighlightStroke: "rgba(220,220,220,1)",
+          data: data.get('monthly'),
+        }],
     };
   },
   hex() {

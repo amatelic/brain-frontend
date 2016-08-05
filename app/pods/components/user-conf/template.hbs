@@ -1,0 +1,9 @@
+<div {{action 'toggleNavigation' on="mouseEnter"}} class="brain__user">
+  <img  src={{user.image}} alt="" />
+</div>
+
+{{#unless isHidden}}
+  <div class="brain__user__nav">
+    {{yield}}
+  </div>
+{{/unless}}
