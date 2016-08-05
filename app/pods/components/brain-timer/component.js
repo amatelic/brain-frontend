@@ -1,9 +1,10 @@
 import Ember from 'ember';
-
+import TimeFormater from '../../../utility/timeformatter';
 export default Ember.Component.extend({
+  setTime: null,
   classNames: ['brain__timer'],
   startTimeStamp: 0,
-  duration: 0,
+  duration: null,
   autoStart: false,
   startTime: 0,
   stopRequired: true,
@@ -21,24 +22,31 @@ export default Ember.Component.extend({
     return this.get("isStopWatch") || !this.get("autoStart");
   }.property('autoStart', 'isStopWatch'),
 
-  run: function(){
+  run: function(time){
     var self = this;
     var startTimeStamp = this.get("startTimeStamp");
     this.set('timerId', Ember.run.later(this, function() {
       var timeElapsed = Date.now() - startTimeStamp;
       var secs = timeElapsed / 1000;
-      self.set("duration", parseInt(secs));
-      // self.set("duration", Formatter.getTimefromSecs(secs, "HH:MM:SS"));
-      self.run();
+      self.set("duration", TimeFormater.getTimefromSecs(secs, 'HH:MM:SS'));
+      if (parseInt(secs) === time) {
+        var timerId = self.get("timerId");
+        Ember.run.cancel(timerId);
+        alert('tets');
+      } else {
+        self.run(time);
+
+      }
     }, 25));
   },
 
   actions: {
     start: function(){
+      let time = TimeFormater.getSecs('00:' + this.get('setTime'));
       var startTime = this.get("startTime") * 1000;
       this.set("startTimeStamp", Date.now() - startTime);
-      this.set("isRunning", true);
-      this.run();
+      this.toggleProperty("isRunning");
+      this.run(time);
     },
 
     stop: function(reset){

@@ -63,10 +63,12 @@
 
 .brain__timer
   width: 94%
-  height: 100px
+  height: 170px
   background: $index_background
   color: white
   margin: 10px
+  display: flex
+  flex-direction: row
 
 .liquid-child
   width: 100%
@@ -92,6 +94,29 @@
   align-items: center
   justify-content: center
 
+/*
+  === Brain positioning ===
+  */
+%brain__50
+  display: flex
+  width: 50%
+  padding: 0
+  margin: 0
+  flex-direction: column
+
+.brain__counter__numbers
+    font-size: 4em
+    margin: 20px 30px
+.brain__right, .brain__left
+  @extend %brain__50
+.brain__container
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-content: space-between
+  width: 80%
+  height: 100%
+  margin: 5px 10px
 /*
   === Create tasks component ===
   */
@@ -123,3 +148,35 @@
   font-size: 20px
 .task__checkbox
   width: 20%
+
+.overlay
+  position: absolute
+  width: 100%
+  height: 100%
+  z-index: 10
+  background: rgba(0, 0, 0, 0.5)
+.brain__modal
+  background: white
+  width: 400px
+  height: 200px
+  z-index: 20
+  position: absolute
+  border-radius: 5px
+  padding: 5px
+  text-align: center
+  top: 40%
+  left: 40%
+  margin: -200px -100px
+  h2
+    font-weight: bold
+    color: $logo_border_background
+
+.brain_model_button
+  outline: none
+  color: white
+  font-size: 1.2em
+  padding: 7px
+  margin: 5px
+  border-radius: 5px
+  border: none
+  background: $logo_border_background

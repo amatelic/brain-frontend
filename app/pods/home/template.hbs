@@ -1,4 +1,9 @@
-<!-- {{brain-timer tasks=model.user.tasks}} -->
+{{#if showModal}}
+  {{brain-modal}}
+{{/if}}
+
+<button type="button" {{action 'modal'}}name="button">Show modal </button>
+{{brain-timer tasks=model.user.tasks}}
 
 {{tasks-graph
   data=model.graph

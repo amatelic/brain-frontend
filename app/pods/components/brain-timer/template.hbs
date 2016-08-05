@@ -1,19 +1,29 @@
-<h2>{{duration}}</h2>
-{{#if showStartBtn}}
-<button type="submit" class="btn btn-sm btn-default" {{action "start"}}>Start</button>
-{{/if}}
-{{#if stopRequired}}
-<button type="button" class="btn btn-sm btn-default" {{action "stop" true}}>Stop</button>
-{{/if}}
-{{#if isStopWatch}}
-<button type="button" class="btn btn-sm btn-default" {{action "pause"}}>{{#if isRunning}}Pause{{else}}Resume{{/if}}</button>
-{{/if}}
+<div class="brain__left">
+  <h2 class="brain__counter__numbers">{{duration}}</h2>
+  <!-- {{#if showStartBtn}}
+  <button type="submit" class="btn btn-sm btn-default" {{action "start"}}>Start</button>
+  {{/if}}
+  {{#if stopRequired}}
+  <button type="button" class="btn btn-sm btn-default" {{action "stop" true}}>Stop</button>
+  {{/if}}
+  {{#if isStopWatch}}
+  <button type="button" class="btn btn-sm btn-default" {{action "pause"}}>{{#if isRunning}}Pause{{else}}Resume{{/if}}</button>
+  {{/if}} -->
+</div>
+<div class="brain__right">
+  <div class="brain__container">
+    <p>Select task to work on:</p>
+    <select class="brain__dropdown" onchange={{action "selectTask" value="target.value"}}>
+      {{#each tasks as |task index|}}
+      <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
+      {{/each}}
+    </select>
+    <p>Select time to complite:</p>
+    {{input type="time" class="brain__input" value=setTime}}
+    <!-- <input class="brain__input" type="time" name="name" value={{setTime}}> -->
+    <button type="submit" class="btn btn-sm btn-default" {{action "start"}}>Start task:</button>
+  </div>
+</div>
 
-<select class="brain__dropdown" onchange={{action "selectTask" value="target.value"}}>
-  {{#each tasks as |task index|}}
-  <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
-  {{/each}}
-</select>
 
-<input type="time" name="name" value="">
 {{yield}}
