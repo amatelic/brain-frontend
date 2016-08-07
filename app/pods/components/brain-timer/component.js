@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import TimeFormater from '../../../utility/timeformatter';
 export default Ember.Component.extend({
-  setTime: null,
   classNames: ['brain__timer'],
+  setTime: null,
   startTimeStamp: 0,
   duration: null,
   autoStart: false,
@@ -32,7 +32,7 @@ export default Ember.Component.extend({
       if (parseInt(secs) === time) {
         var timerId = self.get("timerId");
         Ember.run.cancel(timerId);
-        alert('tets');
+        self.sendAction('modal');
       } else {
         self.run(time);
 

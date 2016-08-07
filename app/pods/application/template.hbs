@@ -51,8 +51,7 @@
             <div class="brain__group">
               <button type="submit" class="btn">Login</button>
             </div>
-
-            {{#if error}}
+              {{#if error}}
             <p>
               <strong>Login failed:</strong>
               <code>{{error}}</code>
@@ -64,3 +63,7 @@
     </div>
   {{/if}}
 </div>
+
+{{#if showModal}}
+  {{brain-modal complited="complited"}}
+{{/if}}

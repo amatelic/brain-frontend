@@ -21,7 +21,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       task.save();
     },
     modal() {
-      this.controllerFor('home').set('showModal', true);
+      this.controllerFor('application').set('showModal', true);
     }
   }
 });
