@@ -1,14 +1,13 @@
 <div class="{{if modal__animate "modal--animate"}} brain__modal">
   <div class="brain__modal__header">
-    <h2>This is a modal</h2>
+    <h2>{{title}}</h2>
   </div>
-  <hr>
-  <div class="brain__modal__header">
-    Did you finished the task? :)
+  <hr/>
+  <div class="brain__modal__body">
+    {{yield}}
   </div>
   <footer>
     <button {{action 'complited' true}} type="button" class="brain_model_button">Yes</button>
     <button {{action 'complited' false}} type="button" class="brain_model_button">No</button>
   </footer>
 </div>
-{{yield}}

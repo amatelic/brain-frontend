@@ -32,7 +32,7 @@ export default Ember.Component.extend({
       if (parseInt(secs) === time) {
         var timerId = self.get("timerId");
         Ember.run.cancel(timerId);
-        self.sendAction('modal');
+        self.sendAction('modal', 0);
       } else {
         self.run(time);
 

@@ -146,6 +146,12 @@
 .task__text
   width: 80%
   font-size: 20px
+  white-space: nowrap
+.task__text  > p
+  padding-right: 20px
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
 .task__checkbox
   width: 20%
 
@@ -164,16 +170,17 @@
   z-index: 20
   position: absolute
   border-radius: 5px
-  padding: 5px
+  padding: 15px
   text-align: center
   top: 40%
   left: 40%
   transform: translateY(-200px)
-  margin: -200px -100px
-  transition: all 1s ease-out
+  margin: -350px -100px
+  transition: all 0.5s cubic-bezier(0,1.52,.89,1.23)
   h2
     font-weight: bold
     color: $logo_border_background
+
 .modal--animate
   transform: translateY(200px)
 .brain_model_button

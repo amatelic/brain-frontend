@@ -9,14 +9,15 @@
           <p>{{task.name}}</p>
         </div>
         <div class="task__checkbox">
-          {{brain-checkbox checked=task.complited toggleTask="toggleTask" value=task}}
+          {{brain-checkbox task=task toggleTask="toggleTask"}}
+          {{task.complited}}
         </div>
       </li>
     {{/each}}
   </ul>
   <hr/>
   <div style="text-align: center;">
-    <h2>{{complited tasks}}</h2>
+    <h2>{{areComplited}}</h2>
   </div>
 </div>
 {{yield}}

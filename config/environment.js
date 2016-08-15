@@ -8,8 +8,13 @@ module.exports = function(environment) {
     baseURL: '/',
     locationType: 'auto',
     contentSecurityPolicy : {
-      // ... other stuff here
       'connect-src': "'self' http://brain.app"
+    },
+    "ember-simple-auth": {
+      authorizationHeaderName: 'Authorization',
+      headers: {
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      }
     },
     EmberENV: {
       FEATURES: {

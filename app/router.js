@@ -13,6 +13,11 @@ Router.map(function() {
   this.route('login');
   this.route('register');
   this.route('graph');
+  this.route('modal.welcome');
+
+  this.route('modal', function() {
+    this.route('welcome');
+  });
 });
 
 export default Router;

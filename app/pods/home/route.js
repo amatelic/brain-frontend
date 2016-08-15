@@ -20,7 +20,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       task.set('user', user);
       task.save();
     },
-    modal() {
+    modal(task) {
+      this.controllerFor('application').set('selectedTaskIndex', task);
       this.controllerFor('application').set('showModal', true);
     }
   }

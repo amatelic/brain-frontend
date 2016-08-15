@@ -63,7 +63,9 @@
     </div>
   {{/if}}
 </div>
-
-{{#if showModal}}
+<button {{action 'openModal' 'modal' 'test'}}>Open modal</button>
+<button {{action 'openModal' 'modal.welcome' 'test'}}>Open welcome</button>
+{{outlet 'modal'}}
+<!-- {{#if showModal}}
   {{brain-modal complited="complited"}}
-{{/if}}
+{{/if}} -->

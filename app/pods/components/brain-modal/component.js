@@ -4,6 +4,11 @@ export default Ember.Component.extend({
   classNames: ['overlay'],
   modal__animate: false,
   // self.set('brain__modal_animate', false);
+  click(e) {
+    if (this.$(e.target).hasClass('overlay')) {
+      this.sendAction('complited', 'no');
+    }
+  },
   didRender() {
     this._super(...arguments);
     Ember.run.later(this, function() {
