@@ -31,7 +31,9 @@ export default Ember.Object.extend({
    */
   normal(tasks, val) {
     return {
-      labels: tasks.map(d => d.get('name')),
+      labels: tasks.map(d => {
+        return d.get('name');
+      }),
       datasets: [
         {
           fillColor: "rgba(220,220,220,0.2)",
@@ -51,18 +53,21 @@ export default Ember.Object.extend({
   round(tasks, val) {
     return {
       labels: tasks.map(d => d.get('name')),
-      data: val.map(d => ({
+      data: val.map((d, i) => ({
         value: d,
         color: this.hex(),
         highlight: "#FF5A5E",
-        label: 1,
+        label: tasks.objectAt(i).get('name'),
       }))
     };
   },
 
   getData(data) {
     return {
-      labels: data.get('monthly').map((d, i) => i),
+      labels: data.get('monthly').map((d, i) => {
+        let month = moment().month() + 1;
+        return moment(`${month}/${i+1}/2016`, 'MM/DD/YYYY').format("ddd");
+      }),
       datasets: [
         {
           fillColor: "rgba(220,220,220,0.2)",

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import jaro from 'npm:jaro-winkler'
 export default Ember.Object.create({
   getTimefromSecs: function(seconds, format){
     if(format === "seconds"){
@@ -9,14 +9,18 @@ export default Ember.Object.create({
     seconds = seconds % 3600;
     var m = Math.floor(seconds / 60);
     var s = Math.floor(seconds % 60);
-    h = h < 10 ? "0" + h : h;
-    m = m < 10 ? "0" + m : m;
-    s = s < 10 ? "0" + s : s;
+    h = this.addZero(h);
+    m = this.addZero(m);
+    s = this.addZero(s);
     if(format === "HH:MM"){
       return h + ":" + m;
     } else if(format === "HH:MM:SS") {
       return h + ":" + m + ":" + s;
     }
+  },
+
+  addZero(time) {
+    return time < 10 ? "0" + time : time;
   },
 
   getSecs: function(time){
@@ -25,5 +29,26 @@ export default Ember.Object.create({
     var m = arr[1] || 0;
     var s = arr[2] || 0;
     return (parseFloat(h) * 3600 + parseFloat(m) * 60 + parseFloat(s));
+  },
+  convertString(str) {
+    let [number, time] = str.split(' ');
+    number = parseFloat(number);
+    if (!Number.isInteger(number)) {
+      alert('Not a number');
+    }
+    if (!time) {
+      return;
+    }
+    if (jaro(time, 'hour') > 0.9) {
+      return number * 3600;
+    }
+
+    if (jaro(time, 'minuts') > 0.9) {
+      return number * 60;
+    }
+    if (jaro(time, 'seconds') > 0.9) {
+      return number;
+    }
+
   }
 });

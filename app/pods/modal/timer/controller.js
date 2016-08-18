@@ -1,10 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  session: Ember.inject.service('session'),
-
   actions: {
-    complited(value) {
+    com(value) {
+      if (value) {
+        this.send('complited', value);
+      }
       this.send('closeModal');
     },
   }

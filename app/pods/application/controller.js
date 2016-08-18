@@ -13,8 +13,5 @@ export default Ember.Controller.extend({
         this.set('error', res.error);
       });
     },
-    test() {
-      console.log('test');
-    }
   }
 });

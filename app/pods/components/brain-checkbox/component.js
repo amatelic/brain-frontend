@@ -16,13 +16,9 @@ export default Ember.Component.extend({
       this.$('input').attr('checked', this.get('task.complited'));
     }
   },
-  _updateElementValue: function() {
-    this.set('task.complited', this.$('input').prop('checked'));
-    this.set('checked', this.$('input').prop('checked'));
-  },
 
   change: function(){
-    this._updateElementValue();
+    this.toggleProperty('task.complited')
     this.sendAction('toggleTask', this.get('task'), this.get('task.complited'));
   }
 });

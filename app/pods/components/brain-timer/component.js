@@ -9,9 +9,8 @@ export default Ember.Component.extend({
   startTime: 0,
   stopRequired: true,
   isStopWatch: false,
-  //TODO: check the usage of this variable
+  taskIndex: 0,
   isRunning: false,
-
   didInsertElement: function(){
     if(this.get("autoStart")){
       this.send("start");
@@ -23,26 +22,25 @@ export default Ember.Component.extend({
   }.property('autoStart', 'isStopWatch'),
 
   run: function(time){
-    var self = this;
     var startTimeStamp = this.get("startTimeStamp");
     this.set('timerId', Ember.run.later(this, function() {
       var timeElapsed = Date.now() - startTimeStamp;
       var secs = timeElapsed / 1000;
-      self.set("duration", TimeFormater.getTimefromSecs(secs, 'HH:MM:SS'));
+      this.set("duration", TimeFormater.getTimefromSecs(secs, 'HH:MM:SS'));
       if (parseInt(secs) === time) {
-        var timerId = self.get("timerId");
+        var timerId = this.get("timerId");
         Ember.run.cancel(timerId);
-        self.sendAction('modal', 0);
+        this.sendAction('modal', this.get('taskIndex'));
       } else {
-        self.run(time);
+        this.run(time);
 
       }
-    }, 25));
+    }.bind(this), 25));
   },
 
   actions: {
     start: function(){
-      let time = TimeFormater.getSecs('00:' + this.get('setTime'));
+      let time = TimeFormater.convertString(this.get('setTime'));
       var startTime = this.get("startTime") * 1000;
       this.set("startTimeStamp", Date.now() - startTime);
       this.toggleProperty("isRunning");
@@ -72,8 +70,8 @@ export default Ember.Component.extend({
       }
     },
 
-    selectTask(e) {
-      console.log(e);
+    selectTask(index) {
+      this.set('taskIndex', index);
     }
   },
 

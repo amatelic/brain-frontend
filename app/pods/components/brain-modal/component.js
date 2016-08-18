@@ -3,7 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['overlay'],
   modal__animate: false,
-  // self.set('brain__modal_animate', false);
+  success: "Yes",
+  failure: "No",
+  control: true,
   click(e) {
     if (this.$(e.target).hasClass('overlay')) {
       this.sendAction('complited', 'no');

@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Graph from 'brain/graph/graph';
-// let t = new Graph();
-// console.log(t.option())
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   graph: new Graph(),
   model() {
@@ -20,9 +18,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       task.set('user', user);
       task.save();
     },
-    modal(task) {
-      this.controllerFor('application').set('selectedTaskIndex', task);
-      this.controllerFor('application').set('showModal', true);
+
+    modal(index) {
+      this.send('openModal', 'modal.timer');
+      this.controllerFor('application').set('selectedTaskIndex', index);
     }
   }
 });

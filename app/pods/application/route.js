@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-//https://github.com/chartjs/Chart.js/tree/v1.1.1/docs
+import { storageFor } from 'ember-local-storage';
+
 export default Ember.Route.extend(ApplicationRouteMixin, {
+  welcome: storageFor('beginner'),
   init() {
     this._super(...arguments);
     this.get('session').on('authenticationSucceeded', () => {
@@ -19,6 +21,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   afterModel() {
     this.get('session').on('authenticationSucceeded', () => {
       this.transitionTo('home');
+      if (this.get('welcome.show')) {
+        Ember.run.later(this, function() {
+          this.send('openModal', 'modal.welcome');
+        }, 500);
+      }
     });
   },
   actions: {
@@ -26,17 +33,17 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       this.get('session').invalidate();
     },
     complited(e) {
-      this.controllerFor('application').set('showModal', false);
+      // this.controllerFor('application').set('showModal', false);
       let index = this.controllerFor('application').get('selectedTaskIndex');
-      let task = this.store.peekRecord('task', index);
+      let task = this.controllerFor('home').get('model.user.tasks').objectAt(index);
       task.set('complited', e);
       task.save();
-      this.controllerFor('home').set('model.user.tasks', this.store.peekAll('task'));
     },
     openModal: function(name, model) {
       return this.render(name, {
         into: 'application',
         outlet: 'modal',
+        controller: name,
         model: model,
       });
     },

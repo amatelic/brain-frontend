@@ -6,8 +6,10 @@
   <div class="brain__modal__body">
     {{yield}}
   </div>
-  <footer>
-    <button {{action 'complited' true}} type="button" class="brain_model_button">Yes</button>
-    <button {{action 'complited' false}} type="button" class="brain_model_button">No</button>
-  </footer>
+  {{#if control}}
+    <footer>
+      <button {{action 'complited' true}} type="button" class="brain_model_button">{{success}}</button>
+      <button {{action 'complited' false}} type="button" class="brain_model_button">{{failure}}</button>
+    </footer>
+  {{/if}}
 </div>
