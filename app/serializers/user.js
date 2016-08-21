@@ -1,4 +1,5 @@
 import JSONAPISerializer from 'ember-data/serializers/json-api';
+//https://github.com/emberjs/data/issues/3419
 import App from '../app';
 export default JSONAPISerializer.extend({
   normalizeResponse(store, primaryModelClass, payload) {

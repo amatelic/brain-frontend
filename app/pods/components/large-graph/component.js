@@ -7,7 +7,6 @@ export default Ember.Component.extend({
   options: null,
   task: null,
   monthPosition: null,
-  classNames: ['graph__large'],
   didReceiveAttrs() {
     this._super(...arguments);
     const tasks = this.get('data');

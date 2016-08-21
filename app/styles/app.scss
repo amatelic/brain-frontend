@@ -6,6 +6,7 @@
 @import "component/brain";
 @import "component/messages";
 @import "component/card";
+@import "component/task";
 @import "component/switch";
 
 html, body {
@@ -21,7 +22,7 @@ body {
   // background: $index_background;
 }
 
-h1, h2, h3, h4, h5, p, a, b, i, small {
+h1, h2, h3, h4, h5, p, a, b, i, small, div {
   margin: 0;
   padding: 0;
   width: auto;
@@ -29,10 +30,15 @@ h1, h2, h3, h4, h5, p, a, b, i, small {
   font-family: Lato;
   color: white;
 }
+input, button, select {
+  outline: none
+}
+
 span {
   font-family: Lato;
   color: white;
 }
+
 
 a {
   text-decoration: none;
@@ -45,6 +51,10 @@ li {
 }
 hr {
   border: 1px solid white
+}
+
+button:disabled {
+  opacity: 0.5
 }
 
 canvas {

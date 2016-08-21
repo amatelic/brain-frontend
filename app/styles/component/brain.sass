@@ -1,17 +1,18 @@
-button:disabled
-  opacity: 0.5
+/*
+  === Mangage brain components ===
+  */
+%brain_default
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+
 .brain_login
-  width: 100%
-  height: 100%
-  display: flex
-  color: white
-  justify-content: center
+  @extend %brain_default
+
 .brain_register
-  width: 100%
-  height: 100%
-  display: flex
-  color: white
-  justify-content: center
+  @extend %brain_default
+
 .brain_register > .brain__card
   height: 100%
 .brain__form
@@ -19,44 +20,43 @@ button:disabled
 .brain__group
   width: 100%
   padding: 5px
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
+  +flexType(column, no-wrap, center, center)
+
 .brain__label
   margin: 7px
   font-size: 20px
   font-family: Lato
   display: flex
-  color: white
 .card__body_col
   flex-direction: column
+
 .brain__logo
   height: 40px
   margin: 10px 0px 0px 20px
   padding: 5px 5px 0px 5px
   border: 2px solid white
   border-radius: 15px
+
 .brain_all
   width: 100%
   +flexType
+
 .brain__input
-  width: 70%
-  height: 25px
+  +size(70%, 25px)
   border-radius: 15px
-  outline: none
   border: none
   padding: 5px
+
 .brain__dropdown
-  width: 100%
-  height: 35px
+  +size(100%, 35px)
   appearance: none
   font-size: 16px
   border: 1px solid white
-  outline: none
+
 .brain__nav
   width: 100%
   padding: 0
+
 .brain__nav > li
   width: 100%
   padding: 5px 0px 5px 0
@@ -67,43 +67,27 @@ button:disabled
   width: 100%
   height: 25px
 .brain__main
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
+  +flexType(row, wrap, center, center)
 
 .brain__timer
-  width: 94%
-  height: 170px
+  +size(94%, 170px)
   background: $index_background
-  color: white
   margin: 10px
   display: flex
   flex-direction: row
 
 .liquid-child
-  width: 100%
-  height: 100%
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-
-.brain__input
-
+  +size(100%, 100%)
+  +flexType(row, wrap, center, center)
 
 /** brain card
 .card__graph_20
-  display: flex
-  width: 100%
-  height: 20%
-  justify-content: center
-  align-items: center
-.card__graph_80
-  display: flex
-  width: 100%
-  height: 80%
-  align-items: center
-  justify-content: center
+  +size(100%, 20%)
+  +flexType(column, wrap, center, center)
 
+.card__graph_80
+  +size(100%, 80%)
+  +flexType(column, wrap, center, center)
 /*
   === Brain positioning ===
   */
@@ -117,80 +101,53 @@ button:disabled
 .brain__counter__numbers
     font-size: 4em
     margin: 20px 30px
+
 .brain__right, .brain__left
   @extend %brain__50
+
 .brain__container
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-  align-content: space-between
-  width: 80%
-  height: 100%
+  +size(80%, 100%)
   margin: 5px 10px
-/*
-  === Create tasks component ===
-  */
+  +flexType(column, wrap, space-between, space-between)
+
 .brain__input
   font-size: 14px
 
-
-/*
-  === Mangage tasks component ===
-  */
-
-.manage__tasks__list
-  margin: 0
-  padding: 0
-  width: 100%
-  height: 250px
-  overflow-y: scroll
-  // +flexType(column, nowrap)
-.manage__tasks__list > li
-  width: 100%
-  height: 30px
-  padding: 10px 0px
-  +flexType(row, nowrap, space-around)
+.brain__card
+  +size(45%, 400px)
+  margin: 0px 0px 0px 10px
+  +flexType(row, wrap, center, center)
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
   &:hover
-    background: $button_backgorund
-
-.task__text
-  width: 80%
-  font-size: 20px
-  white-space: nowrap
-.task__text  > p
-  padding-right: 20px
-  white-space: nowrap
-  text-overflow: ellipsis
-  overflow: hidden
-.task__checkbox
-  width: 20%
+    background: $logo_background
 
 .overlay
-  position: absolute
-  width: 100%
-  height: 100%
-  z-index: 10
+  +size(100%, 100%)
   top: 0
   left: 0
-  background: rgba(0, 0, 0, 0.5)
-.brain__modal
-  background: white
-  width: 400px
-  height: 200px
-  z-index: 20
+  z-index: 10
   position: absolute
-  border-radius: 5px
-  padding: 15px
-  text-align: center
+  background: rgba(0, 0, 0, 0.5)
+
+.brain__modal
   top: 40%
   left: 40%
-  transform: translateY(-200px)
+  +size(400px, 200px)
   margin: -350px -100px
+  z-index: 20
+  padding: 15px
+  position: absolute
+  transform: translateY(-200px)
+  text-align: center
+  background: white
+  border-radius: 5px
   transition: all 0.5s cubic-bezier(0,1.52,.89,1.23)
   h2
     font-weight: bold
     color: $logo_border_background
-
 
 .brain__modal *
   color: $button_backgorund
@@ -200,11 +157,9 @@ button:disabled
   transform: translateY(200px)
 
 .brain_model_button
-  outline: none
-  color: white
-  font-size: 1.2em
-  padding: 7px
   margin: 5px
-  border-radius: 5px
   border: none
+  padding: 7px
+  font-size: 1.2em
+  border-radius: 5px
   background: $logo_border_background
