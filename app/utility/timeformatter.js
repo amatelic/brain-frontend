@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import jaro from 'npm:jaro-winkler'
+import jaro from 'npm:jaro-winkler';
 export default Ember.Object.create({
   getTimefromSecs: function(seconds, format){
     if(format === "seconds"){

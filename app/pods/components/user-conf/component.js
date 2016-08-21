@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   isHidden: true,
-  mouseLeave: function(evt) {
+  mouseLeave: function() {
     this.set('isHidden', true);
   },
   actions: {

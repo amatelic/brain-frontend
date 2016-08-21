@@ -3,5 +3,5 @@ import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-passwor
 
 export default OAuth2PasswordGrant.extend({
   serverTokenEndpoint: 'http://brain.app/api/token',
-  serverTokenRevocationEndpoint: '/revoke'
+  // serverTokenRevocationEndpoint: 'http://brain.app/api/token/revoke'
 });

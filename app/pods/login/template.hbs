@@ -1,25 +1,28 @@
-<div class="brain__card">
-  <div class="card__header">
-    <h1>Login</h1>
-  </div>
-  <div class="card__body">
-    <form {{action 'authenticate' on="submit"}}>
-      <label for="identification">Login</label>
-      {{input value=identification placeholder='Enter Login' class="brain__input"}}
-      <br>
-      <label for="password"> Password</label>
-      {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
-      <button type="submit" class="btn">Login</button>
-
-      {{#if error}}
-      <p>
-        <strong>Login failed:</strong>
-        <code>{{error}}</code>
-      </p>
-      {{/if}}
-    </form>
+<div class="brain_login">
+  <div class="brain__card">
+    <div class="card__dimension_20">
+      <h1>Login</h1>
+    </div>
+    <div class="card__dimension_80">
+      <form class="brain__form" {{action 'authenticate' on="submit"}}>
+        <div class="brain__group">
+          <label class="brain__label" for="identification">Username</label>
+          {{input value=identification placeholder='Enter Login' class="brain__input"}}
+        </div>
+        <div class="brain__group">
+          <label class="brain__label" for="password"> Password</label>
+          {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
+        </div>
+        <div class="brain__group">
+          <button type="submit" class="btn">Login</button>
+        </div>
+          {{#if error}}
+        <p>
+          <strong>Login failed:</strong>
+          <code>{{error}}</code>
+        </p>
+        {{/if}}
+      </form>
+    </div>
   </div>
 </div>
-
-
-{{outlet}}

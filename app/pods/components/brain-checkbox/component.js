@@ -18,7 +18,7 @@ export default Ember.Component.extend({
   },
 
   change: function(){
-    this.toggleProperty('task.complited')
+    this.toggleProperty('task.complited');
     this.sendAction('toggleTask', this.get('task'), this.get('task.complited'));
   }
 });

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import App from '../../app';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { storageFor } from 'ember-local-storage';
 
@@ -16,17 +17,32 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
     if (this.get('session.isAuthenticated')) {
       return this.store.findRecord('user', 1);
+    } else {
+      this.transitionTo('login');
     }
   },
   afterModel() {
     this.get('session').on('authenticationSucceeded', () => {
       this.transitionTo('home');
-      if (this.get('welcome.show')) {
-        Ember.run.later(this, function() {
+      Ember.run.schedule('render', function() {
+        if (this.get('welcome.show')) {
           this.send('openModal', 'modal.welcome');
-        }, 500);
-      }
+          this.set('welcome.show', false);
+        } else {
+          let meta = App.storeMeta['user'];
+          if (meta) {
+            this.send('openModal', 'modal.qoute', meta);
+          }
+        }
+      }.bind(this));
     });
+
+    Ember.run.later(this, function() {
+      let meta = App.storeMeta['user'];
+      if (meta) {
+        this.send('openModal', 'modal.quotes', meta);
+      }
+    }, 500);
   },
   actions: {
     invalidateSession() {

@@ -62,7 +62,7 @@ export default Ember.Component.extend({
       var duration = this.get("duration");
       var isRunning = this.get("isRunning");
       if(isRunning) {
-        this.set("startTime", Formatter.getSecs(duration));
+        this.set("startTime", TimeFormater.getSecs(duration));
         this.sendAction("updatePausedTime", duration);
         this.send("stop");
       } else {

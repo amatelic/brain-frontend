@@ -11,6 +11,8 @@ module.exports = function(environment) {
       'connect-src': "'self' http://brain.app"
     },
     "ember-simple-auth": {
+      // authenticationRoute: 'login',
+      // routeAfterInvalidation: 'login',
       authorizationHeaderName: 'Authorization',
       headers: {
         headers: { 'Access-Control-Allow-Origin': '*' },
