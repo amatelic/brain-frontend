@@ -3,15 +3,13 @@
   */
 
 .manage__tasks__list
+  +size(100%, 250px)
   margin: 0
   padding: 0
-  width: 100%
-  height: 250px
   overflow-y: scroll
-  // +flexType(column, nowrap)
+
 .manage__tasks__list > li
-  width: 100%
-  height: 30px
+  +size(100%, 30px)
   padding: 10px 0px
   +flexType(row, nowrap, space-around)
   &:hover
