@@ -5,10 +5,12 @@ import { storageFor } from 'ember-local-storage';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   welcome: storageFor('beginner'),
+  session: Ember.inject.service('session'),
   init() {
     this._super(...arguments);
     this.get('session').on('authenticationSucceeded', () => {
-      this.store.findRecord('user', 1).then((model) => {
+      let id = this.get('session.data.authenticated.user_id');
+      this.store.findRecord('user', id).then((model) => {
         this.controllerFor('application').set('model', model);
         this.transitionTo('home');
       }).catch(err => console.log(err));
@@ -16,7 +18,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
   model() {
     if (this.get('session.isAuthenticated')) {
-      return this.store.findRecord('user', 1);
+      let id = this.get('session.data.authenticated.user_id');
+      return this.store.findRecord('user', id);
     } else {
       this.transitionTo('login');
     }

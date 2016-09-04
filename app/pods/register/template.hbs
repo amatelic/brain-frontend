@@ -5,32 +5,36 @@
     </div>
       <form class="brain__form" {{action 'register' on="submit"}}>
         <div class="brain__group">
-          <label class="brain__label" for="identification">Name</label>
+          <label class="brain__label" for="identification">Name:</label>
           {{input value=name placeholder='Enter your name' class="brain__input"}}
           {{#if isNameEmpty}}
             <h5>The name is to short.</h5>
           {{/if}}
         </div>
         <div class="brain__group">
-          <label class="brain__label" for="identification">Email</label>
+          <label class="brain__label" for="identification">Username:</label>
+          {{input value=username placeholder='Enter your username' class="brain__input"}}
+        </div>
+        <div class="brain__group">
+          <label class="brain__label" for="identification">Email:</label>
           {{input value=email placeholder='Enter email' class="brain__input"}}
           {{#if isEmailEmpty}}
             <h5>The entery is not a correct email address.</h5>
           {{/if}}
         </div>
         <div class="brain__group">
-          <label class="brain__label" for="password">Password</label>
+          <label class="brain__label" for="password">Password:</label>
           {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
         </div>
         <div class="brain__group">
-          <label class="brain__label" for="password"> Re-enter password</label>
+          <label class="brain__label" for="password"> Re-enter password:</label>
           {{input value=repassword placeholder="Enter Password" class="brain__input" type='password'}}
           {{#if isSamePassword}}
             <h5>The password are not matching.</h5>
           {{/if}}
         </div>
         <div class="brain__group">
-          <button type="submit" class="btn" >Register</button>
+          <button type="submit" class="btn">Register</button>
           <!-- //disabled={{isValid}} -->
         </div>
           {{#if error}}

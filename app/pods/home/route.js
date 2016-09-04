@@ -3,15 +3,17 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import Graph from 'brain/graph/graph';
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   brainNotification: Ember.inject.service(),
+  session: Ember.inject.service('session'),
   graph: new Graph(),
   model() {
+    let id = this.get('session.data.authenticated.user_id');
     return Ember.RSVP.hash({
       width: 400,
       height: 400,
-      user: this.store.peekRecord('user', 1),
+      user: this.store.peekRecord('user', id),
       option: this.get('graph').option(),
-      messages: this.store.peekRecord('user', 1).get('messages'),
-      graph: this.store.peekRecord('user', 1).get('tasks'),
+      messages: this.store.peekRecord('user', id).get('messages'),
+      graph: this.store.peekRecord('user', id).get('tasks'),
     });
   },
   setupController(controller, model) {
@@ -22,7 +24,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     checkTask(task) {
-      let user = this.store.peekRecord('user', 1);
+      let id = this.get('session.data.authenticated.user_id');
+      let user = this.store.peekRecord('user', id);
       task.set('user', user);
       task.save();
     },
