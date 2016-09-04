@@ -5,4 +5,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.store.findRecord('user', 1);
   },
+  actions: {
+    changePrice(price) {
+      this.controllerFor('user').set('model.plan', price);
+    }
+  }
 });

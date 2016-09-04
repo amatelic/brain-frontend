@@ -1,15 +1,27 @@
 <div class="card__graph_20">
   <div class="brain__box">
+    <p>Select skill you went to check:</p>
     <select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
       {{#each tasks as |task index|}}
       <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
       {{/each}}
     </select>
   </div>
+  <br>
   <div class="brain__box">
-    <button {{action "getMonth" 'left'}} type="button" class="btn">Next</button>
-    <button {{action "getMonth" 'right'}} type="button" class="btn">Prev</button>
+    <div class="brain__month__stats">
+      <p>You have work on this skill this month</p>
+      <b>{{showStats}}</b>
+    </div>
+
+    <div class="brain__month__stats">
+      <p>All together</p>
+      <b>{{showWholeStat}}</b>
+    </div>
   </div>
+    <br/>
+    <!-- <button {{action "getMonth" 'left'}} type="button" class="btn">Next</button> -->
+    <!-- <button {{action "getMonth" 'right'}} type="button" class="btn">Prev</button> -->
 </div>
 <div class="card__graph_80">
 {{#if normal}}

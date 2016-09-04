@@ -1,5 +1,5 @@
 <div class="user__list">
-  <h3>Messages:</h3>
+  <h3>Messages({{isNew}}) :</h3>
   <hr/>
   {{#each messages as |message|}}
   <div {{action 'showMessage' message}} class="user__message">
@@ -7,6 +7,9 @@
     <div>
       <p class="user__message__title">{{message.title}}</p>
       <small class="user__message__author"> - {{message.author}} </small>
+      {{#if message.status}}
+        <span class="message--new">NEW</span>
+      {{/if}}
     </div>
   </div>
   {{/each}}

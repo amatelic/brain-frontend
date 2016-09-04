@@ -103,8 +103,10 @@
     margin: 20px 30px
 
 .brain__right, .brain__left
+  height: 100%
   @extend %brain__50
-
+.brain__left
+  +flexType(column, wrap, center, center)
 .brain__container
   +size(80%, 100%)
   margin: 5px 10px
@@ -162,4 +164,11 @@
   padding: 7px
   font-size: 1.2em
   border-radius: 5px
+  color: white
   background: $logo_border_background
+
+.brain__month__stats
+  border: 2px solid white
+  text-align: center
+  width: 300px
+  padding: 5px

@@ -1,11 +1,12 @@
-#ember367
-  width: 100%
 .header
   display: flex
   width: 100%
   height: 70px
+  position: fixed
   margin-bottom: 10px
   background: $index_background
+  z-index: 10
+
   box-shadow: 4px 6px 13px -1px rgba(163,163,163,0.58)
 
 header
@@ -15,18 +16,22 @@ header
   flex-direction: row-reverse
 
 .left
-  width: 10%
+  width: 120px
+  height: 100%
   display: flex
   background: $index_background
+  position: fixed
   box-shadow: 9px 6px 13px -1px rgba(163,163,163,0.58)
 .main
+  margin-left: 120px
   width: 90%
+
 .app
   display: flex
   height: 100%
   width: 100%
-  // flex-direction: row
   flex-wrap: wrap
+  margin-top: 80px
 
 //Test
 
@@ -39,16 +44,6 @@ header
 .brain__navigation__component
   margin: 20px 10px 0px 0px
 
-.content__card
-  width: 80%
-  height: 500px
-  display: flex
-  background: $index_background
-  flex-direction: column
-  // border: 2px solid $logo_border_background
-  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
-  margin: 0px 0px 0px 10px
-  padding: 10px
 
 .brain__user
   display: flex

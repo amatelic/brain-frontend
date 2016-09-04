@@ -7,5 +7,6 @@ export default Model.extend({
   text: attr('string'),
   author: attr('string'),
   image: attr('string'),
+  status: attr('boolean'),
   user: belongsTo('user'),
 });

@@ -16,8 +16,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   setupController(controller, model) {
     this._super(...arguments);
-    let messages = model.messages.toArray();
-    this.get('brainNotification').showArray(messages, 2000);
+    // let messages = model.messages.toArray();
+    // this.get('brainNotification').showArray(messages, 2000);
   },
 
   actions: {

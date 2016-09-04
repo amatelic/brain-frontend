@@ -2,6 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['message__app'],
+  isNew: Ember.computed('messages.@each.status', function() {
+    let messages = this.get('messages');
+    return messages.filterBy('status', true).length;
+  }),
   texst: [],
   actions: {
     sendMessage(e) {
@@ -11,6 +15,7 @@ export default Ember.Component.extend({
       }
     },
     showMessage(message) {
+      message.set('status', false);
       this.set('text', message.get('text'));
     }
   }

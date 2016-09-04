@@ -6,6 +6,8 @@ export default Model.extend({
   name: attr('string'),
   username: attr('string'),
   image: attr('string'),
+  plan: attr('string'),
+  auth: attr('string'),
   tasks: hasMany('task'),
   messages: hasMany('message'),
 });
