@@ -7,5 +7,6 @@ export default Model.extend({
   description: attr('string'),
   complited: attr('boolean', { defaultValue: false }),
   monthly: attr('array'),
+  month: attr('string'),
   user: belongsTo('user'),
 });

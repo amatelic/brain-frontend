@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Graph from 'brain/graph/graph';
+import moment from 'moment';
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   brainNotification: Ember.inject.service(),
   session: Ember.inject.service('session'),
@@ -27,7 +28,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       let id = this.get('session.data.authenticated.user_id');
       let user = this.store.peekRecord('user', id);
       task.set('user', user);
-      task.save();
+      task.save().then(d => {
+        let monthy = task.get('monthly');
+        monthy[moment().date() - 1] = 1;
+        this.set('monthy', monthy);
+        // this.controllerFor('home').set('model.graph', this.store.peekAll('task'));
+      });
     },
 
     modal(index) {

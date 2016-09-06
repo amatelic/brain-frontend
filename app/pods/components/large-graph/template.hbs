@@ -19,9 +19,10 @@
       <b>{{showWholeStat}}</b>
     </div>
   </div>
-    <br/>
-    <!-- <button {{action "getMonth" 'left'}} type="button" class="btn">Next</button> -->
-    <!-- <button {{action "getMonth" 'right'}} type="button" class="btn">Prev</button> -->
+    <div class="brain__month__stats">
+      <button {{action "getMonth" 'left'}} type="button" class="btn">Prev</button>
+      <button {{action "getMonth" 'right'}} type="button" class="btn">Next</button>
+    </div>
 </div>
 <div class="card__graph_80">
 {{#if normal}}

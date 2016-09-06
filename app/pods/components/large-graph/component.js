@@ -1,46 +1,59 @@
 import Ember from 'ember';
 import Graph from 'brain/graph/graph';
-
+import moment from 'moment';
+import Statistics from '../../../utility/statistics';
 export default Ember.Component.extend({
+  statistics: Statistics,
   graph: new Graph(),
+  month: (moment().month() + 1),
   normal: null,
   options: null,
   task: null,
   monthPosition: null,
   showStats: Ember.computed('normal', function() {
     let  data = this.get('normal.datasets')[0].data;
-    let worked = data.reduce((a,b) => (a += (b > 0) ? 1 : 0), 0);
+    let worked = this.get('statistics').differenc(data);
     return `${worked} / ${data.length}`;
   }),
-  showWholeStat: Ember.computed('property', function() {
-    let one = 0;
-    let full = 0;
+  showWholeStat: Ember.computed('tasks', function() {
+    let one = 0, full = 0;
     this.get('data').toArray().forEach(d => {
-      let data = d.get('monthly').reduce((a,b) => (a += (b > 0) ? 1 : 0), 0);
+      let data = this.get('statistics').differenc(d.get('monthly'));
       one += data;
       full += d.get('monthly').length;
-    })
-    return `${this.procentage(one, full)}/100%`;
+    });
+    return `${this.get('statistics').procentage(one, full)}/100%`;
   }),
-  procentage(first, second) {
-    return Math.round((first * 100) / second);
-  },
+
   didReceiveAttrs() {
     this._super(...arguments);
-    const tasks = this.get('data');
-    const task = tasks.objectAt(0);
+    const task = this.get('data').objectAt(0);
     this.set('task', task);
     this.set('options', this.get('graph').option());
     this.set('normal', this.get('graph').getData(task));
   },
   actions: {
+
+    /**
+     * Method for selecting tasks data
+     * @param {Number} index expected tasks index
+     */
+
     selectGraph(index) {
         const task = this.get('data').objectAt(index);
         this.set('task', task);
         this.set('normal', this.get('graph').getData(task));
     },
-    getMonth(e) {
-      console.log(e, this.get('task').get('name'));
+
+    /**
+     * Method for changing monthly tasks
+     * @param {String} type expected [right, left]
+     */
+
+    getMonth(type) {
+      var num = (type === 'left') ? -1 : 1;
+      this.set('month', this.get('month') + num);
+      this.sendAction('getMonth', this.get('month'));
     }
   }
 });
