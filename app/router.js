@@ -18,6 +18,7 @@ Router.map(function() {
   this.route('modal', function() {
     this.route('welcome');
   });
+  this.route('calender');
 });
 
 export default Router;

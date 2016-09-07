@@ -14,7 +14,8 @@ export default Ember.Service.extend({
               'text': d.get('text'),
               'icon': d.get('image'),
               vibrate: [200, 100, 200],
-            }, time)});
+            }, time);
+      });
   },
 
   show(option, time = 0) {
@@ -22,11 +23,11 @@ export default Ember.Service.extend({
       if (!("Notification" in window)) {
         alert("This browser does not support desktop notification");
       } else if (Notification.permission === "granted") {
-        var notification = new Notification(option.title, option);
+        new Notification(option.title, option);
       } else if (Notification.permission !== 'denied') {
         Notification.requestPermission(function (permission) {
           if (permission === "granted") {
-            var notification = new Notification(option.title, option);
+            new Notification(option.title, option);
           }
         });
       }

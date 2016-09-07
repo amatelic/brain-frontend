@@ -1,0 +1,33 @@
+
+<div class="calender__header">
+  <div class="">
+    <button type="button" class="btn btn-sm btn-default">Days</button>
+    <button type="button" class="btn btn-sm btn-default">Weekend</button>
+    <button type="button" class="btn btn-sm btn-default">Month</button>
+  </div>
+  <h1>{{year}}</h1>
+  <div class="">
+    <button {{action 'changeDate' -1}} type="button" class="btn btn-sm btn-default">prev</button>
+    <button {{action 'changeDate' 1}} type="button" class="btn btn-sm btn-default">next</button>
+  </div>
+</div>
+<div class="calender__body">
+  <div class="calender__table">
+    <div class="calender__table__header">
+      <div class="calender__row">
+        {{#each days as |day| }}
+          <div class="calender__col">{{day}}</div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="calender__table__body">
+      {{#each daysInMonth as |day index| }}
+        <div class="calender__col">{{ day }}</div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+
+
+{{yield}}
