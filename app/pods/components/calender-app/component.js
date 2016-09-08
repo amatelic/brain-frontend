@@ -7,6 +7,7 @@ function range(min, max) {
 export default Ember.Component.extend({
   classNames: ['brain__calender'],
   now: moment(),
+  emptySpace: 0,
   year: Ember.computed('now', function() {
     return this.get('now').year();
   }),
@@ -16,20 +17,23 @@ export default Ember.Component.extend({
   daysInMonth: Ember.computed('year', 'month', function() {
     let {year, month} = this.getProperties('year','month');
     var startDate = moment([year, month]);
-    let b = new Array(startDate.weekday()).fill(0);
-    return b.concat(range(1, moment().daysInMonth() + 1));
+    this.set('emptySpace', startDate.weekday());
+    let dates = new Array(startDate.weekday()).fill(0);
+    var newArray = dates.concat(range(1, moment().daysInMonth() + 1));
+    //Add extra elemnts on empty space
+    if (newArray.length%7 !== 0) {
+      let remains = newArray.length%7;
+      newArray = newArray.concat(Array(7 - remains).fill(0))
+    }
+    return newArray;
   }),
   days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  init() {
-    this._super(...arguments);
-  },
-
   actions: {
     changeDate(position) {
       let newValue = this.get('now').add(position, 'month');
       this.set('now', 0);
       this.set('now', newValue);
-      // this.get('month').add(1, 'month');
+      this.sendAction('getNextMonth', this.get('month'));
     }
   }
 });
