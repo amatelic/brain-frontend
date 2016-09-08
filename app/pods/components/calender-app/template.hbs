@@ -1,13 +1,19 @@
 <div class="calender__header">
-  <div class="">
+  <div class="calender__left">
+    {{#unless hiddeLeftPannel}}
     <button type="button" class="btn btn-sm btn-default">Days</button>
     <button type="button" class="btn btn-sm btn-default">Weekend</button>
     <button type="button" class="btn btn-sm btn-default">Month</button>
+    {{/unless}}
   </div>
-  <h1>{{year}}({{month}})</h1>
-  <div class="">
+  <div class="calender__center">
+    <h1 style="text-align:center;">{{year}}({{monthName}})</h1>
+  </div>
+  <div class="calender__right">
+    {{#unless hiddeRightPannel}}
     <button {{action 'changeDate' -1}} type="button" class="btn btn-sm btn-default">prev</button>
     <button {{action 'changeDate' 1}} type="button" class="btn btn-sm btn-default">next</button>
+    {{/unless}}
   </div>
 </div>
 <div class="calender__body">
@@ -21,7 +27,7 @@
     </div>
     <div class="calender__table__body">
       {{#each daysInMonth as |day index| }}
-        <div class="calender__col {{odd tasks day}}">{{ day }}<br/>{{odd tasks day}}</div>
+        <div {{action 'showModal' day}}class="calender__col {{odd tasks day}}">{{ day }}<br/>{{odd tasks day}}</div>
       {{/each}}
     </div>
   </div>

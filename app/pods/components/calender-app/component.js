@@ -6,6 +6,8 @@ function range(min, max) {
 }
 export default Ember.Component.extend({
   classNames: ['brain__calender'],
+  hiddeLeftPannel: true,
+  hiddeRightPannel: false,
   now: moment(),
   emptySpace: 0,
   year: Ember.computed('now', function() {
@@ -28,7 +30,16 @@ export default Ember.Component.extend({
     return newArray;
   }),
   days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  months: [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ],
+  monthName: Ember.computed('month', function() {
+    return this.get('months')[this.get('month')];
+  }),
   actions: {
+    showModal(day) {
+      this.sendAction('showModal', day);
+    },
     changeDate(position) {
       let newValue = this.get('now').add(position, 'month');
       this.set('now', 0);

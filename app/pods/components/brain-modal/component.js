@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   control: true,
   click(e) {
     if (this.$(e.target).hasClass('overlay')) {
-      this.sendAction('complited', 'no');
+      this.sendAction('closeModal');
     }
   },
   didRender() {

@@ -32,16 +32,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           this.send('openModal', 'modal.welcome');
           this.set('welcome.show', false);
         } else {
-          Ember.run.later(this, function() {
-            let meta = App.storeMeta['user'];
-            if (meta) {
-              // this.send('openModal', 'modal.quotes', meta);
-            }
-          }, 500);
         }
       });
     });
-
+    Ember.run.later(this, function() {
+      let meta = App.storeMeta['user'];
+      if (meta) {
+        this.send('openModal', 'modal.quotes', meta);
+      }
+    }, 500);
   },
   actions: {
     invalidateSession() {

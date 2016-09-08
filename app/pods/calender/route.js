@@ -20,5 +20,9 @@ export default Ember.Route.extend({
         }
       }.bind(this));
     }
+    ,
+    showModal(day) {
+      this.send('openModal', 'modal.tasks', day);
+    }
   }
 });

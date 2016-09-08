@@ -1,0 +1,12 @@
+{{#brain-modal
+  title="All Tasks"
+  closeModal="closeModal"
+  control=false
+}}
+<h3>All tasks;</h3>
+  <ul>
+    {{#each tasks as |task|}}
+      <li>{{task.name}} - {{task.complited}}</li>
+    {{/each}}
+  </ul>
+{{/brain-modal}}

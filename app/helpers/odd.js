@@ -14,9 +14,11 @@ export function odd(params/*, hash*/) {
   //`(${Statistics.procentage(complited, collection.length)}/100%)`
   let bla ='';
   let data = Statistics.procentage(complited, collection.length);
-  if (data > 75) {
+  if (data > 85) {
+    return 'excellent';
+  }else if(data > 60) {
     return 'success';
-  }else if(data > 50) {
+  }else if(data > 30) {
     return 'warning';
   } else {
     return 'danger';
