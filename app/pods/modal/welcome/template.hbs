@@ -1,9 +1,33 @@
 {{#brain-modal
-  title="Welcome!"
+  control=false
+  title="Welcome to MoTi!"
   complited="complited"
   closeModal="closeModal"
 }}
-<h3>Welcome to the brain app.</h3>
-<h3>Do you need a starter tutorial for the app</h3>
+<p>Welcome user you're please select
+  tasks you want to work on:
+</p>
 
+<div class="modal__new__tasks">
+  {{#each model as |task| }}
+    <li>New task: {{task.name}} - {{task.time}} - {{arrayChange task.dates}}</li>
+  {{/each}}
+</div>
+<div class="modal__tasks">
+  {{input type="text" class="brain__input" name="name" value=name}}
+  {{input type="time" class="brain__input" name="name" value=time}}
+</div>
+<div class="brain__checkbox__date">
+  {{#each dates as |day  index| }}
+    <div class="brain__checkbox">
+      {{input id=index type="checkbox" name="name" checked=day.work}}
+      <label for="">{{day.name}}</label>
+    </div>
+  {{/each}}
+
+</div>
+<div class="brain__right">
+  <button {{action "add" }}type="button" class="modal__task__add" name="button">+</button>
+</div>
+<button {{action "complited" }} type="button" class="btn"name="button">Done</button>
 {{/brain-modal}}

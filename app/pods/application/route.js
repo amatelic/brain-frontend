@@ -16,29 +16,33 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       }).catch(err => console.log(err));
     });
   },
+  beforeModel() {
+    if (!this.get('session.isAuthenticated')) {
+      this.transitionTo('login');
+    } else {
+      this.transitionTo('home');
+    }
+  },
   model() {
     if (this.get('session.isAuthenticated')) {
       let id = this.get('session.data.authenticated.user_id');
       return this.store.findRecord('user', id);
-    } else {
-      this.transitionTo('login');
     }
   },
   afterModel() {
     this.get('session').on('authenticationSucceeded', () => {
-      this.transitionTo('home');
       Ember.run.schedule('render', function() {
         if (this.get('welcome.show')) {
           this.send('openModal', 'modal.welcome');
           this.set('welcome.show', false);
-        } else {
         }
       });
     });
     Ember.run.later(this, function() {
       let meta = App.storeMeta['user'];
       if (meta) {
-        this.send('openModal', 'modal.quotes', meta);
+        this.send('openModal', 'modal.welcome', []);
+        // this.send('openModal', 'modal.quotes', meta);
       }
     }, 500);
   },

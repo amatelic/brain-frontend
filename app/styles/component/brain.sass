@@ -173,3 +173,44 @@
   text-align: center
   width: 300px
   padding: 5px
+
+.brain__right
+  width: 100%
+  display: flex
+  align-items: flex-end
+/*
+  === Brain modal components ===
+  */
+.modal__tasks
+  display: flex
+  flex-direction: row
+.brain__modal__body
+  input
+    margin: 5px
+    border: 1px solid $button_backgorund
+  button
+    color: white
+
+.brain__checkbox__date
+  display: flex
+  flex-direction: row
+  justify-content: space-around
+  position: relative
+.brain__checkbox
+  display: flex
+  display: relative
+  flex-direction: column
+
+.modal__task__add
+  width: 50px
+  height: 50px
+  margin-top: 20px
+  background: $button_backgorund
+  color: white
+  font-size: 1.5em
+  border-radius: 50%
+  border: none
+  &:active
+    box-shadow: inset 0px 0px 54px 0px rgba(0,0,0,0.75)
+.modal__new__tasks
+  margin: 10px 0px
