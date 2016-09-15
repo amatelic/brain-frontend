@@ -7,7 +7,6 @@ export function odd(params/*, hash*/) {
   let day = params[1];
   let today = moment().date();
   let fromTodaysDay = moment().date() < params[1];
-  console.log(collection[0].get('month'))
   let isSameMonth = parseInt(collection[0].get('month')) === (moment().month());
   if (day === 0 || (isSameMonth && fromTodaysDay)) return;
 

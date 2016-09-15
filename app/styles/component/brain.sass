@@ -13,6 +13,11 @@
 .brain_register
   @extend %brain_default
 
+.brain__row
+  +size(100%, auto)
+  display: flex
+  flex-direction: row
+
 .brain_register > .brain__card
   height: 100%
 .brain__form
@@ -70,7 +75,7 @@
   +flexType(row, wrap, center, center)
 
 .brain__timer
-  +size(94%, 170px)
+  +size(94%, auto)
   background: $index_background
   margin: 10px
   display: flex
@@ -117,7 +122,7 @@
 
 .brain__card
   +size(45%, 400px)
-  margin: 0px 0px 0px 10px
+  margin: 10px 0px 0px 10px
   +flexType(row, wrap, center, center)
   padding: 10px
   background: $index_background
@@ -184,23 +189,36 @@
 .modal__tasks
   display: flex
   flex-direction: row
+.modal__tasks > input
+  border: 1px solid $button_backgorund
 .brain__modal__body
-  input
-    margin: 5px
-    border: 1px solid $button_backgorund
+  position: relative
   button
     color: white
+.brain__add_input
+  position: relative
+  justify-content: space-around
+.brain__add_input > input
+  margin: 5px
+  width: 40%
+.brain__add_input > label
+  left: 25%
+  top: -20px
+  position: relative
+  color: white
 
 .brain__checkbox__date
+  width: 100%
+  margin: 10px 0px
   display: flex
   flex-direction: row
   justify-content: space-around
   position: relative
 .brain__checkbox
   display: flex
-  display: relative
   flex-direction: column
-
+.brain__checkbox > label
+  text-align: center
 .modal__task__add
   width: 50px
   height: 50px

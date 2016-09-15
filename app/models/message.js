@@ -8,5 +8,5 @@ export default Model.extend({
   author: attr('string'),
   image: attr('string'),
   status: attr('boolean'),
-  user: belongsTo('user'),
+  user: belongsTo('user', { async: true }),
 });

@@ -4,7 +4,7 @@ import Ember from 'ember';
 //types are [All] - [M,T,W,S] - [Mon, Sat]
 export function showDates(params/*, hash*/) {
   let length = params[0].filter(d => d).length;
-  let dates = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  let dates = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   if (length === 7) {
     return 'All days';
   }

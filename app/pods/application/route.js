@@ -26,7 +26,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   model() {
     if (this.get('session.isAuthenticated')) {
       let id = this.get('session.data.authenticated.user_id');
-      return this.store.findRecord('user', id);
+      return Ember.RSVP.hash({
+        user: this.store.findRecord('user', id),
+        messages: this.store.findRecord('user', id).get('messages'),
+        tasks: this.store.findRecord('user', id).get('tasks'),
+      });
     }
   },
   afterModel() {
@@ -41,7 +45,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     Ember.run.later(this, function() {
       let meta = App.storeMeta['user'];
       if (meta) {
-        // this.send('openModal', 'modal.welcome', []);
+        this.send('openModal', 'modal.welcome', []);
         // this.send('openModal', 'modal.quotes', meta);
       }
     }, 500);

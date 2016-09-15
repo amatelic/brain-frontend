@@ -14,11 +14,13 @@ export default Ember.Component.extend({
     this._super(...arguments);
     let day = moment().date();
     let today = this.get('task.days')[day];
+    let weekIndex = moment().day();
+    let schedule = this.get('task.schedule');
     if (today.complited !== 0) {
       this.$('input').attr('checked', today.complited);
     }
-    if (!today.tracking) {
-      this.$('input').attr('disabled', !today.tracking);
+    if (!schedule[weekIndex]) {
+      this.$('input').attr('disabled', !schedule[weekIndex]);
       this.$('label').addClass('disabled');
     }
   },

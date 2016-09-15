@@ -73,6 +73,11 @@ canvas {
     margin-bottom: 30px;
 }
 
+@media screen and (max-width: 800px) {
+  .brain__card {
+    width: 80%;
+  }
+}
 /**
  * Input checkbox
  */

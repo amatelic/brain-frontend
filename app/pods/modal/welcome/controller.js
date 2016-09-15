@@ -11,13 +11,14 @@ export default Ember.Controller.extend({
   schedule: getDates(),
   dates: Ember.computed('schedule', function() {
     return [
+      { name: 'S',schedule: 0},
       { name: 'M',schedule: 0},
       { name: 'T',schedule: 0},
       { name: 'W',schedule: 0},
       { name: 'T',schedule: 0},
       { name: 'F',schedule: 0},
-      { name: 'S',schedule: 0},
-      { name: 'S',schedule: 0}];
+      { name: 'S',schedule: 0}
+    ];
   }),
   actions: {
     add(data) {
@@ -28,11 +29,10 @@ export default Ember.Controller.extend({
         return alert('You didn\'t add all values');
       }
       dates = dates.map(d => Boolean(d.schedule));
-      
+
       model.addObject({
         name, time, dates,
       });
-
       name = '';
       time = '';
       this.set('name', '');
@@ -40,7 +40,15 @@ export default Ember.Controller.extend({
       this.set('schedule', getDates());
     },
     complited(condition) {
-      console.log(condition);
+      console.log(this.get('model'));
+      this.get('model').toArray().forEach(d => {
+        let task = this.store.createRecord('task', {
+          name: d.name,
+          time: d.time,
+          schedule: d.dates
+        });
+        task.save();
+      })
       // if (condition) {
         // window.open("http://brain.app//tutorial", "Brain blog");
       // }
