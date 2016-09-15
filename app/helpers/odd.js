@@ -4,21 +4,33 @@ import moment from 'moment';
 export function odd(params/*, hash*/) {
   let collection = params[0].toArray();
   if (Ember.isEmpty(collection)) return;
-  let isSameMonth = parseInt(collection[0].get('month')) === (moment().month() + 1);
+  let day = params[1];
+  let today = moment().date();
   let fromTodaysDay = moment().date() < params[1];
-  if (params[1] === 0 || (isSameMonth && fromTodaysDay)) return;
+  console.log(collection[0].get('month'))
+  let isSameMonth = parseInt(collection[0].get('month')) === (moment().month());
+  if (day === 0 || (isSameMonth && fromTodaysDay)) return;
 
-  let complited = collection.reduce((a, b)=> {
-    return (a += (b.get('monthly')[params[1] - 1] > 0) ? 1 : 0);
-  }, 0);
-  //`(${Statistics.procentage(complited, collection.length)}/100%)`
-  let bla ='';
-  let data = Statistics.procentage(complited, collection.length);
-  if (data > 85) {
+
+  let data = collection.reduce((a, b) => {
+      let date = b.get('days')[day - 1];
+      if (!date) {
+        return a;
+      }
+      a.all+= (date.tracking) ? 1 : 0;
+      a.complited += (date.complited >= 1) ? 1 : 0;
+      return a;
+    },{
+      all: 0,
+      complited: 0
+  });
+  let procentage = Statistics.procentage(data.complited, data.all);
+
+  if (procentage > 85) {
     return 'excellent';
-  }else if(data > 60) {
+  }else if(procentage > 60) {
     return 'success';
-  }else if(data > 30) {
+  }else if(procentage > 30) {
     return 'warning';
   } else {
     return 'danger';

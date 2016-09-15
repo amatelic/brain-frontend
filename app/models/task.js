@@ -4,9 +4,10 @@ import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('underscore'),
-  description: attr('string'),
-  complited: attr('boolean', { defaultValue: false }),
-  monthly: attr('array'),
+  schedule: attr('array'),
+  time: attr('number'),
+  days: attr('array'),
   month: attr('string'),
+  year: attr('string'),
   user: belongsTo('user'),
 });

@@ -27,13 +27,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     checkTask(task) {
       let id = this.get('session.data.authenticated.user_id');
       let user = this.store.peekRecord('user', id);
-      task.set('user', user);
-      task.save().then(d => {
-        let monthy = task.get('monthly');
-        monthy[moment().date() - 1] = 1;
-        this.set('monthy', monthy);
+      // monthy[moment().date() - 1] = 1;
+      // task.set('user', user);
+      // task.save().then(d => {
+        // let monthy = task.get('monthly');
+        // this.set('monthy', monthy);
         // this.controllerFor('home').set('model.graph', this.store.peekAll('task'));
-      });
+      // });
     },
 
     modal(index) {

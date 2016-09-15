@@ -1,5 +1,5 @@
 import Ember from 'ember';
-
+import moment from 'moment';
 export default Ember.Component.extend({
   attributeBindings: ['type', 'value'],
   classNames: ['onoffswitch'],
@@ -12,8 +12,14 @@ export default Ember.Component.extend({
   }),
   didInsertElement() {
     this._super(...arguments);
-    if (this.get('task.complited')) {
-      this.$('input').attr('checked', this.get('task.complited'));
+    let day = moment().date();
+    let today = this.get('task.days')[day];
+    if (today.complited !== 0) {
+      this.$('input').attr('checked', today.complited);
+    }
+    if (!today.tracking) {
+      this.$('input').attr('disabled', !today.tracking);
+      this.$('label').addClass('disabled');
     }
   },
 

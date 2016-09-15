@@ -7,6 +7,7 @@
       <li>
         <div class="task__text">
           <p>{{task.name}}</p>
+          <small>{{showDates task.schedule}}</small>
         </div>
         <div class="task__checkbox">
           {{brain-checkbox task=task toggleTask="toggleTask"}}

@@ -10,7 +10,7 @@
 
 <div class="modal__new__tasks">
   {{#each model as |task| }}
-    <li>New task: {{task.name}} - {{task.time}} - {{arrayChange task.dates}}</li>
+    <li>New task: {{task.name}} - {{task.time}} - {{showDates task.dates}}</li>
   {{/each}}
 </div>
 <div class="modal__tasks">
@@ -18,9 +18,9 @@
   {{input type="time" class="brain__input" name="name" value=time}}
 </div>
 <div class="brain__checkbox__date">
-  {{#each dates as |day  index| }}
+  {{#each dates as |day| }}
     <div class="brain__checkbox">
-      {{input id=index type="checkbox" name="name" checked=day.work}}
+      {{input id=index type="checkbox" name="name" checked=day.schedule}}
       <label for="">{{day.name}}</label>
     </div>
   {{/each}}

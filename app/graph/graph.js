@@ -17,13 +17,12 @@ export default Ember.Object.extend({
    * Method for preparing data for cirlce graphs and line, bar graphs
    */
   createData(tasks) {
-    let val = tasks.map(d => {
-       return d.get('monthly')
-                .filter(val => parseInt(val) === 1).length;
+    let trackingDays = tasks.map(d => {
+      return d.get('days').filter(days => days.tracking && days.complited >= 1).length;
     });
     return {
-      r:  this.round(tasks, val),
-      n: this.normal(tasks, val),
+      r:  this.round(tasks, trackingDays),
+      n: this.normal(tasks, trackingDays),
     };
   },
   /**

@@ -8,7 +8,8 @@ export default Ember.Route.extend({
   },
   actions: {
     getNextMonth(month) {
-      month = month + 1;
+      month = month;
+      console.log(`///////`)
       this.store.unloadAll('task');
       this.get('store').query('task', {
         filter: {

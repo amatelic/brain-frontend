@@ -27,7 +27,8 @@
     </div>
     <div class="calender__table__body">
       {{#each daysInMonth as |day index| }}
-        <div {{action 'showModal' day}}class="calender__col {{odd tasks day}}">{{ day }}<br/>{{odd tasks day}}</div>
+        <!-- {{odd tasks day}}  {{odd tasks day}}-->
+        <div {{action 'showModal' day}} class="calender__col {{odd tasks day}}">{{ day }}<br/>{{odd tasks day}}</div>
       {{/each}}
     </div>
   </div>

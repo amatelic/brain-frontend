@@ -21,8 +21,8 @@ export default Ember.Component.extend({
     var startDate = moment([year, month]);
     this.set('emptySpace', startDate.weekday());
     let dates = new Array(startDate.weekday()).fill(0);
-    var newArray = dates.concat(range(1, moment().daysInMonth() + 1));
-    //Add extra elemnts on empty space
+    var newArray = dates.concat(range(1, startDate.daysInMonth()));
+    //Add extra elements on empty space
     if (newArray.length%7 !== 0) {
       let remains = newArray.length%7;
       newArray = newArray.concat(Array(7 - remains).fill(0))
