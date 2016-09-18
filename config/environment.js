@@ -25,7 +25,7 @@ module.exports = function(environment) {
       }
     },
     backend: {
-      url: 'http://brain.app/api'
+      url: 'http://localhost:5000/api', //'http://brain.app/api'
     },
 
     APP: {

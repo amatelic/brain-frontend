@@ -10,7 +10,7 @@ export default JSONAPIAdapter.extend({
       'Api-key': this.get('session.data.authenticated.access_token')
     };
   }),
-  generateIdForRecord: function() {
-    return this.store.peekAll('task').toArray().length;
-  },
+  // generateIdForRecord: function() {
+  //   return this.store.peekAll('task').toArray().length;
+  // },
 });

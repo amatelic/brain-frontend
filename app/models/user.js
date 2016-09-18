@@ -8,6 +8,6 @@ export default Model.extend({
   image: attr('string'),
   plan: attr('string'),
   auth: attr('string'),
-  tasks: hasMany('task'),
-  messages: hasMany('message'),
+  tasks: hasMany('task', { async: true }),
+  messages: hasMany('message', { async: true }),
 });

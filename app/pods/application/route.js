@@ -28,8 +28,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       let id = this.get('session.data.authenticated.user_id');
       return Ember.RSVP.hash({
         user: this.store.findRecord('user', id),
-        messages: this.store.findRecord('user', id).get('messages'),
-        tasks: this.store.findRecord('user', id).get('tasks'),
       });
     }
   },

@@ -5,7 +5,7 @@
   <header>
       <div class="brain__navigation">
         {{#if session.isAuthenticated}}
-        {{#user-conf user=model}}
+        {{#user-conf user=model.user}}
           {{#link-to "user" class="btn"}} User {{/link-to}}
           {{#link-to "messages" class="btn"}} Messages {{/link-to}}
           <a href="#" class="btn" {{action 'logout'}}>Logout</a>

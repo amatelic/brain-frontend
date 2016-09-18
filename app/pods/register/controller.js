@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import $ from 'jquery';
+import ENV from 'brain/config/environment';
 export default Ember.Controller.extend({
   name: '',
   username: '',
@@ -26,7 +27,7 @@ export default Ember.Controller.extend({
       // let {email, password, name} = this.getProperties('email', 'password', 'name');
       $.ajax({
         method: 'POST',
-        url: 'http://brain.app/api/register',
+        url: ENV.backend.url + '/register',
         data: this.getProperties('email', 'password', 'name', 'username')
       }).then(d => console.log(d));
     }

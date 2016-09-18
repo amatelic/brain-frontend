@@ -9,5 +9,5 @@ export default Model.extend({
   days: attr('array'),
   month: attr('string'),
   year: attr('string'),
-  user: belongsTo('user', { async: true }),
+  user: belongsTo('user', {async: true}),
 });
