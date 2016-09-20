@@ -5,11 +5,13 @@ export default Ember.Controller.extend({
     this._super(...arguments);
   },
   tasks: Ember.computed('model', function() {
-    let index = this.get('model');
-    return this.store.peekAll('task').map(d => {
+    let index = this.get('model') - 1 ;
+    return this.store.peekAll('task')
+      .filter(d => d.get('days')[index]['tracking'])
+      .map(d => {
       return {
         name: d.get('name'),
-        complited: d.get('monthly').objectAt(index - 1),
+        complited: d.get('days')[index]['complited'],
       };
     });
   }),

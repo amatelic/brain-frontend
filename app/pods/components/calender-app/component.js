@@ -38,6 +38,7 @@ export default Ember.Component.extend({
   }),
   actions: {
     showModal(day) {
+
       this.sendAction('showModal', day);
     },
     changeDate(position) {

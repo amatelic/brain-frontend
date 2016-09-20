@@ -6,6 +6,7 @@ export default Ember.Route.extend({
     let id = this.get('session.data.authenticated.user_id');
     return this.store.peekRecord('user', id).get('tasks');
   },
+
   actions: {
     getNextMonth(month) {
       month = month;
@@ -23,6 +24,11 @@ export default Ember.Route.extend({
     ,
     showModal(day) {
       this.send('openModal', 'modal.tasks', day);
+    },
+
+    willTransition(transition) {
+      this.store.unloadAll('task');
+      return true;
     }
   }
 });

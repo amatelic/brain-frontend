@@ -5,9 +5,19 @@ import { storageFor } from 'ember-local-storage';
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   welcome: storageFor('beginner'),
+  websockets: Ember.inject.service('socket-io'),
+  brainNotification: Ember.inject.service(),
   session: Ember.inject.service('session'),
   init() {
     this._super(...arguments);
+    //Soscke io notifications
+    const socket = this.get('websockets').socketFor('ws://localhost:7000/');
+    socket.on('connect', function (d) { socket.emit('id', d);});
+    socket.on('open', (m) => {}, this);
+    socket.on('message', (m) => {console.log(m)}, this);
+    // socket.o/n('close', (m) => {console.log(m)}, this);
+    this.set('socketRef', socket);
+
     this.get('session').on('authenticationSucceeded', () => {
       let id = this.get('session.data.authenticated.user_id');
       this.store.findRecord('user', id).then((model) => {
@@ -48,6 +58,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       }
     }, 500);
   },
+
+  willDestroy() {
+    this._super(...arguments);
+    const socket = this.get('socketRef');
+    socket.off('open', () => console.log('Channel open was closed'));
+    socket.off('message', () => console.log('Channel message was closed'));
+    socket.off('close', () => console.log('Channel close was closed'));
+  },
+
   actions: {
     invalidateSession() {
       this.get('session').invalidate();

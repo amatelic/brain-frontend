@@ -8,16 +8,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     });
   },
   actions: {
-    addTask(title) {
-      let days = moment().daysInMonth();
-      let user = this.store.peekRecord('user', 1);
-      let task = this.store.createRecord('task', {
-        name: title,
-        description: '',
-        complited: false,
-        monthly: Array(days).fill(0),
-        user: user
-      });
+    addTask(tasks) {
+      let id = this.get('session.data.authenticated.user_id');
+      let user = this.store.peekRecord('user', id);
+      let task = this.store.createRecord('task', tasks);
 
       task.save();
     },

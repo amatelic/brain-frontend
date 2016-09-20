@@ -6,10 +6,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   brainNotification: Ember.inject.service(),
   session: Ember.inject.service('session'),
   graph: new Graph(),
+
+
   model() {
     let id = this.get('session.data.authenticated.user_id');
-    let user = this.store.peekRecord('user', id)
-    user.get('messages').then( (d) => console.log(d.get('name')));
     return Ember.RSVP.hash({
       width: 400,
       height: 400,
@@ -19,12 +19,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       graph: this.store.peekRecord('user', id).get('tasks'),
     });
   },
-  setupController(controller, model) {
-    this._super(...arguments);
-    // let messages = model.messages.toArray();
-    // this.get('brainNotification').showArray(messages, 2000);
-  },
 
+  afterModel() {
+    let id = this.get('session.data.authenticated.user_id');
+    let tasks = this.store.peekAll('tasks');
+    if (Ember.isEmpty(tasks)) {
+      this.store.findAll('tasks').then(d => {
+        this.controllerFor('home').set('model.user.task', this.store.findAll('task'));
+        this.controllerFor('home').set('model.graph', this.store.findAll('task'));
+      });
+    }
+  },
   actions: {
     checkTask(task) {
       let id = this.get('session.data.authenticated.user_id');
