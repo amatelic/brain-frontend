@@ -12,9 +12,7 @@ export default Ember.Route.extend({
       month = month;
       this.store.unloadAll('task');
       this.get('store').query('task', {
-        filter: {
-          month
-        }
+        filter: { month }
       }).then(function(d) {
         if (!Ember.isEmpty(d.toArray())) {
           this.controllerFor('calender').set('model', d);
@@ -27,8 +25,8 @@ export default Ember.Route.extend({
     },
 
     willTransition(transition) {
-      this.store.unloadAll('task');
-      return true;
+      // this.store.unloadAll('task');
+      // return this.get('store').query('task', { filter: { month: 9 }});
     }
   }
 });

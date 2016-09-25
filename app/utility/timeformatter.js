@@ -1,6 +1,20 @@
 import Ember from 'ember';
 import jaro from 'npm:jaro-winkler';
+import moment from 'moment';
 export default Ember.Object.create({
+  generateDays(schedule)  {
+    let wholeMonth = moment().daysInMonth();
+    let dd = moment([moment().year(), moment().month()]);
+    let days = [];
+    for (let i = 1; i <= wholeMonth; i++) {
+      days.push({
+        comlited: 0, day: i,
+        tracking: schedule[dd.day()],
+      });
+      dd.add(1, 'days').day();
+    }
+    return days;
+  },
   getTimefromSecs: function(seconds, format){
     if(format === "seconds"){
       return seconds;

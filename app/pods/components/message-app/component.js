@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     },
     showMessage(message) {
       message.set('status', false);
-      this.set('text', message.get('text'));
+      this.set('text', message.get('message'));
     }
   }
 });

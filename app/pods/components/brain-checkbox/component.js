@@ -13,7 +13,8 @@ export default Ember.Component.extend({
   didInsertElement() {
     this._super(...arguments);
     let day = moment().date();
-    let today = this.get('task.days')[day];
+    //day has to be zero based because of the data base
+    let today = this.get('task.days')[day - 1]; 
     let weekIndex = moment().day();
     let schedule = this.get('task.schedule');
     if (today.complited !== 0) {

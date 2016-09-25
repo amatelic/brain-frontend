@@ -7,7 +7,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
   graph: new Graph(),
 
-
   model() {
     let id = this.get('session.data.authenticated.user_id');
     return Ember.RSVP.hash({
@@ -22,25 +21,24 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   afterModel() {
     let id = this.get('session.data.authenticated.user_id');
-    let tasks = this.store.peekAll('tasks');
+    let tasks = this.store.peekAll('task');
     if (Ember.isEmpty(tasks)) {
-      this.store.findAll('tasks').then(d => {
-        this.controllerFor('home').set('model.user.task', this.store.findAll('task'));
-        this.controllerFor('home').set('model.graph', this.store.findAll('task'));
-      });
+        // console.log(tasks.toArray());
+        // this.controllerFor('home').set('model.user.tasks', tasks);
+        // this.controllerFor('home').set('model.graph', tasks);
     }
   },
   actions: {
     checkTask(task) {
       let id = this.get('session.data.authenticated.user_id');
       let user = this.store.peekRecord('user', id);
-      // monthy[moment().date() - 1] = 1;
-      // task.set('user', user);
-      // task.save().then(d => {
-        // let monthy = task.get('monthly');
+      task.set('user', user);
+      task.save().then(d => {
+        console.log(d);
+        let monthy = task.get('monthly');
         // this.set('monthy', monthy);
         // this.controllerFor('home').set('model.graph', this.store.peekAll('task'));
-      // });
+      });
     },
 
     modal(index) {

@@ -1,5 +1,7 @@
 import Ember from 'ember';
-
+import Time from '../../../utility/timeformatter';
+import moment from 'moment';
+console.log(Time)
 function getDates() {
   return JSON.parse(JSON.stringify([0, 0, 0, 0, 0, 0, 0,]));
 }
@@ -28,27 +30,24 @@ export default Ember.Controller.extend({
       if (Ember.isEmpty(name) || Ember.isEmpty(time)) {
         return alert('You didn\'t add all values');
       }
-      dates = dates.map(d => Boolean(d.schedule));
-
-      model.addObject({
-        name, time, dates,
-      });
-      name = '';
-      time = '';
-      this.set('name', '');
-      this.set('time', '');
+      time = Time.getSecs(time);
+      let schedule = dates.map(d => Boolean(d.schedule));
+      let days = Time.generateDays(schedule);
+      model.addObject({name, time, schedule, days});
+      this.setProperties({name: '', time: ''});
       this.set('schedule', getDates());
     },
     complited(condition) {
-      console.log(this.get('model'));
-      this.get('model').toArray().forEach(d => {
-        let task = this.store.createRecord('task', {
-          name: d.name,
-          time: d.time,
-          schedule: d.dates
-        });
+      let id = this.get('session.data.authenticated.user_id');
+      let user = this.store.peekRecord('user', id);
+      console.log(user.get('name'));
+      this.get('model').toArray().forEach((model, index) => {
+        model.id = index + 1;
+        let task = this.store.createRecord('task', model);
+        user.get('tasks').pushObject(task);
         task.save();
-      })
+      });
+      // user.save();
       // if (condition) {
         // window.open("http://brain.app//tutorial", "Brain blog");
       // }

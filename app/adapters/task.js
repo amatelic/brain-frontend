@@ -10,6 +10,15 @@ export default JSONAPIAdapter.extend({
       'Api-key': this.get('session.data.authenticated.access_token')
     };
   }),
+  shouldReloadAll: function(store, snapshotArray) {
+    console.log(store, snapshotArray);
+    var connection = window.navigator.connection;
+    if (connection === 'cellular' || connection === 'none') {
+      return false;
+    } else {
+      return true;
+    }
+  }
   // generateIdForRecord: function() {
   //   return this.store.peekAll('task').toArray().length;
   // },

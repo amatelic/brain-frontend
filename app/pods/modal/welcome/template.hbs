@@ -10,7 +10,7 @@
 
 <div class="modal__new__tasks">
   {{#each model as |task| }}
-    <li>New task: {{task.name}} - {{task.time}} - {{showDates task.dates}}</li>
+    <li>New task: {{task.name}} - {{task.time}} - {{showDates task.schedule}}</li>
   {{/each}}
 </div>
 <div class="modal__tasks">

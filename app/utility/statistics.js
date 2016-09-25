@@ -7,7 +7,7 @@ export default Ember.Object.create({
 
   differenc(data, callback, defNum) {
     var call = callback || this.isGreaterThanZero;
-    var defNum = defNum | 0
+    defNum = defNum || 0;
     return data.reduce(call, defNum);
   },
 
