@@ -1,9 +1,7 @@
 import Ember from 'ember';
 import Time from '../../../utility/timeformatter';
-import moment from 'moment';
-console.log(Time)
 function getDates() {
-  return JSON.parse(JSON.stringify([0, 0, 0, 0, 0, 0, 0,]));
+  return JSON.parse(JSON.stringify([0, 0, 0, 0, 0, 0, 0]));
 }
 
 export default Ember.Controller.extend({
@@ -23,7 +21,7 @@ export default Ember.Controller.extend({
     ];
   }),
   actions: {
-    add(data) {
+    add() {
       let {name, time, dates} = this.getProperties('name', 'time', 'dates');
       let model = this.get('model');
 
@@ -37,10 +35,9 @@ export default Ember.Controller.extend({
       this.setProperties({name: '', time: ''});
       this.set('schedule', getDates());
     },
-    complited(condition) {
+    complited() {
       let id = this.get('session.data.authenticated.user_id');
       let user = this.store.peekRecord('user', id);
-      console.log(user.get('name'));
       this.get('model').toArray().forEach((model, index) => {
         model.id = index + 1;
         let task = this.store.createRecord('task', model);

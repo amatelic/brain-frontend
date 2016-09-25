@@ -25,7 +25,7 @@ export default Ember.Component.extend({
     //Add extra elements on empty space
     if (newArray.length%7 !== 0) {
       let remains = newArray.length%7;
-      newArray = newArray.concat(Array(7 - remains).fill(0))
+      newArray = newArray.concat(Array(7 - remains).fill(0));
     }
     return newArray;
   }),

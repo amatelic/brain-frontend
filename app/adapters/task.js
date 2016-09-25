@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default JSONAPIAdapter.extend({
   session: Ember.inject.service('session'),
-  host: 'http://localhost:5000/api', //ENV.backend.url,
+  host: `${ENV.backend.url}`,
   headers: Ember.computed('session.data.authenticated.access_toke', function() {
     return {
       'Api-key': this.get('session.data.authenticated.access_token')

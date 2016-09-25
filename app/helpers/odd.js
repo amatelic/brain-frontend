@@ -3,12 +3,18 @@ import Statistics from '../utility/statistics';
 import moment from 'moment';
 export function odd(params/*, hash*/) {
   let collection = params[0].toArray();
-  if (Ember.isEmpty(collection)) return;
+
+  if (Ember.isEmpty(collection))  {
+    return 'none';
+  }
+
   let day = params[1];
-  let today = moment().date();
   let fromTodaysDay = moment().date() < params[1];
   let isSameMonth = parseInt(collection[0].get('month')) === (moment().month());
-  if (day === 0 || (isSameMonth && fromTodaysDay)) return;
+
+  if (day === 0 || (isSameMonth && fromTodaysDay)) {
+    return 'none';
+  }
 
 
   let data = collection.reduce((a, b) => {

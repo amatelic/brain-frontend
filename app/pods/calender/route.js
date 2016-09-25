@@ -18,15 +18,10 @@ export default Ember.Route.extend({
           this.controllerFor('calender').set('model', d);
         }
       }.bind(this));
-    }
-    ,
+    },
     showModal(day) {
       this.send('openModal', 'modal.tasks', day);
     },
 
-    willTransition(transition) {
-      // this.store.unloadAll('task');
-      // return this.get('store').query('task', { filter: { month: 9 }});
-    }
   }
 });

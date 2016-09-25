@@ -13,8 +13,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     //Soscke io notifications
     const socket = this.get('websockets').socketFor('ws://localhost:7000/');
     socket.on('connect', function (d) { socket.emit('id', d);});
-    socket.on('open', (m) => {}, this);
-    socket.on('message', (m) => {console.log(m)}, this);
+    socket.on('open', (m) => {console.log(m);}, this);
+    socket.on('message', (m) => {console.log(m);}, this);
     // socket.o/n('close', (m) => {console.log(m)}, this);
     this.set('socketRef', socket);
 
