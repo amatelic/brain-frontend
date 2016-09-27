@@ -7,20 +7,36 @@
       <form class="brain__form" {{action 'authenticate' on="submit"}}>
         <div class="brain__group">
           <label class="brain__label" for="identification">Email</label>
-          {{input value=identification placeholder='Enter Login' class="brain__input"}}
+          {{input value=changeset.email.value placeholder='Enter Login' class="brain__input"}}
+          {{#unless changeset.email.isValid}}
+            {{#each changeset.email.errors as |error|}}
+              <p>{{error}}</p>
+            {{/each}}
+          {{/unless}}
         </div>
         <div class="brain__group">
           <label class="brain__label" for="password"> Password</label>
-          {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
+          {{input value=changeset.password.value placeholder="Enter Password" class="brain__input" type='password'}}
+          {{#unless changeset.password.isValid}}
+            {{#each changeset.password.errors as |error|}}
+              <p>{{error}}</p>
+            {{/each}}
+          {{/unless}}
         </div>
         <div class="brain__group">
           <button type="submit" class="btn">Login</button>
         </div>
-          {{#if error}}
-        <p>
-          <strong>Login failed:</strong>
-          <code>{{error}}</code>
-        </p>
+          {{#if errors}}
+          <div class="brain__group">
+            <strong>Login failed:</strong>
+            {{#each errors as |error|}}
+              <p>
+                <b>{{error.title}}</b> <br/>
+                <i>{{error.message}}</i> <br/>
+                <a href="{{error.link}}">Register</a>
+              </p>
+            {{/each}}
+          </div>
         {{/if}}
       </form>
     </div>

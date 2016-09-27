@@ -49,6 +49,7 @@
     "ember-websockets": "5.0.0",
     "liquid-fire": "0.24.1",
     "loader.js": "^4.0.1",
-    "mock-socket": "5.0.1"
+    "mock-socket": "5.0.1",
+    "rate-limit-computed": "1.0.2"
   }
 }
