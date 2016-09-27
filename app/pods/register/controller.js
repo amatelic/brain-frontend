@@ -1,35 +1,39 @@
 import Ember from 'ember';
 import $ from 'jquery';
+let {get} = Ember;
 import ENV from 'brain/config/environment';
+import Validate from '../../utility/validation';
+import Change from '../../utility/change';
 export default Ember.Controller.extend({
-  name: '',
-  username: '',
-  email: '',
-  password: '',
-  repassword: '',
-  isTypeEmail: Ember.computed.match('email', /^.+@.+\..+$/),
-  isNameEmpty: Ember.computed('name', function() {
-    return  !Ember.isEmpty(this.get('email'));
-  }),
-  isEmailEmpty: Ember.computed('isTypeEmail', 'isEmailEmpty', function() {
-    return !this.get('isTypeEmail') && !(this.get('email').length < 3);
-  }),
-  isSamePassword: Ember.computed('repassword', function() {
-    let password = this.get('password');
-    let repassword = this.get('repassword');
-    return (password !== repassword) && (repassword.length === password.length);
-  }),
-  isValid: Ember.computed('isEmpty', 'isSamePassword', function() {
-    return !this.get('isSamePassword') || this.get('isTypeEmail');
-  }),
+  ajax: Ember.inject.service(),
+  init() {
+    this._super(...arguments);
+    let model = { name: "", username: "", email: "", password: "", repassword: ""};
+    this.changeset = new Change(model, new Validate(), {
+      name: ['isEmpty'],
+      username: ['isEmpty'],
+      email: ['notEmail','isEmpty'],
+      password: ['greater|8'],
+      repassword: ['equal|password'],
+    });
+  },
   actions: {
     register() {
       // let {email, password, name} = this.getProperties('email', 'password', 'name');
-      $.ajax({
+      this.get('ajax').request(ENV.backend.url + '/register', {
         method: 'POST',
-        url: ENV.backend.url + '/register',
         data: this.getProperties('email', 'password', 'name', 'username')
-      }).then(d => console.log(d));
+      }).then( _ => {
+        this.transitionToRoute('login');
+      })
+      .catch(res => {
+        if (res.errors[0].status === "409") {
+          this.set('errors', [{
+            title: 'Sorry user already exsists.',
+            message: 'Try something else.',
+          }]);
+        }
+      });
     }
   }
 });

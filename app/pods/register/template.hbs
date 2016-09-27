@@ -1,49 +1,70 @@
 <div class="brain_register">
   <div class="brain__card">
-    <div class="card__dimension_20">
+    <div class="brain__group">
       <h1>Register</h1>
     </div>
-      <form class="brain__form" {{action 'register' on="submit"}}>
-        <div class="brain__group">
-          <label class="brain__label" for="identification">Name:</label>
-          {{input value=name placeholder='Enter your name' class="brain__input"}}
-          {{#if isNameEmpty}}
-            <h5>The name is to short.</h5>
-          {{/if}}
-        </div>
-        <div class="brain__group">
-          <label class="brain__label" for="identification">Username:</label>
-          {{input value=username placeholder='Enter your username' class="brain__input"}}
-        </div>
-        <div class="brain__group">
-          <label class="brain__label" for="identification">Email:</label>
-          {{input value=email placeholder='Enter email' class="brain__input"}}
-          {{#if isEmailEmpty}}
-            <h5>The entery is not a correct email address.</h5>
-          {{/if}}
-        </div>
-        <div class="brain__group">
-          <label class="brain__label" for="password">Password:</label>
-          {{input value=password placeholder="Enter Password" class="brain__input" type='password'}}
-        </div>
-        <div class="brain__group">
-          <label class="brain__label" for="password"> Re-enter password:</label>
-          {{input value=repassword placeholder="Enter Password" class="brain__input" type='password'}}
-          {{#if isSamePassword}}
-            <h5>The password are not matching.</h5>
-          {{/if}}
-        </div>
-        <div class="brain__group">
-          <button type="submit" class="btn">Register</button>
-          <!-- //disabled={{isValid}} -->
-        </div>
-          {{#if error}}
-        <p>
+    {{#if errors}}
+      <div class="brain__group">
           <strong>Login failed:</strong>
-          <code>{{error}}</code>
-        </p>
-        {{/if}}
-      </form>
+          {{#each errors as |error|}}
+            <p>
+              <b>{{error.title}}</b><br/>
+              <span>{{error.message}}</span>
+            </p>
+          {{/each}}
+      </div>
+    {{/if}}
+    <form class="brain__form" {{action 'register' on="submit"}}>
+      <div class="brain__group">
+        <label class="brain__label" for="identification">Name:</label>
+        {{input value=changeset.name.value placeholder='Enter your name' class="brain__input"}}
+        {{#unless changeset.name.isValid}}
+          {{#each changeset.name.errors as |error|}}
+            <p>{{error}}</p>
+          {{/each}}
+        {{/unless}}
+      </div>
+      <div class="brain__group">
+        <label class="brain__label" for="identification">Username:</label>
+        {{input value=changeset.username.value placeholder='Enter your username' class="brain__input"}}
+        {{#unless changeset.username.isValid}}
+          {{#each changeset.username.errors as |error|}}
+            <p>{{error}}</p>
+          {{/each}}
+        {{/unless}}
+      </div>
+      <div class="brain__group">
+        <label class="brain__label" for="identification">Email:</label>
+        {{input value=changeset.email.value placeholder='Enter email' class="brain__input"}}
+        {{#unless changeset.email.isValid}}
+          {{#each changeset.email.errors as |error|}}
+            <p>{{error}}</p>
+          {{/each}}
+        {{/unless}}
+      </div>
+      <div class="brain__group">
+        <label class="brain__label" for="password">Password:</label>
+        {{input value=changeset.password.value placeholder="Enter Password" class="brain__input" type='password'}}
+        {{#unless changeset.password.isValid}}
+          {{#each changeset.password.errors as |error|}}
+            <p>{{error}}</p>
+          {{/each}}
+        {{/unless}}
+      </div>
+      <div class="brain__group">
+        <label class="brain__label" for="password"> Re-enter password:</label>
+        {{input value=changeset.repassword.value placeholder="Enter Password" class="brain__input" type='password'}}
+        {{#unless changeset.repassword.isValid}}
+          {{#each changeset.repassword.errors as |error|}}
+            <p>{{error}}</p>
+          {{/each}}
+        {{/unless}}
+      </div>
+      <div class="brain__group">
+        <button type="submit" class="btn">Register</button>
+        <!-- //disabled={{isValid}} -->
+      </div>
+    </form>
   </div>
 </div>
 
