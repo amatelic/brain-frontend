@@ -60,12 +60,19 @@ export default Ember.Component.extend({
                  .attr('d', this.lineFunction(this.emotion[select]))
                  .call(this.mouthDesign);
 
-    Ember.run.later(this, () => {
+
+    this.check = Ember.run.later(this, () => {
       let select = ['happy', 'bad', 'neutral'][Math.round(Math.random() * 2)];
       this.set('state', select);
     }, 2000);
 
     this.svg.append("circle").call(this.eyes(25, 50, (this.radisu * 7), "#7b3e68"))
     this.svg.append("circle").call(this.eyes(75, 50, (this.radisu * 7), "#7b3e68"));
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+    this.set('svg', null);
+    Ember.run.cancel(this.check);
   }
 });

@@ -3,6 +3,14 @@
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
+# GUI of the application
+ ### Calender GUI
+![alt tag](https://github.com/amatelic/brain-frontend/tree/master/images/calender.png)
+### Graph GUI
+![alt tag](https://github.com/amatelic/brain-frontend/tree/master/images/graph.png)
+### Main GUI
+![alt tag](https://github.com/amatelic/brain-frontend/tree/master/images/tasks.png)
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.

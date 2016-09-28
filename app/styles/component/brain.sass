@@ -125,6 +125,17 @@
 .brain__input
   font-size: 14px
 
+.brain__card__small
+  +size(25%, 400px)
+  margin: 10px 0px 0px 10px
+  +flexType(row, wrap, center, center)
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  &:hover
+    background: $logo_background
+
 .brain__card
   +size(45%, 400px)
   margin: 10px 0px 0px 10px

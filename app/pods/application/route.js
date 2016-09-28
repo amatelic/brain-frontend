@@ -22,7 +22,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       let id = this.get('session.data.authenticated.user_id');
       this.store.findRecord('user', id).then((model) => {
         this.controllerFor('application').set('model', model);
-        this.transitionTo('home');
+        // this.transitionTo('home');
       }).catch(err => console.log(err));
     });
   },

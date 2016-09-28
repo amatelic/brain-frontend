@@ -43,6 +43,7 @@ export default Ember.Component.extend({
     let w = 500;
     let tasks = this.get('tasks').toArray()
     let svg = d3.select('.progress');
+    console.log(svg)
     let rect =  svg.selectAll('rect')
     tasks.forEach((d, i) => {
       let data = d.get('days').filter(d => d.complited);
@@ -65,6 +66,7 @@ export default Ember.Component.extend({
           .attr('fill', (d, i) => scale(i))
           .transition()
           .duration(1000)
+          .delay((d,i) => i * 10)
           .attr('height', 10)
           .attr('y', (d, i) => { console.log(scaleHeigth(i)); return scaleHeigth(i)  })
     }
