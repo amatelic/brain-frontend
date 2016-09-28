@@ -5,11 +5,11 @@ A short introduction of this app could easily go here.
 
 # GUI of the application
 ### Calender GUI
-![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/tree/master/images/calender.png)
+![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/master/images/calender.png)
 ### Graph GUI
-![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/tree/master/images/graph.png)
+![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/master/images/graph.png)
 ### Main GUI
-![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/tree/master/images/tasks.png)
+![alt tag](https://raw.githubusercontent.com/amatelic/brain-frontend/master/images/tasks.png)
 
 ## Prerequisites
 
