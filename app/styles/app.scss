@@ -65,6 +65,11 @@ button:disabled {
   opacity: 0.5
 }
 
+.graphs{
+  border: 2px solid white;
+  background: white;
+}
+
 canvas {
     width: 90% !important;
     max-width: 800px;

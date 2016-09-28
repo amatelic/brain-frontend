@@ -24,7 +24,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       let user = this.store.peekRecord('user', id);
       task.set('user', user);
       task.save().then(d => {
-        console.log(d);
         // let monthy = task.get('monthly');
         // this.set('monthy', monthy);
         // this.controllerFor('home').set('model.graph', this.store.peekAll('task'));

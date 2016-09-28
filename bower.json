@@ -10,6 +10,8 @@
     "countdownjs": "^2.6.0",
     "blob-polyfill": "^1.0.20150320",
     "urijs": "^1.18.1",
-    "socket.io-client": "^1.4.8"
+    "socket.io-client": "^1.4.8",
+    "font-awesome": "~4.5.0",
+    "d3": "^4.2.6"
   }
 }

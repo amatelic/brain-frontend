@@ -6,8 +6,8 @@
       <div class="brain__navigation">
         {{#if session.isAuthenticated}}
         {{#user-conf user=model.user}}
-          {{#link-to "user" class="btn"}} User {{/link-to}}
-          {{#link-to "messages" class="btn"}} Messages {{/link-to}}
+          {{#link-to "user" class="btn"}} {{fa-icon "user"}} User {{/link-to}}
+          {{#link-to "messages" class="btn"}} {{fa-icon "comments"}} Messages {{/link-to}}
           <a href="#" class="btn" {{action 'logout'}}>Logout</a>
         {{/user-conf}}
         {{else}}
@@ -24,10 +24,10 @@
   {{#if session.isAuthenticated}}
     <div class="left">
       <ul class="brain__nav">
-        <li>{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
-        <li>{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
-        <li>{{#link-to "calender" class="brain__links"}}Calender{{/link-to}}</li>
-        <li>{{#link-to "graph" class="brain__links"}}Graph{{/link-to}}</li>
+        <li>{{fa-icon "home"}}{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
+        <li>{{fa-icon "tasks"}}{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
+        <li>{{fa-icon "calendar"}}{{#link-to "calender" class="brain__links"}}Calender{{/link-to}}</li>
+        <li>{{fa-icon "line-chart"}}{{#link-to "graph" class="brain__links"}}Graph{{/link-to}}</li>
         <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
       </ul>
     </div>
