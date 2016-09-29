@@ -1,13 +1,9 @@
-<!-- <div class="graph__large">
-  <div class="brain__group">
-    <h1>Large graph</h1>
-  </div> -->
+{{#large-graph state="happy" data=model tasks=model getMonth="getMonth"}}
   {{brain-bar title='Progress'data=model}}
   {{brain-pie title='Social' data=[80, 20]}}
   {{brain-pie title='Healthy' data=[60, 20]}}
   {{brain-pie title='Sport' data=[20, 20]}}
   {{brain-pie title='Creativity' data=[50, 20]}}
   {{brain-pie title='Learn' data=[80, 20]}}
-  <!-- {{large-graph state="happy" data=model tasks=model getMonth="getMonth"}} -->
-  {{outlet}}
-<!-- </div> -->
+{{/large-graph}}
+{{outlet}}

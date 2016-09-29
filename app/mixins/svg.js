@@ -12,9 +12,7 @@ export default Ember.Mixin.create({
     this.svg = d3.select(`#chart-${this.get('title')}`)
       .attr('width', this.width)
       .attr('height', this.height)
-      .append('g')
-      .attr('transform', 'translate(' + (this.width / 2) +
-        ',' + (this.height / 2) + ')');
+      .append('g');
   },
   colorScale(obj = {}) {
     let range =  obj.range || [0, 3];
@@ -23,6 +21,13 @@ export default Ember.Mixin.create({
            .range(domain);
 
   },
+
+  createScale(obj = {}) {
+    let range =  obj.range || [0, 10];
+    let domain = obj.domain || [0, this.width];
+    return d3.scaleLinear().domain(domain).range(range);
+  },
+
   arc(inner, outer) {
     inner = inner || 80;
     outer = outer || this.get('radius');

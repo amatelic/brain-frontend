@@ -1,34 +1,24 @@
-<!-- {{brain-pie class="social"}} -->
-<!-- <div class="card__graph_20">
-  <div class="brain__box">
-    <p>Select skill you went to check:</p>
-    <select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
-      {{#each tasks as |task index|}}
-      <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
-      {{/each}}
-    </select>
+<div class="large__app__head">
+  <p>Select skill you went to check:</p>
+  <select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
+    {{#each tasks as |task index|}}
+    <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
+    {{/each}}
+  </select>
+  <br/>
+  <br/>
+  <div class="brain__month__stats">
+    <p>You have work on this skill this month</p>
+    <b>{{showStats}}</b>
   </div>
-  <br>
-  <div class="brain__box">
-    <div class="brain__month__stats">
-      <p>You have work on this skill this month</p>
-      <b>{{showStats}}</b>
-    </div>
-
-    <div class="brain__month__stats">
-      <p>All together</p>
-      <b>{{showWholeStat}}</b>
-    </div>
+  <br/>
+  <div class="brain__month__stats">
+    <p>All together</p>
+    <b>{{showWholeStat}}</b>
   </div>
-    <div class="brain__month__stats">
-      <button {{action "getMonth" 'left'}} type="button" class="btn">Prev</button>
-      <button {{action "getMonth" 'right'}} type="button" class="btn">Next</button>
-    </div>
 </div>
-<div class="card__graph_80">
-  <svg class="progress" width="500" height="500"></svg>
-{{#if normal}}
-  {{ember-chart type='Line' data=normal options=options height=500}}
-{{/if}}
-</div> -->
-{{yield}}
+
+
+<!-- <div class="large__app__main"> -->
+  {{yield}}
+<!-- </div> -->

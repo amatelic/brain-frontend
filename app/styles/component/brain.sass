@@ -13,6 +13,9 @@
 .brain_register
   @extend %brain_default
 
+#chart-moti
+  background: white
+
 .brain__row
   +size(100%, auto)
   display: flex
@@ -42,10 +45,22 @@
   border: 2px solid white
   border-radius: 15px
 
-.brain_all
+.brain__all
   width: 100%
-  +flexType
+  // background: $index_background
+  display: flex
+  flex-wrap: wrap
 
+.large__app__head
+  min-width: 35%
+  padding: 50px
+  margin-left: 10px
+  background: $index_background
+
+.large__app__main
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
 .brain__input
   +size(70%, 25px)
   border-radius: 15px
@@ -127,6 +142,7 @@
 
 .brain__card__small
   +size(25%, 400px)
+  min-width: 300px
   margin: 10px 0px 0px 10px
   +flexType(row, wrap, center, center)
   padding: 10px
@@ -137,7 +153,7 @@
     background: $logo_background
 
 .brain__card
-  +size(45%, 400px)
+  +size(30%, 400px)
   margin: 10px 0px 0px 10px
   +flexType(row, wrap, center, center)
   padding: 10px
@@ -248,3 +264,7 @@
     box-shadow: inset 0px 0px 54px 0px rgba(0,0,0,0.75)
 .modal__new__tasks
   margin: 10px 0px
+
+
+.brain__bar
+  min-width: 50%

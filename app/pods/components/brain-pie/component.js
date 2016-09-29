@@ -13,17 +13,17 @@ export default Ember.Component.extend(svgMixin, {
     var arc = this.arc(80, this.get('radius') - 10);
     var arcLarge = this.arc();
     var pie = d3.pie().sort(null)
-
-
-    var g = this.svg.selectAll('path')
+    let svg = this.svg.attr('transform', 'translate(' + (this.width / 2) +
+      ',' + (this.height / 2) + ')');
+    var g = svg.selectAll('path')
       .data(pie(dataset))
       .enter().append("g")
 
       g.append('path')
         .attr('d', arc)
         .attr('fill', (d, i) => color(i))
-        .on('mouseover', d => this.svg.select('path').transition().duration(500).attr('d', arcLarge))
-        .on('mouseout', d => this.svg.select('path').transition().duration(500).attr('d', arc))
+        .on('mouseover', d => svg.select('path').transition().duration(500).attr('d', arcLarge))
+        .on('mouseout', d => svg.select('path').transition().duration(500).attr('d', arc))
         // .transition()
         // .duration(500)
         // .tween("path", function(d) {

@@ -5,6 +5,7 @@ import Statistics from '../../../utility/statistics';
 import d3 from 'd3';
 //http://www.flatuicolorpicker.com/
 export default Ember.Component.extend({
+  classNames: ['brain__all'],
   statistics: Statistics,
   graph: new Graph(),
   month: (moment().month() + 1),
