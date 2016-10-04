@@ -6,6 +6,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     let id = this.get('session.data.authenticated.user_id');
     let user = this.store.peekRecord('user', id);
-    return user.get('messages');
+    return this.store.findAll('message');
   },
 });

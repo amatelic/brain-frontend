@@ -2,11 +2,13 @@ import Ember from 'ember';
 import d3 from 'd3';
 import svgMixin from '../../../mixins/svg';
 export default Ember.Component.extend(svgMixin, {
-  classNames: ['brain__card__small'],
+  width: 200,
+  height: 200,
+  classNames: ['brain__card__pie'],
   didInsertElement() {
     this._super(...arguments);
-    let complited = Math.round(Math.random() * 100) ;
-
+    let total = this.get('data')
+    let complited = (total[0] * 100) / total[1];
     let dataset = [complited, 100 - complited];
     let color = this.colorScale();
 
@@ -24,11 +26,6 @@ export default Ember.Component.extend(svgMixin, {
         .attr('fill', (d, i) => color(i))
         .on('mouseover', d => svg.select('path').transition().duration(500).attr('d', arcLarge))
         .on('mouseout', d => svg.select('path').transition().duration(500).attr('d', arc))
-        // .transition()
-        // .duration(500)
-        // .tween("path", function(d) {
-        //   console.log(d, this)
-        // });
 
     var g = this.svg.selectAll('text')
       .data([complited])

@@ -16,3 +16,46 @@
   width: 80%
   height: 100%
   min-height: 50px
+
+.brain__card__small
+  +size(25%, 400px)
+  min-width: 300px
+  margin: 10px 0px 0px 10px
+  +flexType(row, wrap, center, center)
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  &:hover
+    background: $logo_background
+
+.brain__card__pie
+  +size(15%, 400px)
+  min-width: 200px
+  margin: 10px 0px 0px 10px
+  +flexType(row, wrap, center, center)
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  &:hover
+    background: $logo_background
+
+.brain__card
+  +size(30%, 400px)
+  margin: 10px 0px 0px 10px
+  +flexType(row, wrap, center, center)
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  &:hover
+    background: $logo_background
+
+.brain__person__status
+  +size(100%, 100%)
+  display: flex
+  // margin-left: 10%
+  justify-content: flex-start
+  flex-wrap: wrap
+  flex-direction: row

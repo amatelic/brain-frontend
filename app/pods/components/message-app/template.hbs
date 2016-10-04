@@ -3,7 +3,7 @@
   <hr/>
   {{#each messages as |message|}}
   <div {{action 'showMessage' message}} class="user__message">
-    <img class="circle" src="{{message.image}}" alt="" />
+    <img class="circle" src="assets/images/{{message.image}}" alt="" />
     <div>
       <p class="user__message__title">{{message.title}}</p>
       <small class="user__message__author"> - {{message.author}} </small>
@@ -18,18 +18,10 @@
 <div class="user__messages">
   <div class="user__display">
     {{#if text}}
-      {{#emoji-tag class="message__text"}}
+      {{#emoji-tag class="message__text"}} 
         {{text}}
       {{/emoji-tag}}
     {{/if}}
-    <!-- {{#each texst as |text|}}
-    <div class="trinagle">
-      1
-    </div>
-    {{#emoji-tag class="message_text"}}
-      {{text.message}}
-    {{/emoji-tag}}
-    {{/each}} -->
   </div>
   <!--<div class="user__text">
     <input onkeydown={{action 'sendMessage'}} class="user__text__input brain__input " type="text" name="name" placeholder="Write your message">

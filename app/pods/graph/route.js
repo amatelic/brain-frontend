@@ -1,16 +1,27 @@
 import Ember from 'ember';
+import App from '../../app';
 
 export default Ember.Route.extend({
   model() {
-    return this.store.peekAll('task');
+    let stages = Ember.copy(App.storeMeta['user'].stages);
+    let len = Object.values(stages).reduce((a, b) => a + b, 0);
+    for (var stag in stages) {
+      if (stages.hasOwnProperty(stag)) {
+        stages[stag] = [parseInt(stages[stag]), len];
+      }
+    }
+    return Ember.RSVP.hash({
+      tasks: this.store.peekAll('task'),
+      stages,
+    });
   },
-  afterModel(task) {
-    if (!task.get('length')) {
+  afterModel(model) {
+    if (!model.tasks.get('length')) {
       this.transitionTo('home');
     }
   },
   setupController(controller, model) {
-    let options = model.toArray().map(d => d.get('name'));
+    let options = model.tasks.toArray().map(d => d.get('name'));
     controller.set('options', options);
     controller.set('model', model);
   },

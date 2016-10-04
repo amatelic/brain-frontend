@@ -51,9 +51,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
     Ember.run.later(this, function() {
       let meta = App.storeMeta['user'];
-      if (meta) {
+      if (meta.quote) {
         // this.send('openModal', 'modal.welcome', []);
-        // this.send('openModal', 'modal.quotes', meta);
+        // this.send('openModal', 'modal.quotes', meta.quote);
       }
     }, 1000);
   },
