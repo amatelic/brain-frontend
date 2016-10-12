@@ -1,24 +1,24 @@
-<div class="large__app__head">
-  <p>Select skill you went to check:</p>
-  <select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
-    {{#each tasks as |task index|}}
-    <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
-    {{/each}}
-  </select>
-  <br/>
-  <br/>
-  <div class="brain__month__stats">
-    <p>You have work on this skill this month</p>
-    <b>{{showStats}}</b>
-  </div>
-  <br/>
-  <div class="brain__month__stats">
-    <p>All together</p>
-    <b>{{showWholeStat}}</b>
+<div class="app__graph__main">
+  {{yield}}
+</div>
+<div class="app__graph__properties brain__design">
+  <div class="graph__containers">
+    <p>Select skill you went to check:</p>
+    <select class="brain__dropdown" onchange={{action "selectGraph" value="target.value"}}>
+      {{#each tasks as |task index|}}
+      <option value={{index}} selected={{eq task.name 'test'}}>{{task.name}}</option>
+      {{/each}}
+    </select>
+    <br/>
+    <br/>
+    <div class="form-control border">
+      <p>You have work on this skill this month</p>
+      <b>{{showStats}}</b>
+    </div>
+    <br/>
+    <div class="form-control border">
+      <p>All together</p>
+      <b>{{showWholeStat}}</b>
+    </div>
   </div>
 </div>
-
-
-<!-- <div class="large__app__main"> -->
-  {{yield}}
-<!-- </div> -->

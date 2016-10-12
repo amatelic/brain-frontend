@@ -1,9 +1,9 @@
 {{#large-graph state="happy" data=model.tasks tasks=model.tasks getMonth="getMonth"}}
   {{brain-bar title='Progress'data=model.tasks}}
-{{/large-graph}}
-<div class="brain__person__status">
-  {{#each-in model.stages as |key value|}}
+  <div class="app__types__status">
+    {{#each-in model.stages as |key value|}}
     {{brain-pie title=key data=value}}
-  {{/each-in}}
-</div>
+    {{/each-in}}
+  </div>
+{{/large-graph}}
 {{outlet}}

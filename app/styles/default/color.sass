@@ -16,6 +16,15 @@ $border: white
 .default
   border: 2px solid white
 
+.danger
+  background: #D2527F
+.warning
+  background: #F1A9A0
+.success
+  background: #52B3D9
+.excellent
+  background: #4ECDC4
+
 .btn
   background: #7b3e68
   background-image: -webkit-linear-gradient(top, #7b3e68, #47253d)
@@ -47,15 +56,3 @@ $border: white
   background-image: -o-linear-gradient(top, #6d3a5d, #4c2640)
   background-image: linear-gradient(to bottom, #6d3a5d, #4c2640)
   text-decoration: none
-
-
-=flexType($direction:row, $wrap:wrap, $justify:center, $align:center)
-  display: flex
-  flex-direction: $direction
-  justify-content: $justify
-  flex-wrap: $wrap
-  align-items: $align
-
-=size($width, $height)
-  width: $width
-  height: $height

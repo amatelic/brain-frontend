@@ -1,23 +1,56 @@
-<div class="card__dimension_20">
-  <h2>All user Tasks</h2>
+<div class="height-dimension-20">
+  <div class="form-control btm--boreder">
+    <h2>All user Tasks</h2>
+  </div>
+  <div class="form-control">
+    <label for=""> Toggle manage</label>
+    {{input type="checkbox" checked=isTypes}}
+  </div>
 </div>
-<div class="card__dimension_80">
-  <ul class="manage__tasks__list">
-    {{#each tasks as |task index|}}
-      <li>
-        <div class="task__text">
-          <p>{{task.name}}</p>
-          <small>{{showDates task.schedule}}</small>
-        </div>
-        <div class="task__checkbox">
-          {{brain-checkbox task=task toggleTask="toggleTask"}}
-          <!-- {{task.complited}} -->
-        </div>
-      </li>
-    {{/each}}
-  </ul>
-  <hr/>
-  <div style="text-align: center;">
+<div class="height-dimension-80">
+  {{#if isTypes}}
+    <ul class="manage__tasks__list btm--boreder">
+      {{#each taskTypes as |type index|}}
+        <li {{action "toogleType" type }}>
+          <p>
+            {{#if type.toggle}} &#8664; {{else}} &#8658;{{/if}}
+            {{type.name}}
+          </p>
+        </li>
+        {{#if type.toggle}}
+          <ul class="manage__tasks__list">
+            {{#each filterByTypes as |task|}}
+              <li>
+                <div class="task__text">
+                  <p>{{task.name}}</p>
+                  <small>{{showDates task.schedule}}</small>
+                </div>
+                <div class="task__checkbox">
+                  {{brain-checkbox task=task toggleTask="toggleTask"}}
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{else}}
+    <ul class="manage__tasks__list btm--boreder">
+      {{#each tasks as |task index|}}
+        <li>
+          <div class="task__text">
+            <p>{{task.name}}</p>
+            <small>{{showDates task.schedule}}</small>
+          </div>
+          <div class="task__checkbox">
+            {{brain-checkbox task=task toggleTask="toggleTask"}}
+            <!-- {{task.complited}} -->
+          </div>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+  <div class="form-control">
     <h2>{{areComplited}}</h2>
   </div>
 </div>

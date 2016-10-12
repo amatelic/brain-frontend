@@ -4,28 +4,28 @@ import svgMixin from '../../../mixins/svg';
 export default Ember.Component.extend(svgMixin, {
   width: 200,
   height: 200,
-  classNames: ['brain__card__pie'],
+  classNames: ['brain__card__pie', 'brain__design'],
   didInsertElement() {
     this._super(...arguments);
-    let total = this.get('data')
+    let total = this.get('data');
     let complited = (total[0] * 100) / total[1];
     let dataset = [complited, 100 - complited];
     let color = this.colorScale();
 
     var arc = this.arc(80, this.get('radius') - 10);
     var arcLarge = this.arc();
-    var pie = d3.pie().sort(null)
+    var pie = d3.pie().sort(null);
     let svg = this.svg.attr('transform', 'translate(' + (this.width / 2) +
       ',' + (this.height / 2) + ')');
     var g = svg.selectAll('path')
       .data(pie(dataset))
-      .enter().append("g")
+      .enter().append("g");
 
       g.append('path')
         .attr('d', arc)
         .attr('fill', (d, i) => color(i))
         .on('mouseover', d => svg.select('path').transition().duration(500).attr('d', arcLarge))
-        .on('mouseout', d => svg.select('path').transition().duration(500).attr('d', arc))
+        .on('mouseout', d => svg.select('path').transition().duration(500).attr('d', arc));
 
     var g = this.svg.selectAll('text')
       .data([complited])

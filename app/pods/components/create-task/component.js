@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Time from '../../../utility/timeformatter';
 export default Ember.Component.extend({
-  classNames: ['brain__card'],
+  classNames: ['brain__card', 'brain__design'],
   dates: [
       { name: 'S',schedule: 0},
       { name: 'M',schedule: 0},

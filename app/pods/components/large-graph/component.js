@@ -5,7 +5,7 @@ import Statistics from '../../../utility/statistics';
 import d3 from 'd3';
 //http://www.flatuicolorpicker.com/
 export default Ember.Component.extend({
-  classNames: ['brain__all'],
+  classNames: ['app__graphs'],
   statistics: Statistics,
   graph: new Graph(),
   month: (moment().month() + 1),
@@ -42,13 +42,12 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     let w = 500;
-    let tasks = this.get('tasks').toArray()
+    let tasks = this.get('tasks').toArray();
     let svg = d3.select('.progress');
-    console.log(svg)
-    let rect =  svg.selectAll('rect')
+    let rect =  svg.selectAll('rect');
     tasks.forEach((d, i) => {
       let data = d.get('days').filter(d => d.complited);
-      rect.data(data).enter().call(this.rect(w, i * 70))
+      rect.data(data).enter().call(this.rect(w, i * 70));
     });
 
   },
@@ -56,7 +55,7 @@ export default Ember.Component.extend({
   rect(w, x) {
     var scale = d3.scaleLinear().domain([0, 30]).interpolate(d3.interpolateHcl)
                     .range([d3.rgb('#BE90D4'), d3.rgb('#81CFE0')]);
-    var scaleHeigth = d3.scaleLinear().domain([0, 30]).range([450, 50])
+    var scaleHeigth = d3.scaleLinear().domain([0, 30]).range([450, 50]);
     return (select) => {
       select
           .append('rect')
@@ -69,8 +68,8 @@ export default Ember.Component.extend({
           .duration(1000)
           .delay((d,i) => i * 10)
           .attr('height', 10)
-          .attr('y', (d, i) => { console.log(scaleHeigth(i)); return scaleHeigth(i)  })
-    }
+          .attr('y', (d, i) => { console.log(scaleHeigth(i)); return scaleHeigth(i);  });
+    };
   },
 
   actions: {

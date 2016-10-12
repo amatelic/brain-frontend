@@ -4,7 +4,7 @@ import Graph from 'brain/graph/graph';
 
 export default Ember.Component.extend({
   graph: new Graph(),
-  classNames: ['brain__card__small'],
+  classNames: ['brain__card', 'brain__design'],
   selectedGraph: 'isRadar',
   isRadar: true,
   isBar: false,

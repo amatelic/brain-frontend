@@ -1,10 +1,12 @@
 @import "default/color";
+@import "default/helpers";
 // @import "pages/index";
 @import "pages/app";
 @import "pages/user";
 @import "component/calender";
 @import "pages/graph";
 @import "component/brain";
+@import "component/modal";
 @import "component/messages";
 @import "component/card";
 @import "component/task";
@@ -57,8 +59,20 @@ li {
   list-style: none;
 
 }
+
+label {
+  margin: 7px;
+  font-size: 20px;
+  font-family: Lato;
+  display: flex;
+}
+
 hr {
   border: 1px solid white
+}
+
+.btm--boreder {
+  border-bottom: 1px solid white;
 }
 
 button:disabled {
@@ -92,6 +106,15 @@ canvas {
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
 }
+
+.brain__logo {
+  height: 40px;
+  margin: 10px 0px 0px 20px;
+  padding: 5px 5px 0px 5px;
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
 
 /**
  * Input checkbox

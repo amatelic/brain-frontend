@@ -3,10 +3,6 @@ import moment from 'moment';
 export default Ember.Component.extend({
   attributeBindings: ['type', 'value'],
   classNames: ['onoffswitch'],
-  // attributeBindings:["checked"],
-  // checked: Ember.computed("task.complited", function() {
-  //   return this.get('task.complited');
-  // }),
   areComplited: Ember.observer('task.complited', function() {
     this.$('input').attr('checked', this.get('task.complited'));
   }),
@@ -14,7 +10,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
     let day = moment().date();
     //day has to be zero based because of the data base
-    let today = this.get('task.days')[day - 1]; 
+    let today = this.get('task.days')[day - 1];
     let weekIndex = moment().day();
     let schedule = this.get('task.schedule');
     if (today.complited !== 0) {

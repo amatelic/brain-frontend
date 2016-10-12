@@ -14,7 +14,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       user: this.store.peekRecord('user', id),
       option: this.get('graph').option(),
       messages: this.store.peekRecord('user', id).get('messages'),
-      graph: this.store.peekRecord('user', id).get('tasks'),
+      graph: this.store.findAll('task'),
     });
   },
 

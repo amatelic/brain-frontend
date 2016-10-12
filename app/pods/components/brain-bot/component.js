@@ -2,9 +2,8 @@ import Ember from 'ember';
 import svgMixin from '../../../mixins/svg';
 import d3 from 'd3';
 import moment from 'moment';
-let {set, get} = Ember;
 export default Ember.Component.extend(svgMixin, {
-  classNames: ['brain__card__small'],
+  classNames: ['brain__card__small', 'brain__design'],
   emotion: {
     happy: [{ "x": 15,  "y": 20},{ "x": 40,  "y": 60},{ "x": 90, "y": 5}],
     bad: [{"x": 15,  "y": 60},{ "x": 40,  "y": 30},{ "x": 90, "y": 60}],
@@ -31,7 +30,7 @@ export default Ember.Component.extend(svgMixin, {
     this.radisu = number / 100;
     this.heightDeveide = number / 2;
     this.widthScale = this.createScale({domain: [0, 100], range: [0, this.width]});
-    this.heightScale = this.createScale({domain: [0, 100], range: [0, this.height - this.heightDeveide]})
+    this.heightScale = this.createScale({domain: [0, 100], range: [0, this.height - this.heightDeveide]});
     this.lineFunction = d3.line()
                       .x(d => this.widthScale(d.x))
                       .y(d => this.heightDeveide + this.heightScale(d.y))

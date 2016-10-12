@@ -1,15 +1,18 @@
-<div class="card__header">
+<div class="form-control">
   <h2>Create new tasks to work on.</h2>
 </div>
-<div class="card__body">
-  <div class="brain__row brain__add_input">
-    <label for="">Name:</label>
-    {{input value=name placeholder="New task" class="brain__input"}}
-    <label for="">Time:</label>
-    {{input value=time type="time" placeholder="New time" class="brain__input"}}
-  </div>
-  <br>
-  <div class="brain__checkbox__date">
+<div class="form-control">
+  <label for="">Name:</label>
+  {{input value=name placeholder="New task" class="brain__input"}}
+</div>
+<div class="form-control">
+  <label for="">Time:</label>
+  {{input value=time type="time" placeholder="New time" class="brain__input"}}
+</div>
+<br>
+<div class="form-control">
+  <label for="">Working dates:</label>
+  <div class="form-control form-control--row">
     {{#each dates as |day| }}
       <div class="brain__checkbox">
         {{input id=index type="checkbox" name="name" checked=day.schedule}}
@@ -17,15 +20,14 @@
       </div>
     {{/each}}
   </div>
-
-  <div class="brain_all">
-    <button {{action "createNewTask" name time}} class="btn"> Create </button>
-  </div>
 </div>
-<div class="card__footer">
+<div class="form-control">
+  <button {{action "createNewTask" name time}} class="btn"> Create </button>
+</div>
+
+<div class="form-control">
   <p>
     Saving data to server + showing an animation
   </p>
-
 </div>
 {{yield}}

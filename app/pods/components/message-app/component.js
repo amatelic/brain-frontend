@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['message__app'],
+  classNames: ['message__app', 'brain__design'],
   isNew: Ember.computed('messages.@each.status', function() {
     let messages = this.get('messages');
     return messages.filterBy('status', true).length;

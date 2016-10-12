@@ -5,7 +5,7 @@ function range(min, max) {
     return Array.apply(null, Array(max ? Math.abs(min - max)+1 : min)).map(function (a, i) {return i+(max?min:0);});
 }
 export default Ember.Component.extend({
-  classNames: ['brain__calender'],
+  classNames: ['brain__calender', 'brain__design'],
   hiddeLeftPannel: true,
   hiddeRightPannel: false,
   now: moment(),

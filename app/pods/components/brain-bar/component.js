@@ -2,18 +2,18 @@ import Ember from 'ember';
 import svgMixin from '../../../mixins/svg';
 import d3 from 'd3';
 export default Ember.Component.extend(svgMixin, {
-  classNames: ['brain__card brain__bar'],
+  classNames: ['brain__bar ', 'brain__design'],
   width: 500,
   height: 300,
   didInsertElement() {
     this._super(...arguments);
     let tasks = this.get('data').toArray();
     let svg = this.svg.attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
-    let rect =  this.svg.selectAll('rect')
+    let rect =  this.svg.selectAll('rect');
     tasks.forEach((d, i) => {
       let margin = i * 70;
       let data = d.get('days').filter(d => d.complited);
-      rect.data(data).enter().call(this.rect(this.width, margin))
+      rect.data(data).enter().call(this.rect(this.width, margin));
       this.text(d.get('name'), margin);
     });
   },
@@ -38,14 +38,14 @@ export default Ember.Component.extend(svgMixin, {
           .delay((d,i) => i * 10)
           .attr('height', 4)
           .attr('y', (d, i) => scaleHeigth(i) - 50)
-    }
+    };
   },
   text(name, i) {
     let g = this.svg.selectAll('text-' +  i)
       .data([name])
       .enter()
       .append("g")
-      .attr("transform", "translate(" + (50 + i) + "," + (this.height + this.height) + ")")
+      .attr("transform", "translate(" + (50 + i) + "," + (this.height + this.height) + ")");
 
 
       g.append("text")
@@ -55,10 +55,10 @@ export default Ember.Component.extend(svgMixin, {
         .attr("text-anchor", "start")
         .attr("transform", d => "rotate(50)")
         .attr('font-size', "0.7em")
-        .text(name)
+        .text(name);
 
       g.transition()
         .delay(500)
-        .attr("transform", "translate(" + (50 + i) + "," + (this.height + 75) + ")")
+        .attr("transform", "translate(" + (50 + i) + "," + (this.height + 75) + ")");
   }
 });

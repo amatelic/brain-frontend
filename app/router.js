@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('messages');
   this.route('user');
-  this.route('home');
+  this.route('home', { path: '/' });
   this.route('tasks');
   this.route('login');
   this.route('register');
@@ -18,6 +18,7 @@ Router.map(function() {
   this.route('modal', function() {
     this.route('welcome');
   });
+
   this.route('calender');
   this.route('not-found', { path: '/*path' });
 });

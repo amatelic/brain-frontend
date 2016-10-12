@@ -6,6 +6,7 @@ export default Model.extend({
   name: attr('underscore'),
   schedule: attr('array'),
   time: attr('number'),
+  type: attr('string'),
   days: attr('array'),
   month: attr('string', { defaultValue: moment().month() }),
   year: attr('string', { defaultValue: moment().year() }),

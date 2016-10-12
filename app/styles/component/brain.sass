@@ -1,66 +1,36 @@
-/*
-  === Mangage brain components ===
-  */
 %brain_default
   width: 100%
   height: 100%
   display: flex
   justify-content: center
 
+.brain__design
+  padding: 10px
+  background: $index_background
+  transition: all 0.5s ease
+  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
+  &:hover
+    background: $logo_background
+
 .brain_login
-  @extend %brain_default
+  display: flex
+  width: 50%
+  height: auto
+  margin: 0 auto
+  padding-bottom: 50px
+  flex-direction: column
 
 .brain_register
-  @extend %brain_default
+  display: flex
+  width: 50%
+  height: auto
+  margin: 0 auto
+  padding-bottom: 50px
+  flex-direction: column
 
 #chart-moti
   background: white
 
-.brain__row
-  +size(100%, auto)
-  display: flex
-  flex-direction: row
-
-.brain_register > .brain__card
-  height: auto
-.brain__form
-  width: 100%
-.brain__group
-  width: 100%
-  padding: 5px
-  +flexType(column, no-wrap, center, center)
-
-.brain__label
-  margin: 7px
-  font-size: 20px
-  font-family: Lato
-  display: flex
-.card__body_col
-  flex-direction: column
-
-.brain__logo
-  height: 40px
-  margin: 10px 0px 0px 20px
-  padding: 5px 5px 0px 5px
-  border: 2px solid white
-  border-radius: 15px
-
-.brain__all
-  width: 100%
-  // background: $index_background
-  display: flex
-  flex-wrap: wrap
-
-.large__app__head
-  min-width: 35%
-  padding: 50px
-  margin-left: 10px
-  background: $index_background
-
-.large__app__main
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
 .brain__input
   +size(70%, 25px)
   border-radius: 15px
@@ -105,14 +75,6 @@
   +size(100%, 100%)
   +flexType(row, wrap, center, center)
 
-/** brain card
-.card__graph_20
-  +size(100%, 20%)
-  +flexType(column, wrap, center, center)
-
-.card__graph_80
-  +size(100%, 80%)
-  +flexType(column, wrap, center, center)
 /*
   === Brain positioning ===
   */
@@ -122,24 +84,6 @@
   padding: 0
   margin: 0
   flex-direction: column
-
-.brain__counter__numbers
-    font-size: 4em
-    margin: 20px 30px
-
-.brain__right, .brain__left
-  height: 100%
-  @extend %brain__50
-.brain__left
-  +flexType(column, wrap, center, center)
-.brain__container
-  +size(80%, 100%)
-  margin: 5px 10px
-  +flexType(column, wrap, space-between, space-between)
-
-.brain__input
-  font-size: 14px
-
 
 .brain__modal
   top: 40%
@@ -166,76 +110,8 @@
 .modal--animate
   transform: translateY(200px)
 
-.brain_model_button
-  margin: 5px
-  border: none
-  padding: 7px
-  font-size: 1.2em
-  border-radius: 5px
-  color: white
-  background: $logo_border_background
-
-.brain__month__stats
-  border: 2px solid white
-  text-align: center
-  width: 300px
-  padding: 5px
 
 .brain__right
   width: 100%
   display: flex
   align-items: flex-end
-/*
-  === Brain modal components ===
-  */
-.modal__tasks
-  display: flex
-  flex-direction: row
-.modal__tasks > input
-  border: 1px solid $button_backgorund
-.brain__modal__body
-  position: relative
-  button
-    color: white
-    
-.brain__add_input
-  position: relative
-  justify-content: space-around
-.brain__add_input > input
-  margin: 5px
-  width: 40%
-.brain__add_input > label
-  left: 25%
-  top: -20px
-  position: relative
-  color: white
-
-.brain__checkbox__date
-  width: 100%
-  margin: 10px 0px
-  display: flex
-  flex-direction: row
-  justify-content: space-around
-  position: relative
-.brain__checkbox
-  display: flex
-  flex-direction: column
-.brain__checkbox > label
-  text-align: center
-.modal__task__add
-  width: 50px
-  height: 50px
-  margin-top: 20px
-  background: $button_backgorund
-  color: white
-  font-size: 1.5em
-  border-radius: 50%
-  border: none
-  &:active
-    box-shadow: inset 0px 0px 54px 0px rgba(0,0,0,0.75)
-.modal__new__tasks
-  margin: 10px 0px
-
-
-.brain__bar
-  min-width: 50%

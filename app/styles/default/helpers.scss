@@ -1,0 +1,69 @@
+// Element helpers
+.btm--boreder {
+  border-bottom: 1px solid white;
+}
+
+.border {
+  border: 1px solid white;
+}
+
+@mixin flexType($direction:row, $wrap:wrap, $justify:center, $align:center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+  align-items: $align;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+//Basic layout helpers
+
+%flex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+%card_basic {
+  display: flex;
+  width: 100%;
+  height: 30%;
+}
+
+.form-control {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.form-control--row {
+  flex-direction: row;
+}
+
+.height-dimension-20 {
+  display: flex;
+  width: 100%;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.height-dimension-80 {
+  display: flex;
+  width: 100%;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

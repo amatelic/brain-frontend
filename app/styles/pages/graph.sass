@@ -1,61 +1,39 @@
-.graph__large
-  width: 90%
-  padding: 10px
-  // padding: 15px
-  margin: 0px 20px
-  height: auto
-  background: $index_background
+.app__graphs
+  width: 100%
+  height: 100%
+  display: flex
+  position: relative
 
-.brain__box
-  margin: 20px
+.app__graph__properties
+  width: 30%
+  height: 100%
+
+.graph__containers
+  margin: 15px
+  padding: 5px
+
+.app__types__status
+  width: 100%
+  height: 100%
   display: flex
   flex-wrap: wrap
-  flex-direction: row
-  justify-content: center
-  align-content: space-between
-  width: 80%
-  height: 100%
-  min-height: 50px
 
-.brain__card__small
-  +size(25%, 400px)
-  min-width: 300px
-  margin: 10px 0px 0px 10px
-  +flexType(row, wrap, center, center)
-  padding: 10px
-  background: $index_background
-  transition: all 0.5s ease
-  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
-  &:hover
-    background: $logo_background
+.app__graph__main
+  width: 70%
+  height: 100%
 
 .brain__card__pie
-  +size(15%, 400px)
+  +size(12%, 400px)
   min-width: 200px
   margin: 10px 0px 0px 10px
   +flexType(row, wrap, center, center)
-  padding: 10px
-  background: $index_background
-  transition: all 0.5s ease
-  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
-  &:hover
-    background: $logo_background
+
 
 .brain__card
   +size(30%, 400px)
   margin: 10px 0px 0px 10px
   +flexType(row, wrap, center, center)
-  padding: 10px
-  background: $index_background
-  transition: all 0.5s ease
-  box-shadow: 4px 6px 13px -1px rgba(163, 163, 163, 0.58)
-  &:hover
-    background: $logo_background
 
-.brain__person__status
-  +size(100%, 100%)
-  display: flex
-  // margin-left: 10%
-  justify-content: flex-start
-  flex-wrap: wrap
-  flex-direction: row
+.brain__bar
+  margin: 0px 5px
+  min-width: 50%

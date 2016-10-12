@@ -2,9 +2,9 @@
   <h3>Messages({{isNew}}) :</h3>
   <hr/>
   {{#each messages as |message|}}
-  <div {{action 'showMessage' message}} class="user__message">
+  <div {{action 'showMessage' message}} class="btm--boreder user__message">
     <img class="circle" src="assets/images/{{message.image}}" alt="" />
-    <div>
+    <div >
       <p class="user__message__title">{{message.title}}</p>
       <small class="user__message__author"> - {{message.author}} </small>
       {{#if message.status}}
@@ -18,7 +18,7 @@
 <div class="user__messages">
   <div class="user__display">
     {{#if text}}
-      {{#emoji-tag class="message__text"}} 
+      {{#emoji-tag class="message__text"}}
         {{text}}
       {{/emoji-tag}}
     {{/if}}

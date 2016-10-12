@@ -1,10 +1,10 @@
-<div class="brain_register">
-  <div class="brain__card">
-    <div class="brain__group">
-      <h1>Register</h1>
-    </div>
+<div class="brain_register brain__design">
+  <div class="height-dimension-20">
+    <h1>Register</h1>
+  </div>
+  <div class="height-dimension-80">
     {{#if errors}}
-      <div class="brain__group">
+      <div class="form-control">
           <strong>Login failed:</strong>
           {{#each errors as |error|}}
             <p>
@@ -14,9 +14,9 @@
           {{/each}}
       </div>
     {{/if}}
-    <form class="brain__form" {{action 'register' on="submit"}}>
-      <div class="brain__group">
-        <label class="brain__label" for="identification">Name:</label>
+    <form class="form-control" {{action 'register' on="submit"}}>
+      <div class="form-control">
+        <label class="brain__label" for="identification">User name:</label>
         {{input value=changeset.name.value placeholder='Enter your name' class="brain__input"}}
         {{#unless changeset.name.isValid}}
           {{#each changeset.name.errors as |error|}}
@@ -24,8 +24,8 @@
           {{/each}}
         {{/unless}}
       </div>
-      <div class="brain__group">
-        <label class="brain__label" for="identification">Username:</label>
+      <div class="form-control">
+        <label class="brain__label" for="identification">User username:</label>
         {{input value=changeset.username.value placeholder='Enter your username' class="brain__input"}}
         {{#unless changeset.username.isValid}}
           {{#each changeset.username.errors as |error|}}
@@ -33,8 +33,8 @@
           {{/each}}
         {{/unless}}
       </div>
-      <div class="brain__group">
-        <label class="brain__label" for="identification">Email:</label>
+      <div class="form-control">
+        <label class="brain__label" for="identification">User email:</label>
         {{input value=changeset.email.value placeholder='Enter email' class="brain__input"}}
         {{#unless changeset.email.isValid}}
           {{#each changeset.email.errors as |error|}}
@@ -42,8 +42,8 @@
           {{/each}}
         {{/unless}}
       </div>
-      <div class="brain__group">
-        <label class="brain__label" for="password">Password:</label>
+      <div class="form-control">
+        <label class="brain__label" for="password">User password:</label>
         {{input value=changeset.password.value placeholder="Enter Password" class="brain__input" type='password'}}
         {{#unless changeset.password.isValid}}
           {{#each changeset.password.errors as |error|}}
@@ -51,7 +51,7 @@
           {{/each}}
         {{/unless}}
       </div>
-      <div class="brain__group">
+      <div class="form-control">
         <label class="brain__label" for="password"> Re-enter password:</label>
         {{input value=changeset.repassword.value placeholder="Enter Password" class="brain__input" type='password'}}
         {{#unless changeset.repassword.isValid}}
@@ -60,7 +60,7 @@
           {{/each}}
         {{/unless}}
       </div>
-      <div class="brain__group">
+      <div class="form-control">
         <button type="submit" class="btn">Register</button>
         <!-- //disabled={{isValid}} -->
       </div>
