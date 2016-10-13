@@ -1,0 +1,38 @@
+<div class="form-control">
+  <h1>Update tasks</h1>
+</div>
+<div class="table">
+  <div class="row btm--boreder">
+    <div class="col">Name</div>
+    <div class="col">Time</div>
+    <div class="col">Schedule</div>
+    <div class="col">Update</div>
+    <div class="col">Delete</div>
+  </div>
+  {{#each getTasks as |task index|}}
+  <div class="row btm--boreder updateTask">
+    <div class="col">
+      {{input class="brain__input" disabled=(get updateTask (concat index)) type="input" name="name" value=task.name}}
+    </div>
+    <div class="col">
+      {{input class="brain__input" disabled=(get updateTask (concat index)) type="time" name="name" value=(time task.time  'HH:MM')}}
+    </div>
+    <div class="col">
+      {{#each task.schedule as |day index2|}}
+        <div class="">
+          {{input type="checkbox" disabled=(get updateTask (concat index)) checked=day}}
+          {{ get dates (concat index2) }}
+        </div>
+      {{/each}}
+    </div>
+    <div class="col"><button {{action 'updateTask' task index}} type="button" class="btn">Update</button></div>
+    <div class="col"><button {{action 'deleteTask' task index}} type="button" class="btn">Delete</button></div>
+  </div>
+  {{/each}}
+</div>
+{{#if onDataChange}}
+  <div class="form-control">
+    <button type="button" class="btn" name="button">Save</button>
+  </div>
+{{/if}}
+{{yield}}

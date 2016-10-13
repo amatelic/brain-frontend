@@ -7,6 +7,7 @@
 @import "pages/graph";
 @import "component/brain";
 @import "component/modal";
+@import "component/table";
 @import "component/messages";
 @import "component/card";
 @import "component/task";
@@ -52,6 +53,11 @@ span {
 
 a {
   text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 li {

@@ -18,7 +18,7 @@
           </p>
         </li>
         {{#if type.toggle}}
-          <ul class="manage__tasks__list">
+          <ul class="tasks__list">
             {{#each filterByTypes as |task|}}
               <li>
                 <div class="task__text">
@@ -35,7 +35,7 @@
       {{/each}}
     </ul>
   {{else}}
-    <ul class="manage__tasks__list btm--boreder">
+    <ul class="tasks__list manage__tasks__list btm--boreder">
       {{#each tasks as |task index|}}
         <li>
           <div class="task__text">

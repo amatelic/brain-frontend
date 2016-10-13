@@ -8,12 +8,14 @@
   padding: 0
   overflow-y: scroll
 
-.manage__tasks__list > li
-  +size(100%, 30px)
+.tasks__list > li
   padding: 10px 0px
+  list-style: none
   +flexType(row, nowrap, space-around)
   &:hover
     background: $button_backgorund
+.manage__tasks__list > li
+  +size(100%, 30px)
 
 .task__text
   width: 80%

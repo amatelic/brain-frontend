@@ -43,8 +43,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.get('session').on('authenticationSucceeded', () => {
       Ember.run.schedule('render', function() {
         if (this.get('welcome.show')) {
-          this.send('openModal', 'modal.welcome', []);
-          this.set('welcome.show', false);
+          // this.send('openModal', 'modal.welcome', []);
+          // this.set('welcome.show', false);
         }
       }.bind(this));
     });
@@ -52,7 +52,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     Ember.run.later(this, function() {
       let meta = App.storeMeta['user'];
       if (meta.quote) {
-        this.send('openModal', 'modal.welcome', []);
+        // this.send('openModal', 'modal.welcome', []);
         // this.send('openModal', 'modal.quotes', meta.quote);
       }
     }, 1000);

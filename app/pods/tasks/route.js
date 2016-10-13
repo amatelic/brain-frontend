@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return Ember.RSVP.hash({
-      tasks: this.store.peekAll('task'),
+      tasks: this.store.findAll('task'),
     });
   },
   actions: {

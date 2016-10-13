@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     isTypes: true,
     selectedType: 'learn',
     taskTypes: [
-      { name: 'learn', toggle: false},
+      { name: 'learn', toggle: true},
       { name: 'social', toggle: false},
       { name: 'creativity', toggle: false},
       { name: 'sport', toggle: false},
@@ -35,10 +35,15 @@ export default Ember.Component.extend({
         this.sendAction('checkTask', task);
       },
       toogleType(type) {
+        let before = get(this, 'selectedType');
+        if (before !== type.name) {
+          let prevType = this.get('taskTypes').find(types => types.name === before)
+          set(prevType, 'toggle', !prevType);          
+        }
         let name = get(type, 'name');
         let toggle = get(type, 'toggle');
-        set(type, 'toggle', !toggle);
-        set(this, 'selectedType', name);
+          set(type, 'toggle', !toggle);
+          set(this, 'selectedType', name);
       }
     }
 });

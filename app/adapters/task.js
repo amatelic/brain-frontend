@@ -11,7 +11,6 @@ export default JSONAPIAdapter.extend({
     };
   }),
   shouldReloadAll: function(store, snapshotArray) {
-    console.log(store, snapshotArray);
     var connection = window.navigator.connection;
     if (connection === 'cellular' || connection === 'none') {
       return false;
