@@ -10,18 +10,19 @@ export default Ember.Component.extend({
   }),
   onDataChange: Ember.computed('tasks.@each.name',
   'tasks.@each.time', function() {
-    console.log(1)
     return this.get('tasks').reduce((p, n) => {
       return (p) ? true : n.get('hasDirtyAttributes');
     }, false);
   }),
   actions: {
+    
     updateTask(task, index) {
       let selectedTask = this.updateTask.toArray();
       let newValue = !selectedTask[index];
       selectedTask[index] = newValue;
       set(this, 'updateTask', selectedTask);
     },
+
     deleteTask(task) {
       console.log('delete', task);
     },

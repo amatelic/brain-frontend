@@ -23,7 +23,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       let id = this.get('session.data.authenticated.user_id');
       let user = this.store.peekRecord('user', id);
       task.set('user', user);
-      task.save().then(d => {
+      task.save().then(() => {
         this.controllerFor('home').set('model.user.tasks', this.store.peekAll('task'));
       });
     },

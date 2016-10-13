@@ -40,6 +40,30 @@ export default Ember.Mixin.create({
     selected.attr("dy", "0.3em")
           .attr("fill", "white")
           .attr("text-anchor", "middle")
-          .attr('font-size', "3em")
+          .attr('font-size', "3em");
+  },
+
+  svgCor(x = 0, y = 0) {
+    return (selector) => {
+      selector
+        .attr('x', x)
+        .attr('y', y)
+    };
+  },
+  svgRect(width = 0, height = 0) {
+    return (selector) => {
+      selector
+      .attr('width', width)
+      .attr('height', height)
+    };
+  },
+
+  animate({delay = 0, duration = 0} = {}) {
+    console.log(delay, duration)
+    return (selector) => {
+      selector
+        .duration(duration)
+        .delay(delay)
+    };
   }
 });

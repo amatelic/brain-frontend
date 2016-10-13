@@ -2,7 +2,7 @@
 import Ember from 'ember';
 import Validate from '../../utility/validation';
 import Change from '../../utility/change';
-let {get, set} = Ember;
+let { get } = Ember;
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   init() {

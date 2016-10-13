@@ -2,8 +2,8 @@ import Ember from 'ember';
 import d3 from 'd3';
 import svgMixin from '../../../mixins/svg';
 export default Ember.Component.extend(svgMixin, {
-  width: 200,
-  height: 200,
+  width: 170,
+  height: 170,
   classNames: ['brain__card__pie', 'brain__design'],
   didInsertElement() {
     this._super(...arguments);
@@ -17,17 +17,18 @@ export default Ember.Component.extend(svgMixin, {
     var pie = d3.pie().sort(null);
     let svg = this.svg.attr('transform', 'translate(' + (this.width / 2) +
       ',' + (this.height / 2) + ')');
-    var g = svg.selectAll('path')
+
+    let g = svg.selectAll('path')
       .data(pie(dataset))
       .enter().append("g");
 
       g.append('path')
         .attr('d', arc)
         .attr('fill', (d, i) => color(i))
-        .on('mouseover', d => svg.select('path').transition().duration(500).attr('d', arcLarge))
-        .on('mouseout', d => svg.select('path').transition().duration(500).attr('d', arc));
+        .on('mouseover', () => svg.select('path').transition().duration(500).attr('d', arcLarge))
+        .on('mouseout', () => svg.select('path').transition().duration(500).attr('d', arc));
 
-    var g = this.svg.selectAll('text')
+    this.svg.selectAll('text')
       .data([complited])
       .enter().append("g")
       .append("text")

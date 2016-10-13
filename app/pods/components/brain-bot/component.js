@@ -89,7 +89,7 @@ export default Ember.Component.extend(svgMixin, {
     this.svg.append('path');
     let emotion = this.get('state');
     this.drawMount(this.get(`emotion.${emotion}`));
-    this.svg.append("circle").call(this.eyes(25, 50, (this.radisu * 7), "#7b3e68"))
+    this.svg.append("circle").call(this.eyes(25, 50, (this.radisu * 7), "#7b3e68"));
     this.svg.append("circle").call(this.eyes(75, 50, (this.radisu * 7), "#7b3e68"));
   },
 

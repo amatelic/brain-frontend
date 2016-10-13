@@ -16,7 +16,7 @@ export default Ember.Component.extend({
       let type = this.get('selectedType');
       return this.get('tasks').filter(item => {
         return item.get('type') === type;
-      })
+      });
     }),
     areComplited: Ember.computed('tasks.@each.days', function() {
       let tasks = this.get('tasks');
@@ -37,8 +37,8 @@ export default Ember.Component.extend({
       toogleType(type) {
         let before = get(this, 'selectedType');
         if (before !== type.name) {
-          let prevType = this.get('taskTypes').find(types => types.name === before)
-          set(prevType, 'toggle', !prevType);          
+          let prevType = this.get('taskTypes').find(types => types.name === before);
+          set(prevType, 'toggle', !prevType);
         }
         let name = get(type, 'name');
         let toggle = get(type, 'toggle');

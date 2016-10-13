@@ -1,9 +1,8 @@
 import Ember from 'ember';
-import $ from 'jquery';
-let {get} = Ember;
 import ENV from 'brain/config/environment';
 import Validate from '../../utility/validation';
 import Change from '../../utility/change';
+
 export default Ember.Controller.extend({
   ajax: Ember.inject.service(),
   init() {
@@ -23,7 +22,7 @@ export default Ember.Controller.extend({
       this.get('ajax').request(ENV.backend.url + '/register', {
         method: 'POST',
         data: this.getProperties('email', 'password', 'name', 'username')
-      }).then( _ => {
+      }).then( () => {
         this.transitionToRoute('login');
       })
       .catch(res => {

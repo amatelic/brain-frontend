@@ -1,4 +1,4 @@
-import Ember from 'ember';
+ import Ember from 'ember';
 export default Ember.Object.extend({
   notEmail(name) {
     return !(/(^$|^.*@.*\..*$)/.test(name));
@@ -16,7 +16,7 @@ export default Ember.Object.extend({
   response: {
     notEmail: 'This is not an email',
     isEmpty: 'The field is empty',
-    equal: (input, value) => `The values are not equal`,
+    equal: () => `The values are not equal`,
     greater: (input, value) => `Value must be greate than ${value}`,
   }
 });

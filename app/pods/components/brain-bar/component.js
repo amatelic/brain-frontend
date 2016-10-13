@@ -8,7 +8,7 @@ export default Ember.Component.extend(svgMixin, {
   didInsertElement() {
     this._super(...arguments);
     let tasks = this.get('data').toArray();
-    let svg = this.svg.attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
+    this.svg.attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
     let rect =  this.svg.selectAll('rect');
     tasks.forEach((d, i) => {
       let margin = i * 70;
@@ -23,21 +23,18 @@ export default Ember.Component.extend(svgMixin, {
       range: [0, 30],
       domain: [d3.rgb('#BE90D4'), d3.rgb('#81CFE0')]
     });
-    var scaleHeigth = d3.scaleLinear().domain([0, 30]).range([400, 150])
+    var scaleHeigth = d3.scaleLinear().domain([0, 30]).range([400, 150]);
 
     return (select) => {
       select
           .append('rect')
-          .attr('x', 50 + x)
-          .attr('y', w)
-          .attr('width', 30)
-          .attr('height', 0)
+          .call(this.svgCor(50 + x, w))
+          .call(this.svgRect(30, 0))
           .attr('fill', (d, i) => scale(i))
           .transition()
-          .duration(1000)
-          .delay((d,i) => i * 10)
+          .call(this.animate({duration: 1000, delay: (d,i) => i * 10}))
           .attr('height', 4)
-          .attr('y', (d, i) => scaleHeigth(i) - 50)
+          .attr('y', (d, i) => scaleHeigth(i) - 50);
     };
   },
   text(name, i) {
@@ -49,11 +46,10 @@ export default Ember.Component.extend(svgMixin, {
 
 
       g.append("text")
-        .attr("x", 0)
-        .attr("y", 0)
+        .call(this.svgCor())
         .attr("fill", "white")
         .attr("text-anchor", "start")
-        .attr("transform", d => "rotate(50)")
+        .attr("transform", "rotate(50)")
         .attr('font-size', "0.7em")
         .text(name);
 

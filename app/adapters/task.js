@@ -10,7 +10,7 @@ export default JSONAPIAdapter.extend({
       'Api-key': this.get('session.data.authenticated.access_token')
     };
   }),
-  shouldReloadAll: function(store, snapshotArray) {
+  shouldReloadAll: function() {
     var connection = window.navigator.connection;
     if (connection === 'cellular' || connection === 'none') {
       return false;
