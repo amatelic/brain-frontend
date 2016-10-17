@@ -12,12 +12,14 @@ export default Ember.Component.extend({
       { name: 'sport', toggle: false},
       { name: 'health', toggle: false}
     ],
+    //Filter tasks by TaskType
     filterByTypes: Ember.computed('tasks', 'selectedType', function() {
       let type = this.get('selectedType');
       return this.get('tasks').filter(item => {
         return item.get('type') === type;
       });
     }),
+    //Cheking all complited tasks
     areComplited: Ember.computed('tasks.@each.days', function() {
       let tasks = this.get('tasks');
       let today = moment().date() - 1; //index based
@@ -36,14 +38,21 @@ export default Ember.Component.extend({
       },
       toogleType(type) {
         let before = get(this, 'selectedType');
+
+        //Checking if the same taskType was selected for toggling fun
         if (before !== type.name) {
-          let prevType = this.get('taskTypes').find(types => types.name === before);
+          let prevType = this.get('taskTypes')
+                            .find(types => types.name === before);
           set(prevType, 'toggle', !prevType);
         }
+
+        ///Getting selected type
         let name = get(type, 'name');
         let toggle = get(type, 'toggle');
-          set(type, 'toggle', !toggle);
-          set(this, 'selectedType', name);
+
+        //setting selected type and toggle property
+        set(type, 'toggle', !toggle);
+        set(this, 'selectedType', name);
       }
     }
 });

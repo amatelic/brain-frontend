@@ -47,23 +47,22 @@ export default Ember.Mixin.create({
     return (selector) => {
       selector
         .attr('x', x)
-        .attr('y', y)
+        .attr('y', y);
     };
   },
   svgRect(width = 0, height = 0) {
     return (selector) => {
       selector
       .attr('width', width)
-      .attr('height', height)
+      .attr('height', height);
     };
   },
 
   animate({delay = 0, duration = 0} = {}) {
-    console.log(delay, duration)
     return (selector) => {
       selector
         .duration(duration)
-        .delay(delay)
+        .delay(delay);
     };
   }
 });

@@ -1,17 +1,19 @@
 .brain__calender
-  +size(100%, 100%)
-  +flexType(column)
+  +size(100%, 70%)
+  display: flex
+  flex-direction: column
   margin: 0px 10px
   padding: 10px 0
   background: $index_background
 
 .calender__header
   width: 95%
+  height: 10%
   margin: 10px 10px
   +flexType(row, wrap, space-between)
 
 .calender__body
-  +size(100%, 100%)
+  +size(100%, 80%)
   +flexType(row)
   margin: 10px 10px
 

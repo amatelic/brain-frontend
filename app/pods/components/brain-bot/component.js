@@ -1,29 +1,35 @@
 import Ember from 'ember';
 import svgMixin from '../../../mixins/svg';
+import mutiMixin from '../../../mixins/muti';
 import d3 from 'd3';
 import moment from 'moment';
-export default Ember.Component.extend(svgMixin, {
-  classNames: ['brain__card__small', 'brain__design'],
-  emotion: {
-    happy: [{ "x": 15,  "y": 20},{ "x": 40,  "y": 60},{ "x": 90, "y": 5}],
-    bad: [{"x": 15,  "y": 60},{ "x": 40,  "y": 30},{ "x": 90, "y": 60}],
-    neutral: [{"x": 15,  "y": 30},{ "x": 40,  "y": 30},{ "x": 90, "y": 30}],
-  },
-  text: {
-    happy: 'Nice job',
-    bad: 'Hey start working',
-    neutral: 'Good boy',
-  },
-  changeEmotion: Ember.computed('tasks', 'messages', function() {
+let { isEmpty, set } = Ember;
+
+export default Ember.Component.extend(svgMixin, mutiMixin, {
+  websockets: Ember.inject.service('socket-io'),
+  session: Ember.inject.service('session'),
+  width: 150,
+  height: 150,
+  classNames: ['brain_bot'],
+
+  changeEmotion: Ember.computed('tasks', 'messages', 'response', function() {
       Ember.run.schedule("afterRender",this,function() {
-        let per = this.calculateEmotion();
+        let response = this.get('response');
+        let per = (!isEmpty(response)) ? 100 : this.calculateEmotion();
         this.drawMount(this.get(`emotion.${this.selectEmotion(per)}`), 1000);
       });
   }),
-  messages: Ember.computed('tasks', 'messages', function() {
+
+  messages: Ember.computed('tasks', 'messages', 'response', function() {
+    let response = this.get('response');
+    if (!isEmpty(response)) {
+      return response.message;
+    }
     let per = this.calculateEmotion();
-    return this.get(`text.${this.selectEmotion(per)}`);
+    let random = Math.round(Math.random() * 3); //setting random response
+    return this.get(`text.${this.selectEmotion(per)}`).objectAt(random);
   }),
+
   init() {
     this._super(...arguments);
     let number = this.width;
@@ -35,7 +41,6 @@ export default Ember.Component.extend(svgMixin, {
                       .x(d => this.widthScale(d.x))
                       .y(d => this.heightDeveide + this.heightScale(d.y))
                       .curve(d3.curveCatmullRom.alpha(0.1));
-
   },
 
   didInsertElement() {
@@ -43,38 +48,19 @@ export default Ember.Component.extend(svgMixin, {
     this.draw();
   },
 
-  calculateEmotion() {
-    //day has to be zero based because of the data base;
-    let day = moment().date();
-    let tasks = this.get('tasks').toArray();
-    let complited = tasks.filter(d => d.get('days')[day-1].complited > 0);
-    let tracking = tasks.filter(d => d.get('days')[day-1].tracking);
-    return (complited.length * 100) / tracking.length;
-  },
-
   mouthDesign(selection) {
-    selection.attr('stroke', '#7b3e68')
+    selection
         .attr('stroke-width', 3)
         .attr('fill', 'none');
   },
 
-  eyes(x, y, r, color) {
+  eyes(x, y, r, className) {
     return (selection) => {
       selection.attr("cx", this.widthScale(x))
               .attr("cy", this.heightScale(y))
-              .attr("r", r)
-              .attr("fill", color);
+              .attr('class', className)
+              .attr("r", r);
     };
-  },
-
-  selectEmotion(value) {
-    if (value >= 75) {
-      return 'happy';
-    }else if(value > 40) {
-      return 'neutral';
-    } else {
-      return 'bad';
-    }
   },
 
   drawMount(data, duration = 0) {
@@ -89,13 +75,25 @@ export default Ember.Component.extend(svgMixin, {
     this.svg.append('path');
     let emotion = this.get('state');
     this.drawMount(this.get(`emotion.${emotion}`));
-    this.svg.append("circle").call(this.eyes(25, 50, (this.radisu * 7), "#7b3e68"));
-    this.svg.append("circle").call(this.eyes(75, 50, (this.radisu * 7), "#7b3e68"));
+    this.svg.append("circle").call(this.eyes(25, 50, (this.radisu * 7), "eyes"));
+    this.svg.append("circle").call(this.eyes(75, 50, (this.radisu * 7), "eyes"));
   },
 
   willDestroy() {
     this._super(...arguments);
     this.set('svg', null);
     Ember.run.cancel(this.check);
+  },
+
+  actions: {
+    sendMessage(e) {
+      let message = e.target.value;
+      let id = this.get('id');
+      const socket = this.get('websockets').socketFor('ws://localhost:7000/');
+      if (e.which === 13) {
+        socket.emit('message', {message, id});
+        e.target.value = "";
+      }
+    }
   }
 });
