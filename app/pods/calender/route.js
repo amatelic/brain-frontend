@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import ENV from 'brain/config/environment';
+let {A} = Ember;
 
 export default Ember.Route.extend({
   session: Ember.inject.service('session'),
@@ -8,16 +10,24 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    getNextMonth(month) {
+    getNextMonth(month, year) {
       month = month;
-      this.store.unloadAll('task');
-      this.get('store').query('task', {
-        filter: { month }
-      }).then(function(d) {
-        if (!Ember.isEmpty(d.toArray())) {
-          this.controllerFor('calender').set('model', d);
+      year=2016;
+      fetch(`${ENV.backend.url}/tasks?filter%5Bmonth%5D=${month}&filter%5Byear%5D=${month}`, {
+        method: 'GET',
+        headers: {
+          'Api-key': this.get('session.data.authenticated.access_token')
         }
-      }.bind(this));
+      })
+      .then(d => d.json())
+      .then(json => {
+        let data = json.data.map(d => {
+          let obj = d.attributes;
+          obj.id = d.id
+          return Ember.Object.create(obj);
+        });
+        this.controllerFor('calender').set('model', A(data));
+      });
     },
     showModal(day) {
       this.send('openModal', 'modal.tasks', day);
