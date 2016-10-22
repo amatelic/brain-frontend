@@ -23,7 +23,7 @@ export default Ember.Route.extend({
       .then(json => {
         let data = json.data.map(d => {
           let obj = d.attributes;
-          obj.id = d.id
+          obj.id = d.id;
           return Ember.Object.create(obj);
         });
         this.controllerFor('calender').set('model', A(data));

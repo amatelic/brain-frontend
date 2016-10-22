@@ -6,6 +6,7 @@ export default Ember.Mixin.create({
   radius: Ember.computed('width', 'height', function() {
     return Math.min(this.get('width'), this.get('height')) / 2;
   }),
+
   svg: null,
 
   didInsertElement() {
@@ -14,6 +15,7 @@ export default Ember.Mixin.create({
       .attr('height', this.height)
       .append('g');
   },
+
   colorScale(obj = {}) {
     let range =  obj.range || [0, 3];
     let domain = obj.domain || [d3.rgb('#BE90D4'), d3.rgb('#81CFE0')];
@@ -26,14 +28,6 @@ export default Ember.Mixin.create({
     let range =  obj.range || [0, 10];
     let domain = obj.domain || [0, this.width];
     return d3.scaleLinear().domain(domain).range(range);
-  },
-
-  arc(inner, outer) {
-    inner = inner || 80;
-    outer = outer || this.get('radius');
-    return d3.arc()
-      .innerRadius(inner)
-      .outerRadius(outer);
   },
 
   textDefault(selected) {
@@ -50,6 +44,7 @@ export default Ember.Mixin.create({
         .attr('y', y);
     };
   },
+
   svgRect(width = 0, height = 0) {
     return (selector) => {
       selector

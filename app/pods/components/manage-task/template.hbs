@@ -2,14 +2,17 @@
   <div class="form-control btm--boreder">
     <h2>All user Tasks</h2>
   </div>
-  <div class="form-control">
-    <label for=""> Toggle manage</label>
-    {{input type="checkbox" checked=isTypes}}
+  <div class="form-control pad10px">
+      <p>Toogle</p>
+      <div class="checkbox">
+        {{input id="selectState" type="checkbox" name="name" checked=tasksUI.mode}}
+        <label  for="selectState" ></label>
+      </div>
   </div>
 </div>
 <div class="height-dimension-80">
-  {{#if isTypes}}
-    <ul class="manage__tasks__list btm--boreder">
+  {{#liquid-if tasksUI.mode use="fade" class="manage__tasks__list btm--boreder"}}
+    <ul>
       {{#each taskTypes as |type index|}}
         <li {{action "toogleType" type }}>
           <p>
@@ -17,7 +20,7 @@
             {{type.name}}
           </p>
         </li>
-        {{#if type.toggle}}
+        {{#liquid-if type.toggle use="toDown" class="manage__state__list"}}
           <ul class="tasks__list">
             {{#each filterByTypes as |task|}}
               <li>
@@ -31,11 +34,11 @@
               </li>
             {{/each}}
           </ul>
-        {{/if}}
+        {{/liquid-if}}
       {{/each}}
     </ul>
   {{else}}
-    <ul class="tasks__list manage__tasks__list btm--boreder">
+    <ul class="tasks__list">
       {{#each tasks as |task index|}}
         <li>
           <div class="task__text">
@@ -49,7 +52,7 @@
         </li>
       {{/each}}
     </ul>
-  {{/if}}
+  {{/liquid-if}}
   <div class="form-control">
     <h2>{{areComplited}}</h2>
   </div>

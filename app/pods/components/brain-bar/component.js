@@ -1,19 +1,34 @@
 import Ember from 'ember';
 import svgMixin from '../../../mixins/svg';
+import zoomMixin from '../../../mixins/zoom';
 import d3 from 'd3';
-export default Ember.Component.extend(svgMixin, {
+export default Ember.Component.extend(svgMixin, zoomMixin, {
   classNames: ['brain__bar ', 'brain__design'],
   width: 500,
   height: 300,
+
   didInsertElement() {
     this._super(...arguments);
-    let tasks = this.get('data').toArray();
-    this.svg.attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
+
+    let g = this.svg;
+        // .attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
     let rect =  this.svg.selectAll('rect');
+
+    g.call(d3.zoom()
+            .scaleExtent([1, 10])
+            .on("zoom", this.zoomed));
+
+
+    let tasks = this.get('data').toArray();
+
     tasks.forEach((d, i) => {
       let margin = i * 70;
       let data = d.get('days').filter(d => d.complited);
-      rect.data(data).enter().call(this.rect(this.width, margin));
+
+      rect.data(data)
+          .enter()
+          .call(this.rect(this.width, margin));
+
       this.text(d.get('name'), margin);
     });
   },
@@ -23,26 +38,28 @@ export default Ember.Component.extend(svgMixin, {
       range: [0, 30],
       domain: [d3.rgb('#BE90D4'), d3.rgb('#81CFE0')]
     });
-    var scaleHeigth = d3.scaleLinear().domain([0, 30]).range([400, 150]);
+
+    var scaleHeigth = d3.scaleLinear().domain([1, 31]).range([this.get('height') - 100, 0]);
 
     return (select) => {
       select
           .append('rect')
           .call(this.svgCor(50 + x, w))
-          .call(this.svgRect(30, 0))
+          .call(this.svgRect(50, 0))
           .attr('fill', (d, i) => scale(i))
           .transition()
           .call(this.animate({duration: 1000, delay: (d,i) => i * 10}))
-          .attr('height', 4)
-          .attr('y', (d, i) => scaleHeigth(i) - 50);
+          .attr('height', (this.get('height') - 100) / 55)
+          .attr('y', (d, i) => scaleHeigth(i));
     };
   },
+
   text(name, i) {
     let g = this.svg.selectAll('text-' +  i)
       .data([name])
       .enter()
       .append("g")
-      .attr("transform", "translate(" + (50 + i) + "," + (this.height + this.height) + ")");
+      .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') - 70) + ")");
 
 
       g.append("text")
@@ -55,6 +72,6 @@ export default Ember.Component.extend(svgMixin, {
 
       g.transition()
         .delay(500)
-        .attr("transform", "translate(" + (50 + i) + "," + (this.height + 75) + ")");
+        // .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') + 75) + ")");
   }
 });

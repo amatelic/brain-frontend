@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import moment from 'moment';
 let {set, get} = Ember;
+import { storageFor } from 'ember-local-storage';
 export default Ember.Component.extend({
+    tasksUI: storageFor('tasks'),
     classNames: ['brain__card', 'brain__design'],
-    isTypes: true,
     selectedType: 'learn',
     taskTypes: [
       { name: 'learn', toggle: true},
@@ -30,12 +31,18 @@ export default Ember.Component.extend({
 
     }),
     actions: {
+
       toggleTask(task) {
         let today = moment().date() - 1;
         let complited = (task.get(`days.${today}.complited`)) ? 0 : 1;
         task.set(`days.${today}.complited`, complited);
         this.sendAction('checkTask', task);
       },
+
+      toggleUIInterface() {
+        this.toggleProperty('tasksUI.mode');
+      },
+
       toogleType(type) {
         let before = get(this, 'selectedType');
 

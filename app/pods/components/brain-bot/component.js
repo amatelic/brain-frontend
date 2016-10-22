@@ -1,11 +1,10 @@
 import Ember from 'ember';
-import svgMixin from '../../../mixins/svg';
+import svgCircleMixin from '../../../mixins/circle';
 import mutiMixin from '../../../mixins/muti';
 import d3 from 'd3';
-import moment from 'moment';
-let { isEmpty, set } = Ember;
+let { isEmpty } = Ember;
 
-export default Ember.Component.extend(svgMixin, mutiMixin, {
+export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
   websockets: Ember.inject.service('socket-io'),
   session: Ember.inject.service('session'),
   width: 150,
@@ -22,9 +21,11 @@ export default Ember.Component.extend(svgMixin, mutiMixin, {
 
   messages: Ember.computed('tasks', 'messages', 'response', function() {
     let response = this.get('response');
+
     if (!isEmpty(response)) {
       return response.message;
     }
+
     let per = this.calculateEmotion();
     let random = Math.round(Math.random() * 3); //setting random response
     return this.get(`text.${this.selectEmotion(per)}`).objectAt(random);

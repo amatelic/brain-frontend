@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import d3 from 'd3';
-import svgMixin from '../../../mixins/svg';
-export default Ember.Component.extend(svgMixin, {
+import svgCircleMixin from '../../../mixins/circle';
+export default Ember.Component.extend(svgCircleMixin, {
   width: 170,
   height: 170,
   classNames: ['brain__card__pie', 'brain__design'],

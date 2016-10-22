@@ -14,6 +14,13 @@ App = Ember.Application.extend({
 
 App.storeMeta = {};
 
+
+function disable() {
+  return false;
+}
+document.onselectstart = disable;
+document.oncontextmenu = disable;
+
 loadInitializers(App, config.modulePrefix);
 
 export default App;
