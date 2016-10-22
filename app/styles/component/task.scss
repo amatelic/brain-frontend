@@ -1,0 +1,47 @@
+/*
+  === Mangage tasks component ===
+  */
+
+.manage__tasks__list {
+  @include size(100%, 250px);
+  margin: 0;
+  padding: 0;
+  // overflow-y: scroll;
+}
+
+.manage__tasks__list > .liquid-child {
+  overflow-y: scroll;
+}
+
+
+.tasks__list {
+  width: 100%;
+}
+
+.tasks__list > li {
+  width: 100%;
+  padding: 10px 0px;
+  list-style: none;
+  @include flexType(row, nowrap, space-around);
+}
+
+.tasks__list > li:hover {
+  background: $button_backgorund
+}
+
+.task__text {
+  width: 80%;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.task__text  > p {
+  padding-right: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.task__text > small {
+  font-size: 11px;
+}
