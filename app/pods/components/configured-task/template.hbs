@@ -2,7 +2,7 @@
   <h1>Update tasks</h1>
 </div>
 <div class="table">
-  <div class="row btm--boreder">
+  <div class="row pa-10 bb-2">
     <div class="col">Name</div>
     <div class="col">Time</div>
     <div class="col">Schedule</div>
@@ -10,18 +10,19 @@
     <div class="col">Delete</div>
   </div>
   {{#each getTasks as |task index|}}
-  <div class="row btm--boreder updateTask">
+  <div class="row pa-10 bb-2 updateTask">
     <div class="col">
-      {{input class="brain__input" disabled=(get updateTask (concat index)) type="input" name="name" value=task.name}}
+      {{input class="mt-5 brain__input" disabled=(get updateTask (concat index)) type="input" name="name" value=task.name}}
     </div>
     <div class="col">
-      {{input class="brain__input" disabled=(get updateTask (concat index)) type="time" name="name" value=(time task.time  'HH:MM')}}
+      {{input class="mt-5 brain__input" disabled=(get updateTask (concat index)) type="time" name="name" value=(time task.time  'HH:MM')}}
     </div>
     <div class="col">
       {{#each task.schedule as |day index2|}}
-        <div class="">
-          {{input type="checkbox" disabled=(get updateTask (concat index)) checked=day}}
-          {{ get dates (concat index2) }}
+        <div class="checkbox checkbox__update pa-5">
+          {{input id=(concat task.name '-' index2) type="checkbox" disabled=(get updateTask (concat index)) checked=day}}
+          <label for="{{task.name}}-{{index2}}"></label>
+          <p>{{ get dates (concat index2) }}</p>
         </div>
       {{/each}}
     </div>

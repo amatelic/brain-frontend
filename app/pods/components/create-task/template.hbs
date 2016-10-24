@@ -12,12 +12,15 @@
 <br>
 <div class="form-control">
   <label for="">Working dates:</label>
-  <div class="form-control form-control--row">
-    {{#each dates as |day| }}
-      <div class="brain__checkbox">
-        {{input id=index type="checkbox" name="name" checked=day.schedule}}
-        <label for="">{{day.name}}</label>
+  <div class="row">
+    {{#each dates as |day index| }}
+    <div class="col">
+      <div class="checkbox checkbox__update">
+        {{input id=(concat index) type="checkbox" name="name" checked=day.schedule}}
+        <label for="{{index}}"></label>
+        <p>{{day.name}}</p>
       </div>
+    </div>
     {{/each}}
   </div>
 </div>

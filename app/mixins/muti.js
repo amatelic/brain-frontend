@@ -20,7 +20,7 @@ export default Ember.Mixin.create({
 
   init() {
     this._super(...arguments);
-    // Socket io notifications
+    // Socket io notifications connection
     this.id = this.get('session.data.authenticated.user_id');
     const socket = this.get('websockets').socketFor('ws://localhost:7000/');
     socket.on('connect', () => socket.emit('id', this.id));

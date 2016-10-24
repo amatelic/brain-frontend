@@ -13,7 +13,8 @@ export default Ember.Mixin.create({
     this.svg = d3.select(`#chart-${this.get('title')}`)
       .attr('width', this.width)
       .attr('height', this.height)
-      .append('g');
+      .append('g')
+      .attr('class', 'layout');
   },
 
   colorScale(obj = {}) {

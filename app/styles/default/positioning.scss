@@ -1,0 +1,81 @@
+$spaceamounts: (5, 10, 15, 20, 25, 30);
+$borders: (1,2);
+
+@mixin generate-margin-all() {
+  @each $space in $spaceamounts {
+    .ma-#{$space} {
+      margin: #{$space}px #{$space}px #{$space}px #{$space}px;
+    }
+  }
+}
+
+@mixin generate-padding-all() {
+  @each $space in $spaceamounts {
+    .pa-#{$space} {
+      padding: #{$space}px #{$space}px #{$space}px #{$space}px;
+    }
+  }
+}
+@mixin generate-margin-bottom() {
+  @each $space in $spaceamounts {
+    .mb-#{$space} {
+      margin-bottom: #{$space}px;
+    }
+  }
+}
+@mixin generate-margin-right() {
+  @each $space in $spaceamounts {
+    .mr-#{$space} {
+      margin-right: #{$space}px;
+    }
+  }
+}
+@mixin generate-margin-top() {
+  @each $space in $spaceamounts {
+    .mt-#{$space} {
+      margin-top: #{$space}px;
+    }
+  }
+}
+@mixin generate-padding-top() {
+  @each $space in $spaceamounts {
+    .pt-#{$space} {
+      padding-top: #{$space}px;
+    }
+  }
+}
+@mixin generate-padding-bottom() {
+  @each $space in $spaceamounts {
+    .pb-#{$space} {
+      padding-bottom: #{$space}px;
+    }
+  }
+}
+
+@mixin generate-border-bottom() {
+  @each $border in $borders {
+    .bb-#{$border} {
+      border-bottom: #{$border}px solid white;
+    }
+  }
+}
+
+@mixin generate-border-top() {
+  @each $border in $borders {
+    .bt-#{$border} {
+      border-top: #{$border}px solid white;
+    }
+  }
+}
+
+
+
+@include generate-margin-all();
+@include generate-padding-all();
+@include generate-margin-bottom();
+@include generate-margin-right();
+@include generate-margin-top();
+@include generate-padding-bottom();
+@include generate-padding-top();
+@include generate-border-bottom();
+@include generate-border-top();

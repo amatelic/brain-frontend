@@ -1,11 +1,3 @@
-// Element helpers
-.btm--boreder {
-  border-bottom: 1px solid white;
-}
-
-.border {
-  border: 1px solid white;
-}
 
 @mixin flexType($direction:row, $wrap:wrap, $justify:center, $align:center) {
   display: flex;

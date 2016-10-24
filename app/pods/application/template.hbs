@@ -24,11 +24,26 @@
   {{#if session.isAuthenticated}}
     <div class="left">
       <ul class="brain__nav">
-        <li>{{fa-icon "home"}}{{#link-to "home" class="brain__links"}}Home{{/link-to}}</li>
-        <li>{{fa-icon "tasks"}}{{#link-to "tasks" class="brain__links"}}Tasks{{/link-to}}</li>
-        <li>{{fa-icon "calendar"}}{{#link-to "calender" class="brain__links"}}Calender{{/link-to}}</li>
-        <li>{{fa-icon "line-chart"}}{{#link-to "graph" class="brain__links"}}Graph{{/link-to}}</li>
-        <!-- <li>{{#link-to "photos.edit" photo}}Add{{/link-to}}</li> -->
+        <li>
+          {{#link-to "home" class="brain__links"}}
+             {{fa-icon "home"}} Home 
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "tasks" class="brain__links"}}
+             {{fa-icon "tasks"}} Tasks 
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "calender" class="brain__links"}}
+             {{fa-icon "calendar"}} Calender 
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to "graph" class="brain__links"}}
+             {{fa-icon "line-chart"}} Graph 
+          {{/link-to}}
+        </li>
       </ul>
     </div>
     <div class="main">

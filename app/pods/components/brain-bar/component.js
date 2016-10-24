@@ -4,7 +4,7 @@ import zoomMixin from '../../../mixins/zoom';
 import d3 from 'd3';
 export default Ember.Component.extend(svgMixin, zoomMixin, {
   classNames: ['brain__bar ', 'brain__design'],
-  width: 500,
+  width: 700,
   height: 300,
 
   didInsertElement() {
@@ -12,13 +12,11 @@ export default Ember.Component.extend(svgMixin, zoomMixin, {
 
     let g = this.svg;
         // .attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
+    this.zoom = this.onZoom();
+    g.call(this.zoom);
+
+
     let rect =  this.svg.selectAll('rect');
-
-    g.call(d3.zoom()
-            .scaleExtent([1, 10])
-            .on("zoom", this.zoomed));
-
-
     let tasks = this.get('data').toArray();
 
     tasks.forEach((d, i) => {
@@ -59,7 +57,7 @@ export default Ember.Component.extend(svgMixin, zoomMixin, {
       .data([name])
       .enter()
       .append("g")
-      .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') - 70) + ")");
+      .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') + 10) + ")");
 
 
       g.append("text")
@@ -72,6 +70,12 @@ export default Ember.Component.extend(svgMixin, zoomMixin, {
 
       g.transition()
         .delay(500)
-        // .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') + 75) + ")");
+        .attr("transform", "translate(" + (50 + i) + "," + (this.get('height') - 70) + ")");
+  },
+
+  actions: {
+    resetScale() {
+      this.showScale();
+    }
   }
 });
