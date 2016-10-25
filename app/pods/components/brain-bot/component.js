@@ -10,6 +10,9 @@ export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
   width: 150,
   height: 150,
   classNames: ['brain_bot'],
+  click() {
+    console.log(1)
+  },
 
   changeEmotion: Ember.computed('tasks', 'messages', 'response', function() {
       Ember.run.schedule("afterRender",this,function() {

@@ -15,7 +15,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       let id = this.get('session.data.authenticated.user_id');
       this.store.findRecord('user', id).then((model) => {
         this.controllerFor('application').set('model', model);
-        // this.transitionTo('home');
       }).catch(err => console.log(err));
     });
   },
@@ -40,15 +39,15 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           // this.set('welcome.show', false);
         }
       }.bind(this));
+      Ember.run.later(this, function() {
+        let meta = App.storeMeta['user'];
+        if (meta.quote) {
+          // this.send('openModal', 'modal.welcome', []);
+          // this.send('openModal', 'modal.quotes', meta.quote);
+        }
+      }, 1000);
     });
 
-    Ember.run.later(this, function() {
-      let meta = App.storeMeta['user'];
-      if (meta.quote) {
-        // this.send('openModal', 'modal.welcome', []);
-        // this.send('openModal', 'modal.quotes', meta.quote);
-      }
-    }, 1000);
   },
 
   willDestroy() {

@@ -12,6 +12,7 @@ export default Service.extend({
       if (!isEmpty(accountId)) {
         return this.get('store').find('account', accountId).then((account) => {
           this.set('account', account);
+          console.log(this)
           resolve();
         }, reject);
       } else {

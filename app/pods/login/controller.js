@@ -18,6 +18,7 @@ export default Ember.Controller.extend({
       let email = get(this, 'changeset.email.value');
       let password = get(this, 'changeset.password.value');
       get(this, 'session').authenticate('authenticator:oauth2', email, password)
+      .then(d => this.transitionTo('application'))
       .catch(res => {
         this.set('errors', res.errors);
       });

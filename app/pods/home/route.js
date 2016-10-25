@@ -11,9 +11,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return Ember.RSVP.hash({
       width: 400,
       height: 400,
-      user: this.store.peekRecord('user', id),
+      user: this.store.findRecord('user', id),
       option: this.get('graph').option(),
-      messages: this.store.peekRecord('user', id).get('messages'),
+      // messages: this.store.peekRecord('user', id).get('messages'),
       graph: this.store.findAll('task'),
     });
   },
