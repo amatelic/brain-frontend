@@ -7,14 +7,14 @@ let { isEmpty } = Ember;
 export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
   websockets: Ember.inject.service('socket-io'),
   session: Ember.inject.service('session'),
-  width: 150,
-  height: 150,
   classNames: ['brain_bot'],
-  click() {
-    console.log(1)
-  },
+  classNameBindings: ['startChatting'],
+  startChatting: false,
+  messages: [],
+  width: 100,
+  height: 100,
 
-  changeEmotion: Ember.computed('tasks', 'messages', 'response', function() {
+  changeEmotion: Ember.computed('tasks', 'response', function() {
       Ember.run.schedule("afterRender",this,function() {
         let response = this.get('response');
         let per = (!isEmpty(response)) ? 100 : this.calculateEmotion();
@@ -22,16 +22,10 @@ export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
       });
   }),
 
-  messages: Ember.computed('tasks', 'messages', 'response', function() {
-    let response = this.get('response');
-
-    if (!isEmpty(response)) {
-      return response.message;
-    }
-
-    let per = this.calculateEmotion();
-    let random = Math.round(Math.random() * 3); //setting random response
-    return this.get(`text.${this.selectEmotion(per)}`).objectAt(random);
+  updatedMessage: Ember.computed('messages.[]', function() {
+    Ember.run.debounce(this, function() {
+      this.slideNewText();
+    }, 100);
   }),
 
   init() {
@@ -89,15 +83,27 @@ export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
     Ember.run.cancel(this.check);
   },
 
+  slideNewText() {
+    let chatMessages = this.$('.panel__body');
+    if (chatMessages) {
+      chatMessages.scrollTop(chatMessages[0].scrollHeight);
+    }
+  },
+
   actions: {
     sendMessage(e) {
       let message = e.target.value;
       let id = this.get('id');
       const socket = this.get('websockets').socketFor('ws://localhost:7000/');
       if (e.which === 13) {
+        this.get('messages').pushObject({type: 'me', message});
         socket.emit('message', {message, id});
         e.target.value = "";
       }
-    }
+    },
+    iconClick() {
+      this.toggleProperty('startChatting');
+      // this.$('input')[0].focus(); //bug
+    },
   }
 });

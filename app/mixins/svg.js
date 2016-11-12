@@ -10,8 +10,8 @@ export default Ember.Mixin.create({
   svg: null,
 
   didInsertElement() {
-    this.svg = d3.select(`#chart-${this.get('title')}`)
-      .attr('width', this.width)
+    this.svg = d3.select(`#chart-${this.get('title')}`);
+    this.g = this.svg.attr('width', this.width)
       .attr('height', this.height)
       .append('g')
       .attr('class', 'layout');

@@ -1,9 +1,22 @@
 {{changeEmotion}}
-<svg id="chart-moti" height="100" width="100"></svg>
-<div class="chart-text form-control">
-  <h3>{{messages}}</h3>
-</div>
-<div class="chart-input form-control">
-  <input onkeyup={{action "sendMessage"}} type="text" name="name" value="">
+{{updatedMessage}}
+<svg {{action 'iconClick' }}id="chart-moti" height="100" width="100"></svg>
+
+<div class="panel show-chat">
+  <div class="panel__header">
+    Conversations
+  </div>
+  <div class="panel__body pb-30">
+      <ul class="chat__messsages">
+        {{#each messages as |msg|}}
+          <li class="{{msg.type}}">{{msg.message}}</li>
+        {{/each}}
+      </ul>
+  </div>
+  <div class="panel__footer">
+    <div class="bot-chat">
+      <input onkeyup={{action "sendMessage"}} type="text" name="name" placeholder="Ask question?">
+    </div>
+  </div>
 </div>
 {{yield}}

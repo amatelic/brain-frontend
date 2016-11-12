@@ -1,0 +1,26 @@
+
+<div class="brain__design col-3">
+  <h1>Gratitude table:</h1>
+  <hr/>
+  {{#each gratitudes as | gratitude| }}
+    <h2> {{fa-icon "fa-quote-right"}}  {{gratitude}} </h2>
+  {{/each}}
+  <div class="form-control mt-20">
+    <input onkeydown={{action 'addGratitude'}} class="input input--default" type="text" name="name">
+  </div>
+</div>
+
+<div class="brain__design col-3">
+  <h1>Goals table:</h1>
+  <hr/>
+  {{#each goals as | goal| }}
+  <h2> {{goal}} </h2>
+  {{/each}}
+  <div class="form-control mt-20">
+    <input onkeydown={{action 'addGoals'}} class="input input--default" type="text" name="name">
+  </div>
+</div>
+<!-- Show some news for user  -->
+<!-- Show panel for writing thouthes  -->
+<!-- Add graph for complitone -->
+{{outlet}}

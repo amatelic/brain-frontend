@@ -5,11 +5,12 @@ export default Ember.Object.create({
   generateDays(schedule)  {
     let wholeMonth = moment().daysInMonth();
     let dd = moment([moment().year(), moment().month()]);
+    let day = moment().date();
     let days = [];
     for (let i = 1; i <= wholeMonth; i++) {
       days.push({
         comlited: 0, day: i,
-        tracking: schedule[dd.day()],
+        tracking: (day >= i) ? schedule[dd.day()] : false,
       });
       dd.add(1, 'days').day();
     }

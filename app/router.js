@@ -21,6 +21,7 @@ Router.map(function() {
 
   this.route('calender');
   this.route('not-found', { path: '/*path' });
+  this.route('morning');
 });
 
 export default Router;

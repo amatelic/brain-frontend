@@ -10,13 +10,11 @@ export default Ember.Component.extend(svgMixin, zoomMixin, {
   didInsertElement() {
     this._super(...arguments);
 
-    let g = this.svg;
-        // .attr('transform', 'translate(' + 0 + ',' + (-this.height / 2) + ')');
     this.zoom = this.onZoom();
-    g.call(this.zoom);
+    this.svg.call(this.zoom);
 
 
-    let rect =  this.svg.selectAll('rect');
+    let rect =  this.g.selectAll('rect');
     let tasks = this.get('data').toArray();
 
     tasks.forEach((d, i) => {
@@ -53,7 +51,7 @@ export default Ember.Component.extend(svgMixin, zoomMixin, {
   },
 
   text(name, i) {
-    let g = this.svg.selectAll('text-' +  i)
+    let g = this.g.selectAll('text-' +  i)
       .data([name])
       .enter()
       .append("g")

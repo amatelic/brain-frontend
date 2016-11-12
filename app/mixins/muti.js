@@ -24,10 +24,15 @@ export default Ember.Mixin.create({
     this.id = this.get('session.data.authenticated.user_id');
     const socket = this.get('websockets').socketFor('ws://localhost:7000/');
     socket.on('connect', () => socket.emit('id', this.id));
-    socket.on('hello', (res) => this.set('response', res), this);
+    socket.on('hello', (res) => {
+        this.get('messages').pushObject({type: 'bot', message: res.message})
+        this.set('response', res);
+    }, this);
     socket.on('message', (res) => {
-      console.log(res)
+      if (res.message) {
+      this.get('messages').pushObject({type: 'bot', message: res.message});
       this.set('response', res)
+      }
     }, this);
     this.set('socketRef', socket);
   },

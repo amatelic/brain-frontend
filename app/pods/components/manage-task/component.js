@@ -35,6 +35,7 @@ export default Ember.Component.extend({
       toggleTask(task) {
         let today = moment().date() - 1;
         let complited = (task.get(`days.${today}.complited`)) ? 0 : 1;
+        task.set(`days.${today}.complitedAt`, moment().format('h:mm:ss'));
         task.set(`days.${today}.complited`, complited);
         this.sendAction('checkTask', task);
       },

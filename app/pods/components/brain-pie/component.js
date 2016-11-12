@@ -15,7 +15,7 @@ export default Ember.Component.extend(svgCircleMixin, {
     var arc = this.arc(80, this.get('radius') - 10);
     var arcLarge = this.arc();
     var pie = d3.pie().sort(null);
-    let svg = this.svg.attr('transform', 'translate(' + (this.width / 2) +
+    let svg = this.g.attr('transform', 'translate(' + (this.width / 2) +
       ',' + (this.height / 2) + ')');
 
     let g = svg.selectAll('path')
@@ -28,7 +28,7 @@ export default Ember.Component.extend(svgCircleMixin, {
         .on('mouseover', () => svg.select('path').transition().duration(500).attr('d', arcLarge))
         .on('mouseout', () => svg.select('path').transition().duration(500).attr('d', arc));
 
-    this.svg.selectAll('text')
+    this.g.selectAll('text')
       .data([complited])
       .enter().append("g")
       .append("text")

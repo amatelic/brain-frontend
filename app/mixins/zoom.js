@@ -17,17 +17,17 @@ export default Ember.Mixin.create({
 
     return d3.zoom()
             .scaleExtent(scale)
-            .on("zoom", this.zoomed);
+            .on("zoom", this.zoomed.bind(this));
   },
 
   zoomed() {
     let t = d3.zoomTransform(this);
-    d3.select(this).attr("transform", t);
+    // d3.select(this).attr("transform", t);
+    this.g.attr("transform", d3.event.transform)
   },
 
   showScale() {
-    d3.select('.layout')
-      .transition()
+      this.svg.transition()
       .duration(750).call(this.get('zoom').transform, d3.zoomIdentity);
   }
 
