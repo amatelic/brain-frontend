@@ -11,7 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "testing": "ember test --server --filter" 
+    "testing": "ember test --server --filter"
   },
   "repository": "",
   "engines": {
@@ -49,6 +49,7 @@
     "ember-moment": "7.0.0-beta.3",
     "ember-resolver": "^2.0.3",
     "ember-simple-auth": "1.1.0",
+    "ember-sweetalert": "0.1.0",
     "ember-websockets": "5.0.0",
     "liquid-fire": "0.24.1",
     "loader.js": "^4.0.1",

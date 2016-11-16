@@ -54,7 +54,8 @@ export default Ember.Mixin.create({
     let tasks = this.get('tasks').toArray();
     let complited = tasks.filter(d => d.get('days')[day-1].complited > 0);
     let tracking = tasks.filter(d => d.get('days')[day-1].tracking);
-    return (complited.length * 100) / tracking.length;
+    let track = (tracking.length) ? (tracking.length) : 100;
+    return (complited.length * 100) / track;
   },
 
 });

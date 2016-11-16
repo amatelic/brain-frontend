@@ -14,10 +14,9 @@ export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
   width: 100,
   height: 100,
 
-  changeEmotion: Ember.computed('tasks', 'response', function() {
+  changeEmotion: Ember.computed('tasks', function() {
       Ember.run.schedule("afterRender",this,function() {
-        let response = this.get('response');
-        let per = (!isEmpty(response)) ? 100 : this.calculateEmotion();
+        let per = this.calculateEmotion();
         this.drawMount(this.get(`emotion.${this.selectEmotion(per)}`), 1000);
       });
   }),

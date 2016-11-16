@@ -18,10 +18,10 @@ export default Ember.Controller.extend({
   },
   actions: {
     register() {
-      // let {email, password, name} = this.getProperties('email', 'password', 'name');
+      let {email, password, name} = this.getProperties('email', 'password', 'name');
       this.get('ajax').request(ENV.backend.url + '/register', {
         method: 'POST',
-        data: this.getProperties('email', 'password', 'name', 'username')
+        data: this.changeset.getAll()
       }).then( () => {
         this.transitionToRoute('login');
       })

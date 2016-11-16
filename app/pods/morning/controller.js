@@ -4,14 +4,6 @@ import { storageFor } from 'ember-local-storage';
 export default Ember.Controller.extend({
   gratitudes: storageFor('gratitude'),
   goals: storageFor('goals'),
-  // gratitudes: [
-  //   'I am happy that i have a have a family',
-  //   'I am happy that i learned something',
-  // ],
-  // goals: [
-  //   'Create a 3d game for rust',
-  //   'Start talking french',
-  // ],
   actions: {
     addGratitude(e) {
       if (e.which === 13) {

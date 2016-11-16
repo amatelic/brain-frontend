@@ -1,5 +1,6 @@
 <div {{action 'toggleNavigation' on="mouseEnter"}} class="brain__user">
-  <img  src={{user.image}} alt="" />
+  <img src={{user.image}} alt="{{user.image}}" />
+  {{user.image}}
 </div>
 
 {{#unless isHidden}}

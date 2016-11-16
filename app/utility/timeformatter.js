@@ -9,7 +9,7 @@ export default Ember.Object.create({
     let days = [];
     for (let i = 1; i <= wholeMonth; i++) {
       days.push({
-        comlited: 0, day: i,
+        complited: 0, day: i,
         tracking: (day >= i) ? schedule[dd.day()] : false,
       });
       dd.add(1, 'days').day();

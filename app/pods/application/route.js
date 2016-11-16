@@ -14,7 +14,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     this.get('session').on('authenticationSucceeded', () => {
       let id = this.get('session.data.authenticated.user_id');
       this.store.findRecord('user', id).then((model) => {
-        this.controllerFor('application').set('model', model);
+        this.controllerFor('application').set('model.user', model);
       }).catch(err => console.log(err));
     });
   },
@@ -29,6 +29,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       return Ember.RSVP.hash({
         user: this.store.findRecord('user', id),
       });
+    } else {
+      return {
+        user: {},
+      }
     }
   },
   afterModel() {
@@ -43,7 +47,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         let meta = App.storeMeta['user'];
         if (meta.quote) {
           // this.send('openModal', 'modal.welcome', []);
-          // this.send('openModal', 'modal.quotes', meta.quote);
+          this.send('openModal', 'modal.quotes', meta.quote);
         }
       }, 1000);
     });

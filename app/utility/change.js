@@ -30,6 +30,17 @@ export default Ember.Object.extend({
     return properties;
   },
 
+  getAll() {
+    return Ember.keys(this)
+    .filter(property => {
+      return (property !== '_super' && property !== 'validator' && property !== 'rules')
+    })
+    .reduce((previous, current) => {
+      previous[current] = this[current].value;
+      return previous;
+    }, {});
+  },
+
   getErrors(input, rules) {
     let validator = get(this, 'validator');
     return rules

@@ -21,7 +21,7 @@ export default Ember.Component.extend({
       });
     }),
     //Cheking all complited tasks
-    areComplited: Ember.computed('tasks.@each.days', function() {
+    areComplited: Ember.computed('tasks.@each.days', 'task', function() {
       let tasks = this.get('tasks');
       let today = moment().date() - 1; //index based
       let complited = tasks.filter(d => {
@@ -33,10 +33,12 @@ export default Ember.Component.extend({
     actions: {
 
       toggleTask(task) {
+        this.set('task', null);
         let today = moment().date() - 1;
         let complited = (task.get(`days.${today}.complited`)) ? 0 : 1;
         task.set(`days.${today}.complitedAt`, moment().format('h:mm:ss'));
         task.set(`days.${today}.complited`, complited);
+        this.set('task', task);
         this.sendAction('checkTask', task);
       },
 

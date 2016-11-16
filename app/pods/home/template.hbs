@@ -2,12 +2,12 @@
 {{brain-bot title="moti" state="happy" tasks=model.user.tasks}}
 
 {{manage-task
-  tasks=model.user.tasks
+  tasks=model.tasks
   checkTask="checkTask"
 }}
 
 {{tasks-graph
-  data=model.graph
+  data=model.tasks
   options=model.option
   height=model.height
 }}

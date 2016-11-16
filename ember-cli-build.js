@@ -11,6 +11,8 @@ module.exports = function(defaults) {
       ]
     }
   });
+  app.import('bower_components/sweetalert/dist/sweetalert.min.js');
+
   // app.import('bower_components/d3/d3.js');
 
   // Use `app.import` to add additional libraries to the generated

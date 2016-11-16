@@ -6,15 +6,16 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
   graph: new Graph(),
 
-  model() {
+  model(data) {
     let id = this.get('session.data.authenticated.user_id');
     return Ember.RSVP.hash({
       width: 400,
       height: 400,
       user: this.store.findRecord('user', id),
       option: this.get('graph').option(),
+      tasks: this.store.findAll('task'),
       // messages: this.store.peekRecord('user', id).get('messages'),
-      graph: this.store.findAll('task'),
+      // graph: this.store.findAll('task'),
     });
   },
 
@@ -25,6 +26,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       task.set('user', user);
       task.save().then(() => {
         this.controllerFor('home').set('model.user.tasks', this.store.peekAll('task'));
+        this.controllerFor('home').set('model.tasks', this.store.peekAll('task'));
       });
     },
 
