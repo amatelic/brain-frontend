@@ -55,5 +55,8 @@
     "loader.js": "^4.0.1",
     "mock-socket": "5.0.1",
     "rate-limit-computed": "1.0.2"
+  },
+  "dependencies": {
+    "jaro-winkler": "^0.2.8"
   }
 }
