@@ -2,7 +2,7 @@
   <h3>Messages({{isNew}}) :</h3>
   <hr/>
   {{#each messages as |message|}}
-  <div {{action 'showMessage' message}} class="btm--boreder user__message">
+  <div {{action 'showMessage' message}} class="user__message bb-1">
     <img class="circle" src="assets/images/{{message.image}}" alt="" />
     <div >
       <p class="user__message__title">{{message.title}}</p>
@@ -23,8 +23,5 @@
       {{/emoji-tag}}
     {{/if}}
   </div>
-  <!--<div class="user__text">
-    <input onkeydown={{action 'sendMessage'}} class="user__text__input brain__input " type="text" name="name" placeholder="Write your message">
-  </div>-->
 </div>
 {{yield}}

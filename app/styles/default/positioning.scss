@@ -1,4 +1,4 @@
-$spaceamounts: (5, 10, 15, 20, 25, 30);
+$spaceamounts: (5, 10, 15, 20, 25, 30, 50, 75);
 $borders: (1,2);
 
 @mixin generate-margin-all() {
@@ -68,7 +68,13 @@ $borders: (1,2);
   }
 }
 
-
+@mixin generate-border-all() {
+  @each $border in $borders {
+    .ba-#{$border} {
+      border: #{$border}px solid white;
+    }
+  }
+}
 
 @include generate-margin-all();
 @include generate-padding-all();
@@ -79,3 +85,4 @@ $borders: (1,2);
 @include generate-padding-top();
 @include generate-border-bottom();
 @include generate-border-top();
+@include generate-border-all();

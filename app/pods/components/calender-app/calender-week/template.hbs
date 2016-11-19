@@ -1,4 +1,4 @@
-<div class="calender__body">
+<div class="grid ma-10">
   <div class="calender__table">
     <div class="calender__table__header">
       <div class="calender__row">
@@ -8,7 +8,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="calender__table__body">
+    <div class="calender__table__body grid grid--col ">
       {{#each times as |tm| }}
         <div class="calender__row">
           <div class="calender__col">{{tm}}</div>

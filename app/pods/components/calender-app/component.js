@@ -6,7 +6,7 @@ const months =  [
 ];
 
 export default Ember.Component.extend({
-  classNames: ['brain__calender', 'brain__design'],
+  classNames: ['grid', 'grid--col','brain__design'],
   hiddeLeftPannel: false,
   hiddeRightPannel: false,
   now: moment(),
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   year: Ember.computed('now', function() {
     return this.get('now').year();
   }),
-  
+
   month: Ember.computed('now', function() {
     return this.get('now').month();
   }),

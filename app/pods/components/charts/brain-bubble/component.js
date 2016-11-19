@@ -21,9 +21,7 @@ export default Ember.Component.extend(svgMixin, {
         .sum(d => d.size)
         .sort((a, b) => b.value - a.value);
 
-    var focus = root,
-        nodes = pack(root).descendants(),
-        view;
+    var nodes = pack(root).descendants();
 
     let node = this.createCircleG(nodes);
     this.createCircles(node, color);
@@ -47,14 +45,14 @@ export default Ember.Component.extend(svgMixin, {
 
       prev[date[0]].size++;
       return prev;
-    }, {})
+    }, {});
 
     return  { children: Object.values(tt) };
   },
 
   getComlitedValues(prev, next) {
     if(next['complited-at']) {
-      let dates = next['complited-at']
+      let dates = next['complited-at'];
       prev.push(dates);
     }
     return prev;
@@ -86,6 +84,6 @@ export default Ember.Component.extend(svgMixin, {
       .transition()
       .delay(500)
       .duration(500)
-      .attr('opacity', 1)
+      .attr('opacity', 1);
   }
 });

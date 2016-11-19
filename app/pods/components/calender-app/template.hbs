@@ -1,9 +1,9 @@
-<div class="calender__header">
+<div class="calender__header grid ma-20">
   <div class="calender__left">
     {{#unless hiddeLeftPannel}}
-    <button {{action 'changeType' 'day'}}type="button" class="btn btn-sm btn-default">Days</button>
-    <button {{action 'changeType' 'week'}}type="button" class="btn btn-sm btn-default">Weekend</button>
-    <button {{action 'changeType' 'month'}}type="button" class="btn btn-sm btn-default">Month</button>
+      <button {{action 'changeType' 'day'}}type="button" class="btn btn-sm btn-default">Days</button>
+      <button {{action 'changeType' 'week'}}type="button" class="btn btn-sm btn-default">Weekend</button>
+      <button {{action 'changeType' 'month'}}type="button" class="btn btn-sm btn-default">Month</button>
     {{/unless}}
   </div>
   <div class="calender__center">
@@ -11,8 +11,8 @@
   </div>
   <div class="calender__right">
     {{#unless hiddeRightPannel}}
-    <button {{action 'changeDate' -1}} type="button" class="btn btn-sm btn-default">prev</button>
-    <button {{action 'changeDate' 1}} type="button" class="btn btn-sm btn-default">next</button>
+      <button {{action 'changeDate' -1}} type="button" class="btn btn-sm btn-default">prev</button>
+      <button {{action 'changeDate' 1}} type="button" class="btn btn-sm btn-default">next</button>
     {{/unless}}
   </div>
 </div>

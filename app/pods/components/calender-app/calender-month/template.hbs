@@ -7,7 +7,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="calender__table__body">
+    <div class="calender__table__body grid">
       {{#each daysInMonth as |day index| }}
         <!-- {{odd tasks day}}  {{odd tasks day}}-->
         <div {{action 'showModal' day}} class="calender__col {{odd tasks day}}">{{eq day 0 '' day}}</div>

@@ -1,6 +1,38 @@
 /*
-  === Brain modal components ===
+  === Brain positioning ===
   */
+
+.brain__modal
+  top: 40%
+  left: 40%
+  min-width: 400px
+  min-height: 200px
+  margin: -350px -100px
+  z-index: 20
+  padding: 15px
+  position: absolute
+  transform: translateY(-200px)
+  text-align: center
+  background: white
+  border-radius: 5px
+  transition: all 0.5s cubic-bezier(0,1.52,.89,1.23)
+  h2
+    font-weight: bold
+    color: $logo_border_background
+
+.brain__modal *
+  color: $button_backgorund
+.brain__modal > footer
+  margin-top: 15px
+.modal--animate
+  transform: translateY(200px)
+
+
+.brain__right
+  width: 100%
+  display: flex
+  align-items: flex-end
+
 .modal__tasks
   display: flex
   flex-direction: row

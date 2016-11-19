@@ -1,8 +1,8 @@
-<div class="header">
+<div class="header grid">
   <div class="brain__logo">
     <h2>Brain</h2>
   </div>
-  <header>
+  <header class="grid">
       <div class="brain__navigation">
         {{#if session.isAuthenticated}}
         {{#user-conf user=model.user}}
@@ -20,9 +20,9 @@
   </header>
 </div>
 
-<div class="app">
+<div class="app mt-75">
   {{#if session.isAuthenticated}}
-    <div class="left">
+    <div class="left grid">
       <ul class="brain__nav">
         <li>
           {{#link-to "home" class="brain__links"}}

@@ -6,10 +6,18 @@
   flex-wrap: wrap;
   justify-content: center;
   align-self: center;
+  position: relative;
 }
 
 .grid {
+  width: 100%;
+  height: 100%;
   display: flex;
+  position: relative;
+}
+
+.grid--col {
+  flex-direction: column;
 }
 
 .col {

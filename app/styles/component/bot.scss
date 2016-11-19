@@ -7,7 +7,6 @@
 
 .panel {
   overflow: hidden;
-
 }
 
 .panel__header {
@@ -24,10 +23,7 @@
 }
 
 .bot, .me {
-  padding: 5px;
   border-radius: 5px;
-  border: 1px solid white;
-  margin: 10px 5px;
   background: $logo_background;
 }
 
@@ -41,18 +37,19 @@
 }
 
 .show-chat {
-  position: absolute;
   right: 0%;
+  opacity: 0;
   bottom: 100%;
   width: 200px;
   height: 300px;
+  border-radius: 10px;
+  position: absolute;
+  transition: 0.3s ease;
+  transform: translateX(300px);
   background: $index_background;
   border: 3px solid $logo_background;
-  opacity: 0;
-  transform: translateX(300px);
-  border-radius: 10px;
-  transition: 0.3s ease;
 }
+
 .start-chatting .show-chat {
   opacity: 1;
   transform: translateX(0px);
@@ -60,11 +57,9 @@
 
 .bot-chat {
   width: 90%;
-  margin: none;
-  background: white;
-  padding: 10px;
-  position: absolute;
   bottom: 0px;
+  background: white;
+  position: absolute;
 }
 
 .bot-chat input {
@@ -91,36 +86,12 @@
 #chart-moti text{
   font-size: 35px;
 }
-.chart-text {
-  padding: 5px;
-  margin: 35px 0px;
-  right: 150px;
-  bottom: 120px;
-  position: absolute;
-  color: #7b3e68;
-  background: white;
-  border: 2px solid #7b3e68;
-  border-radius: 15px;
-}
-// .chart-input {
-//   padding: 5px;
-//   margin: 35px 0px;
-//   right: 150px;
-//   bottom: 80px;
-//   position: absolute;
-//   color: #7b3e68;
-//   background: white;
-//   border: 2px solid #7b3e68;
-//   border-radius: 15px;
-// }
-
 .bot-chat input {
   font-size: 1em;
 }
 
 .chart-text h3 {
   color: #7b3e68;
-
 }
 
 path {

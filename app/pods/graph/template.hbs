@@ -3,7 +3,7 @@
 {{charts/brain-bar title='Progress'data=model.tasks}}
 {{charts/brain-bubble title='Bubble-chart' data=model.tasks}}
 
-  <div class="app__types__status">
+  <div class="form-control form-control--row">
     {{#each-in model.stages as |key value|}}
       {{charts/brain-pie title=key data=value}}
     {{/each-in}}

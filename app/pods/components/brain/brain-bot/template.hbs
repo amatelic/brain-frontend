@@ -9,12 +9,12 @@
   <div class="panel__body pb-30">
       <ul class="chat__messsages">
         {{#each messages as |msg|}}
-          <li class="{{msg.type}}">{{msg.message}}</li>
+          <li class="{{msg.type}} ba-1 pa-5 ma-10">{{msg.message}}</li>
         {{/each}}
       </ul>
   </div>
   <div class="panel__footer">
-    <div class="bot-chat">
+    <div class="bot-chat pa-10">
       <input onkeyup={{action "sendMessage"}} type="text" name="name" placeholder="Ask question?">
     </div>
   </div>

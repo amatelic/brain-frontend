@@ -1,0 +1,21 @@
+#cont {
+  transform: rotate(-90deg);
+}
+
+#svg circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  stroke: #666;
+  stroke-width: 1em;
+}
+#svg #bar {
+  stroke: rgb(137, 179, 238);
+}
+
+.brain__counter__numbers {
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,6 +1,7 @@
 @import "default/color";
 @import "default/helpers";
-// @import "pages/index";
+@import "default/grid";
+@import "default/positioning";
 @import "pages/app";
 @import "pages/user";
 @import "component/calender";
@@ -13,9 +14,7 @@
 @import "component/card";
 @import "component/task";
 @import "component/switch";
-@import "default/grid";
-@import "default/default";
-@import "default/positioning";
+@import "component/count";
 
 html, body {
   height: 100%;
@@ -48,7 +47,6 @@ body {
   margin: 5px;
 }
 
-
 //Remove navbar
 ::-webkit-scrollbar {
     display: none;
@@ -79,7 +77,14 @@ h1, h2, h3, h4, h5, p, a, b, i, small, div {
 }
 
 input, button, select {
-  outline: none
+  outline: none;
+}
+input {
+  height: 25px;
+  min-width: 150px;
+  border-radius: 15px;
+  border: none;
+  padding: 5px;
 }
 
 input:disabled {
@@ -91,7 +96,6 @@ span {
   font-family: Lato;
   color: white;
 }
-
 
 a {
   text-decoration: none;
@@ -121,25 +125,16 @@ hr {
   border: 1px solid white
 }
 
-.btm--boreder {
-  border-bottom: 1px solid white;
-}
-
 button:disabled {
   opacity: 0.5
 }
 
-.graphs {
-  border: 2px solid white;
-  background: white;
-}
-
 canvas {
-    width: 90% !important;
-    max-width: 800px;
-    max-height: 200px;
-    height: auto !important;
-    margin-bottom: 30px;
+  width: 90% !important;
+  max-width: 800px;
+  max-height: 200px;
+  height: auto !important;
+  margin-bottom: 30px;
 }
 
 @media screen and (max-width: 850px) {
@@ -179,11 +174,9 @@ canvas {
  */
 
 
-
 input[type=checkbox] {
   display: none;
 }
-
 
 .checkbox{
   height: 50px;
@@ -223,7 +216,6 @@ input[type=checkbox] {
   opacity: 0.5;
 }
 
-
  input[type="checkbox"] + label span {
   display:inline-block;
   width:19px;
@@ -245,6 +237,5 @@ input[type=checkbox] {
  }
 
  .checkbox__update label {
-  display: block;
-  // margin-bottom: -5px;
+    display: block;
  }

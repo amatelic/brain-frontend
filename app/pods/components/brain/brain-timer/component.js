@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import TimeFormater from '../../../utility/timeformatter';
+import TimeFormater from 'brain/utility/timeformatter';
 export default Ember.Component.extend({
-  classNames: ['brain__timer'],
+  classNames: ['brain__card', 'brain__design'],
   setTime: null,
   startTimeStamp: 0,
   duration: null,
@@ -21,11 +21,20 @@ export default Ember.Component.extend({
     return this.get("isStopWatch") || !this.get("autoStart");
   }.property('autoStart', 'isStopWatch'),
 
+  getCount(val) {
+    let circle = this.$().find('#svg #bar')
+    let r = circle.attr('r');
+    var c = Math.PI * (r * 2);
+    var pct = ((100 - val) / 100) * c;
+    circle.css({ strokeDashoffset: pct});
+  },
+
   run: function(time){
     var startTimeStamp = this.get("startTimeStamp");
     this.set('timerId', Ember.run.later(this, function() {
       var timeElapsed = Date.now() - startTimeStamp;
       var secs = timeElapsed / 1000;
+      this.getCount(secs);
       this.set("duration", TimeFormater.getTimefromSecs(secs, 'HH:MM:SS'));
       if (parseInt(secs) === time) {
         var timerId = this.get("timerId");
@@ -33,7 +42,6 @@ export default Ember.Component.extend({
         this.sendAction('modal', this.get('taskIndex'));
       } else {
         this.run(time);
-
       }
     }.bind(this), 25));
   },

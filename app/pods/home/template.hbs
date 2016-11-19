@@ -1,16 +1,18 @@
 <!-- {{brain-timer tasks=model.user.tasks modal="modal"}} -->
-{{brain-bot title="moti" state="happy" tasks=model.user.tasks}}
+{{brain/brain-bot title="moti" state="happy" tasks=model.user.tasks}}
 
-{{manage-task
+{{brain/manage-task
   tasks=model.tasks
   checkTask="checkTask"
 }}
 
-{{tasks-graph
+<!-- {{charts/tasks-graph
   data=model.tasks
   options=model.option
   height=model.height
-}}
+}} -->
+
+{{brain/brain-timer}}
 
 
 

@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import svgCircleMixin from '../../../mixins/circle';
-import mutiMixin from '../../../mixins/muti';
+import svgCircleMixin from 'brain/mixins/circle';
+import mutiMixin from 'brain/mixins/muti';
 import d3 from 'd3';
 
 export default Ember.Component.extend(svgCircleMixin, mutiMixin, {
