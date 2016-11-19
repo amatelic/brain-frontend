@@ -1,9 +1,9 @@
 <div class="calender__header">
   <div class="calender__left">
     {{#unless hiddeLeftPannel}}
-    <button type="button" class="btn btn-sm btn-default">Days</button>
-    <button type="button" class="btn btn-sm btn-default">Weekend</button>
-    <button type="button" class="btn btn-sm btn-default">Month</button>
+    <button {{action 'changeType' 'day'}}type="button" class="btn btn-sm btn-default">Days</button>
+    <button {{action 'changeType' 'week'}}type="button" class="btn btn-sm btn-default">Weekend</button>
+    <button {{action 'changeType' 'month'}}type="button" class="btn btn-sm btn-default">Month</button>
     {{/unless}}
   </div>
   <div class="calender__center">
@@ -16,23 +16,35 @@
     {{/unless}}
   </div>
 </div>
-<div class="calender__body">
-  <div class="calender__table">
-    <div class="calender__table__header">
-      <div class="calender__row">
-        {{#each days as |day| }}
-          <div class="calender__col">{{day}}</div>
-        {{/each}}
-      </div>
-    </div>
-    <div class="calender__table__body">
-      {{#each daysInMonth as |day index| }}
-        <!-- {{odd tasks day}}  {{odd tasks day}}-->
-        <div {{action 'showModal' day}} class="calender__col {{odd tasks day}}">{{eq day 0 '' day}}</div>
-      {{/each}}
-    </div>
-  </div>
-</div>
+
+
+{{#liquid-if (eq type 'month') class="toLeft-demo"}}
+  {{calender-app/calender-month
+    year=year
+    month=month
+    tasks=tasks
+    showModal="showModal"
+  }}
+{{/liquid-if}}
+
+{{#liquid-if (eq type 'day') class="toLeft-demo"}}
+  {{calender-app/calender-day
+    year=year
+    month=month
+    tasks=tasks
+    showModal="showModal"
+  }}
+{{/liquid-if}}
+
+{{#liquid-if (eq type 'week') class="toLeft-demo"}}
+  {{calender-app/calender-week
+    year=year
+    month=month
+    tasks=tasks
+    showModal="showModal"
+  }}
+{{/liquid-if}}
+
 
 
 

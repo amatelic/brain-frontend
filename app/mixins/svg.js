@@ -8,6 +8,9 @@ export default Ember.Mixin.create({
   }),
 
   svg: null,
+  initializer: function() {
+    this._super(...arguments);
+  },
 
   didInsertElement() {
     this.svg = d3.select(`#chart-${this.get('title')}`);

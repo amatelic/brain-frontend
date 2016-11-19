@@ -1,6 +1,6 @@
 import Ember from 'ember';
-import svgMixin from '../../../mixins/svg';
-import zoomMixin from '../../../mixins/zoom';
+import svgMixin from 'brain/mixins/svg';
+import zoomMixin from 'brain/mixins/zoom';
 import d3 from 'd3';
 export default Ember.Component.extend(svgMixin, zoomMixin, {
   classNames: ['brain__bar ', 'brain__design'],

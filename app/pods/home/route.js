@@ -6,7 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
   graph: new Graph(),
 
-  model(data) {
+  model() {
     let id = this.get('session.data.authenticated.user_id');
     return Ember.RSVP.hash({
       width: 400,

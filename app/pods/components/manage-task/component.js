@@ -36,7 +36,7 @@ export default Ember.Component.extend({
         this.set('task', null);
         let today = moment().date() - 1;
         let complited = (task.get(`days.${today}.complited`)) ? 0 : 1;
-        task.set(`days.${today}.complitedAt`, moment().format('h:mm:ss'));
+        task.set(`days.${today}.complitedAt`, moment().format('HH:mm:ss'));
         task.set(`days.${today}.complited`, complited);
         this.set('task', task);
         this.sendAction('checkTask', task);

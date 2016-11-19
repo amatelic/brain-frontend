@@ -33,7 +33,7 @@ export default Ember.Object.extend({
   getAll() {
     return Ember.keys(this)
     .filter(property => {
-      return (property !== '_super' && property !== 'validator' && property !== 'rules')
+      return (property !== '_super' && property !== 'validator' && property !== 'rules');
     })
     .reduce((previous, current) => {
       previous[current] = this[current].value;

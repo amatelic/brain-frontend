@@ -1,50 +1,44 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-function range(min, max) {
-    return Array.apply(null, Array(max ? Math.abs(min - max)+1 : min)).map(function (a, i) {return i+(max?min:0);});
-}
+const months =  [
+  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+];
+
 export default Ember.Component.extend({
   classNames: ['brain__calender', 'brain__design'],
-  hiddeLeftPannel: true,
+  hiddeLeftPannel: false,
   hiddeRightPannel: false,
   now: moment(),
-  emptySpace: 0,
-  year: Ember.computed('now', function() {
-    return this.get('now').year();
-  }),
-  month: Ember.computed('now', function() {
-    return this.get('now').month();
-  }),
-  daysInMonth: Ember.computed('year', 'month', function() {
-    let {year, month} = this.getProperties('year','month');
-    var startDate = moment([year, month]);
-    this.set('emptySpace', startDate.weekday());
-    let dates = new Array(startDate.weekday()).fill(0);
-    var newArray = dates.concat(range(1, startDate.daysInMonth()));
-    //Add extra elements on empty space
-    if (newArray.length%7 !== 0) {
-      let remains = newArray.length%7;
-      newArray = newArray.concat(Array(7 - remains).fill(0));
-    }
-    return newArray;
-  }),
-  days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  months: [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-  ],
+  type: 'day',
+  months,
+
   monthName: Ember.computed('month', function() {
     return this.get('months')[this.get('month')];
   }),
+
+  year: Ember.computed('now', function() {
+    return this.get('now').year();
+  }),
+  
+  month: Ember.computed('now', function() {
+    return this.get('now').month();
+  }),
+
   actions: {
     showModal(day) {
       this.sendAction('showModal', day);
     },
+
     changeDate(position) {
       let newValue = this.get('now').add(position, 'month');
       this.set('now', 0);
       this.set('now', newValue);
       this.sendAction('getNextMonth', this.get('month'));
+    },
+
+    changeType(type) {
+      this.set('type', type);
     }
   }
 });

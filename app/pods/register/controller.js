@@ -18,7 +18,6 @@ export default Ember.Controller.extend({
   },
   actions: {
     register() {
-      let {email, password, name} = this.getProperties('email', 'password', 'name');
       this.get('ajax').request(ENV.backend.url + '/register', {
         method: 'POST',
         data: this.changeset.getAll()

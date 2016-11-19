@@ -1,8 +1,11 @@
 {{#large-graph state="happy" data=model.tasks tasks=model.tasks getMonth="getMonth"}}
-  {{brain-bar title='Progress'data=model.tasks}}
+
+{{charts/brain-bar title='Progress'data=model.tasks}}
+{{charts/brain-bubble title='Bubble-chart' data=model.tasks}}
+
   <div class="app__types__status">
     {{#each-in model.stages as |key value|}}
-    {{brain-pie title=key data=value}}
+      {{charts/brain-pie title=key data=value}}
     {{/each-in}}
   </div>
 {{/large-graph}}

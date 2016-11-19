@@ -1,0 +1,10 @@
+<div class="height-dimension-20">
+  <h1>{{title}}</h1>
+</div>
+<div class="height-dimension-80">
+  <svg id="chart-{{title}}" width="{{width}}" height={{height}}></svg>
+</div>
+<div class="navbar">
+  <button {{action 'resetScale' }}type="button" name="button">Reset</button>
+</div>
+{{yield}}

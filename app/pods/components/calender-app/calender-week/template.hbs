@@ -1,0 +1,23 @@
+<div class="calender__body">
+  <div class="calender__table">
+    <div class="calender__table__header">
+      <div class="calender__row">
+        <div class="calender__col">Time</div>
+        {{#each days as |day| }}
+          <div class="calender__col">{{day}}</div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="calender__table__body">
+      {{#each times as |tm| }}
+        <div class="calender__row">
+          <div class="calender__col">{{tm}}</div>
+          {{#each days as |day index| }}
+            <div class="calender__col">{{index}}</div>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{yield}}

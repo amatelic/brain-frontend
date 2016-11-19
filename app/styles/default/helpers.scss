@@ -1,4 +1,3 @@
-
 @mixin flexType($direction:row, $wrap:wrap, $justify:center, $align:center) {
   display: flex;
   flex-direction: $direction;

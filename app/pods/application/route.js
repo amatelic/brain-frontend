@@ -32,7 +32,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     } else {
       return {
         user: {},
-      }
+      };
     }
   },
   afterModel() {

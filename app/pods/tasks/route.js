@@ -17,7 +17,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, SweetAlertMixin, {
         this.store.unloadRecord(task);
         sweetAlert({ title: 'Task was created', type: "success" });
       }).catch(() => {
-        sweetAlert({ title: 'There was a problem', type: "error" })
+        sweetAlert({ title: 'There was a problem', type: "error" });
       });
     },
 

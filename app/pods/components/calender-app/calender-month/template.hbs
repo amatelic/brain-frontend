@@ -1,0 +1,18 @@
+<div class="calender__body">
+  <div class="calender__table">
+    <div class="calender__table__header">
+      <div class="calender__row">
+        {{#each days as |day| }}
+          <div class="calender__col">{{day}}</div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="calender__table__body">
+      {{#each daysInMonth as |day index| }}
+        <!-- {{odd tasks day}}  {{odd tasks day}}-->
+        <div {{action 'showModal' day}} class="calender__col {{odd tasks day}}">{{eq day 0 '' day}}</div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{yield}}
